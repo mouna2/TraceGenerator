@@ -210,10 +210,12 @@ public final class MethodTrace {
 		List<String> OuterCalleesFinalPredictions= new ArrayList<String>(); 
 		List<String> OuterCalleesFinalOwners= new ArrayList<String>(); 
 		List<String> ExtendedCallees= new ArrayList<String>(); 
+		List<String> ExtendedCalleesOwners= new ArrayList<String>(); 
 		List<String> ExtendedCalleesPredictions= new ArrayList<String>(); 
 		List<String> ExtendedCallers= new ArrayList<String>(); 
 		List<String> ExtendedCallersPredictions= new ArrayList<String>(); 
-		
+		List<String> ExtendedCallersOwners= new ArrayList<String>(); 
+
 		String reqMethod=this.Requirement.ID+"-"+this.Method.ID; 
 		
 		
@@ -510,10 +512,11 @@ SetPredictionsSetOwners(callee, this, OuterCalleesFinalPredictions, OuterCallees
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////
-//FINAL CALLEES
-for(Method callee: this.Method.getCallersShell()) {
-	ExtendedCallees.add(callee.toString()); 
-	ExtendedCalleesPredictions.add(AlgoFinal.methodtraces2HashMap.get(this.Requirement.ID+"-"+callee.ID).getPrediction()); 
+//FINAL CALLERS
+for(Method caller: this.Method.getCallersShell()) {
+	ExtendedCallers.add(caller.toString()); 
+//	ExtendedCallersPredictions.add(AlgoFinal.methodtraces2HashMap.get(this.Requirement.ID+"-"+caller.ID).getPrediction()); 
+	SetPredictionsSetOwners(caller, this, ExtendedCallersPredictions, ExtendedCallersOwners); 
 
 
 }	
@@ -521,18 +524,22 @@ for(Method callee: this.Method.getCallersShell()) {
 ////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////
 //FINAL CALLEES
-for(Method caller: this.Method.getCalleesShell()) {
-ExtendedCallers.add(caller.toString()); 
-ExtendedCallersPredictions.add(AlgoFinal.methodtraces2HashMap.get(this.Requirement.ID+"-"+caller.ID).getPrediction()); 
+for(Method callee: this.Method.getCalleesShell()) {
+ExtendedCallees.add(callee.toString()); 
+//ExtendedCalleesPredictions.add(AlgoFinal.methodtraces2HashMap.get(this.Requirement.ID+"-"+callee.ID).getPrediction()); 
+SetPredictionsSetOwners(callee, this, ExtendedCalleesPredictions, ExtendedCalleesOwners); 
 
 
 }		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setPrediction(AlgoFinal.methodtraces2HashMap.get(this.Requirement.ID+"-"+this.Method.ID).prediction);
 
 			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setExtendedCallersFinal(ExtendedCallers);
 			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setExtendedCallersPredictionsFinal(ExtendedCallersPredictions);
-			
+			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setExtendedOwnerCallersFinal(ExtendedCallersOwners); 
+
 			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setExtendedCalleesFinal(ExtendedCallees);
 			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setExtendedCalleesPredictionsFinal(ExtendedCalleesPredictions);
+			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setExtendedCallersPredictionsFinal(ExtendedCallersPredictions);
+			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setExtendedOwnerCalleesFinal(ExtendedCalleesOwners); 
 
 
 		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setOuterCallersFinal(OuterCallersFinal);

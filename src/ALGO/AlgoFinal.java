@@ -1027,7 +1027,7 @@ public class AlgoFinal extends JFrame {
 
 		 
 		 
-//	 LogInfo.updateTableLog(ProgramName, MethodTracesHashmapValues, LogInfoHashMap);
+	 LogInfo.updateTableLog(ProgramName, MethodTracesHashmapValues, LogInfoHashMap);
 
 		 System.out.println("YES6");
 		 LogInfo.closeLogFile(); 

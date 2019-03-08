@@ -113,11 +113,24 @@ public class LogInfo {
 	public List<String> ExtendedCalleesFinal; 
 	public List<String> ExtendedCallersPredictionsFinal; 
 	public List<String> ExtendedCalleesPredictionsFinal; 
-	
+	public List<String> ExtendedOwnerCalleesFinal; 
+	public List<String> ExtendedOwnerCallersFinal; 
 	
 	
 	
 
+	public List<String> getExtendedOwnerCalleesFinal() {
+		return ExtendedOwnerCalleesFinal;
+	}
+	public void setExtendedOwnerCalleesFinal(List<String> extendedOwnerCalleesFinal) {
+		ExtendedOwnerCalleesFinal = extendedOwnerCalleesFinal;
+	}
+	public List<String> getExtendedOwnerCallersFinal() {
+		return ExtendedOwnerCallersFinal;
+	}
+	public void setExtendedOwnerCallersFinal(List<String> extendedOwnerCallersFinal) {
+		ExtendedOwnerCallersFinal = extendedOwnerCallersFinal;
+	}
 	public List<String> getExtendedCallersFinal() {
 		return ExtendedCallersFinal;
 	}
@@ -827,6 +840,9 @@ public class LogInfo {
 		String ExtendedCalleesPredictionsList=toString3(ExtendedCalleesPredictionsFinal); 
 		String ExtendedCallersList=toString3(ExtendedCallersFinal); 
 		String ExtendedCallersPredictionsList=toString3(ExtendedCallersPredictionsFinal); 
+		String ExtendedOwnerCalleesList=toString3(ExtendedOwnerCalleesFinal); 
+		String ExtendedOwnerCallersList=toString3(ExtendedOwnerCallersFinal); 
+
 		String reqClass= RequirementID+"-"+ClassID; 
 		
 		
@@ -850,7 +866,9 @@ public class LogInfo {
 				//TWO FOLLOWING LINES CAN BE REMOVED 
 				+","+OuterCallersFinalList+","+OuterCallersFinalPredictionsList+","+OuterCallersFinalOwnersList
 				+","+OuterCalleesFinalList+","+OuterCalleesFinalPredictionsList+","+OuterCalleesFinalOwnersList
-				+","+ExtendedCalleesList+","+ExtendedCalleesPredictionsList+","+ExtendedCallersList+","+ExtendedCallersPredictionsList
+				
+				+","+ExtendedCalleesList+","+ExtendedCalleesPredictionsList+","+ExtendedOwnerCalleesList+","+ExtendedCallersList+","+ExtendedCallersPredictionsList
+				+","+ExtendedOwnerCallersList
 				+","+Prediction	
 				+","+PrecisionRecall	
 		+","+	toString2(IterationValues); 
@@ -1368,7 +1386,7 @@ public class LogInfo {
 					+" ChildrenCalleesCallees, ChildrenCalleesCalleesPredictions, ChildrenCalleesCalleesOwnerValues,"
 					+" NEWOuterCallers, NEWOuterCallersPredictions, NEWOuterCallersOwners,"
 					+" NEWOuterCallees, NEWOuterCalleesPredictions, NEWOuterCalleesOwners,"
-					+"ExtendedCallees, ExtendedCalleesPredictions, ExtendedCallers, ExtendedCallersPredictions,"
+					+"ExtendedCallees, ExtendedCalleesPredictions, ExtendedOwnerCallees, ExtendedCallers, ExtendedCallersPredictions,ExtendedOwnerCallers,"
 					+ "Prediction,"
 					+ "PrecisionRecall,IterationValues"
 					);
@@ -1394,7 +1412,7 @@ public class LogInfo {
 					+" ChildrenCalleesCallees, ChildrenCalleesCalleesPredictions, ChildrenCalleesCalleesOwnerValues,"
 					+" NEWOuterCallers, NEWOuterCallersPredictions, NEWOuterCallersOwners,"
 					+" NEWOuterCallees, NEWOuterCalleesPredictions, NEWOuterCalleesOwners,"
-					+"ExtendedCallees, ExtendedCalleesPredictions, ExtendedCallers, ExtendedCallersPredictions,"
+					+"ExtendedCallees, ExtendedCalleesPredictions, ExtendedOwnerCallees, ExtendedCallers, ExtendedCallersPredictions,ExtendedOwnerCallers,"
 					+ "Prediction,"
 					+ "PrecisionRecall,IterationValues"
 					);
@@ -1444,7 +1462,7 @@ public class LogInfo {
 					+" ChildrenCalleesCallees, ChildrenCalleesCalleesPredictions, ChildrenCalleesCalleesOwnerValues,"
 					+" NEWOuterCallers, NEWOuterCallersPredictions, NEWOuterCallersOwners,"
 					+" NEWOuterCallees, NEWOuterCalleesPredictions, NEWOuterCalleesOwners,"
-					+"ExtendedCallees, ExtendedCalleesPredictions, ExtendedCallers, ExtendedCallersPredictions,"
+					+"ExtendedCallees, ExtendedCalleesPredictions, ExtendedOwnerCallees, ExtendedCallers, ExtendedCallersPredictions,ExtendedOwnerCallers,"
 					+ "Prediction,"
 					+ "PrecisionRecall,IterationValues"
 					);
@@ -1473,7 +1491,7 @@ public class LogInfo {
 					+" NEWOuterCallers, NEWOuterCallersPredictions, NEWOuterCallersOwners,"
 					+" NEWOuterCallees, NEWOuterCalleesPredictions, NEWOuterCalleesOwners,"
 					//END OF THESE TWO LINES CAN BE REMOVED 
-					+"ExtendedCallees, ExtendedCalleesPredictions, ExtendedCallers, ExtendedCallersPredictions,"
+					+"ExtendedCallees, ExtendedCalleesPredictions, ExtendedOwnerCallees, ExtendedCallers, ExtendedCallersPredictions,ExtendedOwnerCallers,"
 					+ "Prediction,"
 					+ "PrecisionRecall,IterationValues"
 					);
