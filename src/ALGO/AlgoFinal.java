@@ -59,11 +59,10 @@ public class AlgoFinal extends JFrame {
 	public static boolean InterfaceImplementationFlag=true; 
 	public static boolean RecursiveDescent=true; 
 	
-	public static boolean InheritanceOnFlagSteps2And4=false; 
 
 	 PredictionValues zeroPred= new PredictionValues(0,0,0); 
 
-	
+	public static boolean InheritanceOnFlagSteps2And4=true; 
 	public static boolean InheritanceRecursion=false; 
 
 	/**
@@ -1027,7 +1026,7 @@ public class AlgoFinal extends JFrame {
 
 		 
 		 
-	 LogInfo.updateTableLog(ProgramName, MethodTracesHashmapValues, LogInfoHashMap);
+//	 LogInfo.updateTableLog(ProgramName, MethodTracesHashmapValues, LogInfoHashMap);
 
 		 System.out.println("YES6");
 		 LogInfo.closeLogFile(); 
