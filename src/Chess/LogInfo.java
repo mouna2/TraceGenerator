@@ -59,55 +59,43 @@ public class LogInfo {
 	List<String> CalleesPredictions; 
 	List<String> CalleesOwners; 
 	
-	List<String> CallersCallers; 
-	List<String> CallersCallersPredictions; 
-	List<String> CallersCallersOwners; 
+	List<String> InterfaceCallers;
+	List<String> InterfaceCallerPredictions;
+	List<String> InterfaceCallersOwners;
 	
-	List<String> CalleesCallees; 
-	List<String> CalleesCalleesPredictions; 
-	List<String> CalleesCalleesOwners; 
+	List<String> SuperclassCallers;
+	List<String> SuperclassCallerPredictions;
+	List<String> SuperclassCallersOwners;
+	
+	List<String> ImplementationCallers;
+	List<String> ImplementationCallerPredictions;
+	List<String> ImplementationCallersOwners;
+	
+	List<String> ChildrenCallers;
+	List<String> ChildrenCallerPredictions;
+	List<String> ChildrenCallersOwners;
+
 	
 	List<String> ImplementationCallees;
 	List<String> ImplementationCalleePredictions;
 	List<String> ImplementationCalleesOwners;
 
-	List<String> InterfaceCallers;
-	List<String> InterfaceCallerPredictions;
-	List<String> InterfaceCallersOwners;
+	
 
 	List<String> ChildrenCallees;
 	List<String> ChildrenCalleePredictions;
 	List<String> ChildrenCalleesOwners;
 
-	List<String> SuperclassCallers;
-	List<String> SuperclassCallerPredictions;
-	List<String> SuperclassCallersOwners;
+	List<String> SuperclassCallees;
+	List<String> SuperclassCalleePredictions;
+	List<String> SuperclassCalleesOwners;
 
 	
-	List<String> InterfacesCallersCallers; 
-	List<String> InterfacesCallersCallersPredictions; 
-	List<String> InterfacesCallersCallersOwners; 
+	public List<String> CalleesCalleesInterfaceInheritance; 
+	public List<String> CalleesCalleesInterfaceInheritancePredictions; 
+	public List<String> CalleesCalleesInterfaceInheritanceOwners; 
+
 	
-	List<String> ImplementationCalleesCallees; 
-	List<String> ImplementationCalleesCalleesPredictions; 
-	List<String> ImplementationCalleesCalleesOwners; 
-	
-	List<String> SuperclassesCallersCallers; 
-	List<String> SuperclassesCallersCallersPredictions; 
-	List<String> SuperclassesCallersCallersOwners; 
-	
-	List<String> ChildrenCalleesCallees; 
-	List<String> ChildrenCalleesCalleesPredictions; 
-	List<String> ChildrenCalleesCalleesOwners; 
-	
-	
-	List<String> OuterCallersFinal; 
-	List<String> OuterCallersPredictionsFinal; 
-	List<String> OuterCallersOwnersFinal; 
-	
-	List<String> OuterCalleesFinal; 
-	List<String> OuterCalleesPredictionsFinal; 
-	List<String> OuterCalleesOwnersFinal; 
 	
 	public List<String> ExtendedCallersFinal; 
 	public List<String> ExtendedCalleesFinal; 
@@ -117,8 +105,127 @@ public class LogInfo {
 	public List<String> ExtendedOwnerCallersFinal; 
 	
 	
-	
+	public List<String> ExecutedCallers; 
+	public List<String> ExecutedCallersPredictions; 
+	public List<String> ExecutedOwnerCallers; 
+	public List<String> ExecutedCallees; 
+	public List<String> ExecutedCalleesPredictions; 
+	public List<String> ExecutedOwnerCallees; 
 
+	
+	
+	
+	
+	
+	public List<String> getExecutedCallers() {
+		return ExecutedCallers;
+	}
+	public void setExecutedCallers(List<String> executedCallers) {
+		ExecutedCallers = executedCallers;
+	}
+	public List<String> getExecutedCallersPredictions() {
+		return ExecutedCallersPredictions;
+	}
+	public void setExecutedCallersPredictions(List<String> executedCallersPredictions) {
+		ExecutedCallersPredictions = executedCallersPredictions;
+	}
+	public List<String> getExecutedOwnerCallers() {
+		return ExecutedOwnerCallers;
+	}
+	public void setExecutedOwnerCallers(List<String> executedOwnerCallers) {
+		ExecutedOwnerCallers = executedOwnerCallers;
+	}
+	public List<String> getExecutedCallees() {
+		return ExecutedCallees;
+	}
+	public void setExecutedCallees(List<String> executedCallees) {
+		ExecutedCallees = executedCallees;
+	}
+	public List<String> getExecutedCalleesPredictions() {
+		return ExecutedCalleesPredictions;
+	}
+	public void setExecutedCalleesPredictions(List<String> executedCalleesPredictions) {
+		ExecutedCalleesPredictions = executedCalleesPredictions;
+	}
+	public List<String> getExecutedOwnerCallees() {
+		return ExecutedOwnerCallees;
+	}
+	public void setExecutedOwnerCallees(List<String> executedOwnerCallees) {
+		ExecutedOwnerCallees = executedOwnerCallees;
+	}
+	public List<String> getCalleesCalleesInterfaceInheritancePredictions() {
+		return CalleesCalleesInterfaceInheritancePredictions;
+	}
+	public void setCalleesCalleesInterfaceInheritancePredictions(
+			List<String> calleesCalleesInterfaceInheritancePredictions) {
+		CalleesCalleesInterfaceInheritancePredictions = calleesCalleesInterfaceInheritancePredictions;
+	}
+	public List<String> getCalleesCalleesInterfaceInheritanceOwners() {
+		return CalleesCalleesInterfaceInheritanceOwners;
+	}
+	public void setCalleesCalleesInterfaceInheritanceOwners(List<String> calleesCalleesInterfaceInheritanceOwners) {
+		CalleesCalleesInterfaceInheritanceOwners = calleesCalleesInterfaceInheritanceOwners;
+	}
+	public List<String> getCalleesCalleesInterfaceInheritance() {
+		return CalleesCalleesInterfaceInheritance;
+	}
+	public void setCalleesCalleesInterfaceInheritance(List<String> calleesCalleesInterfaceInheritance) {
+		CalleesCalleesInterfaceInheritance = calleesCalleesInterfaceInheritance;
+	}
+	public List<String> getImplementationCallers() {
+		return ImplementationCallers;
+	}
+	public void setImplementationCallers(List<String> implementationCallers) {
+		ImplementationCallers = implementationCallers;
+	}
+	public List<String> getImplementationCallerPredictions() {
+		return ImplementationCallerPredictions;
+	}
+	public void setImplementationCallerPredictions(List<String> implementationCallerPredictions) {
+		ImplementationCallerPredictions = implementationCallerPredictions;
+	}
+	public List<String> getImplementationCallersOwners() {
+		return ImplementationCallersOwners;
+	}
+	public void setImplementationCallersOwners(List<String> implementationCallersOwners) {
+		ImplementationCallersOwners = implementationCallersOwners;
+	}
+	public List<String> getChildrenCallers() {
+		return ChildrenCallers;
+	}
+	public void setChildrenCallers(List<String> childrenCallers) {
+		ChildrenCallers = childrenCallers;
+	}
+	public List<String> getChildrenCallerPredictions() {
+		return ChildrenCallerPredictions;
+	}
+	public void setChildrenCallerPredictions(List<String> childrenCallerPredictions) {
+		ChildrenCallerPredictions = childrenCallerPredictions;
+	}
+	public List<String> getChildrenCallersOwners() {
+		return ChildrenCallersOwners;
+	}
+	public void setChildrenCallersOwners(List<String> childrenCallersOwners) {
+		ChildrenCallersOwners = childrenCallersOwners;
+	}
+	public List<String> getSuperclassCallees() {
+		return SuperclassCallees;
+	}
+	public void setSuperclassCallees(List<String> superclassCallees) {
+		SuperclassCallees = superclassCallees;
+	}
+	public List<String> getSuperclassCalleePredictions() {
+		return SuperclassCalleePredictions;
+	}
+	public void setSuperclassCalleePredictions(List<String> superclassCalleePredictions) {
+		SuperclassCalleePredictions = superclassCalleePredictions;
+	}
+	public List<String> getSuperclassCalleesOwners() {
+		return SuperclassCalleesOwners;
+	}
+	public void setSuperclassCalleesOwners(List<String> superclassCalleesOwners) {
+		SuperclassCalleesOwners = superclassCalleesOwners;
+	}
 	public List<String> getExtendedOwnerCalleesFinal() {
 		return ExtendedOwnerCalleesFinal;
 	}
@@ -155,42 +262,7 @@ public class LogInfo {
 	public void setExtendedCalleesPredictionsFinal(List<String> extendedCalleesPredictionsFinal) {
 		ExtendedCalleesPredictionsFinal = extendedCalleesPredictionsFinal;
 	}
-	public List<String> getOuterCallersFinal() {
-		return OuterCallersFinal;
-	}
-	public void setOuterCallersFinal(List<String> outerCallersFinal) {
-		OuterCallersFinal = outerCallersFinal;
-	}
-	public List<String> getOuterCallersPredictionsFinal() {
-		return OuterCallersPredictionsFinal;
-	}
-	public void setOuterCallersPredictionsFinal(List<String> outerCallersPredictionsFinal) {
-		OuterCallersPredictionsFinal = outerCallersPredictionsFinal;
-	}
-	public List<String> getOuterCallersOwnersFinal() {
-		return OuterCallersOwnersFinal;
-	}
-	public void setOuterCallersOwnersFinal(List<String> outerCallersOwnersFinal) {
-		OuterCallersOwnersFinal = outerCallersOwnersFinal;
-	}
-	public List<String> getOuterCalleesFinal() {
-		return OuterCalleesFinal;
-	}
-	public void setOuterCalleesFinal(List<String> outerCalleesFinal) {
-		OuterCalleesFinal = outerCalleesFinal;
-	}
-	public List<String> getOuterCalleesPredictionsFinal() {
-		return OuterCalleesPredictionsFinal;
-	}
-	public void setOuterCalleesPredictionsFinal(List<String> outerCalleesPredictionsFinal) {
-		OuterCalleesPredictionsFinal = outerCalleesPredictionsFinal;
-	}
-	public List<String> getOuterCalleesOwnersFinal() {
-		return OuterCalleesOwnersFinal;
-	}
-	public void setOuterCalleesOwnersFinal(List<String> outerCalleesOwnersFinal) {
-		OuterCalleesOwnersFinal = outerCalleesOwnersFinal;
-	}
+	
 	public List<String> getCallersPredictions() {
 		return CallersPredictions;
 	}
@@ -215,42 +287,7 @@ public class LogInfo {
 	public void setCalleesOwners(List<String> calleesOwners) {
 		CalleesOwners = calleesOwners;
 	}
-	public List<String> getCallersCallers() {
-		return CallersCallers;
-	}
-	public void setCallersCallers(List<String> callersCallers) {
-		CallersCallers = callersCallers;
-	}
-	public List<String> getCallersCallersPredictions() {
-		return CallersCallersPredictions;
-	}
-	public void setCallersCallersPredictions(List<String> callersCallersPredictions) {
-		CallersCallersPredictions = callersCallersPredictions;
-	}
-	public List<String> getCallersCallersOwners() {
-		return CallersCallersOwners;
-	}
-	public void setCallersCallersOwners(List<String> callersCallersOwners) {
-		CallersCallersOwners = callersCallersOwners;
-	}
-	public List<String> getCalleesCallees() {
-		return CalleesCallees;
-	}
-	public void setCalleesCallees(List<String> calleesCallees) {
-		CalleesCallees = calleesCallees;
-	}
-	public List<String> getCalleesCalleesPredictions() {
-		return CalleesCalleesPredictions;
-	}
-	public void setCalleesCalleesPredictions(List<String> calleesCalleesPredictions) {
-		CalleesCalleesPredictions = calleesCalleesPredictions;
-	}
-	public List<String> getCalleesCalleesOwners() {
-		return CalleesCalleesOwners;
-	}
-	public void setCalleesCalleesOwners(List<String> calleesCalleesOwners) {
-		CalleesCalleesOwners = calleesCalleesOwners;
-	}
+	
 	public List<String> getImplementationCalleesOwners() {
 		return ImplementationCalleesOwners;
 	}
@@ -275,78 +312,7 @@ public class LogInfo {
 	public void setSuperclassCallersOwners(List<String> superclassCallersOwners) {
 		SuperclassCallersOwners = superclassCallersOwners;
 	}
-	public List<String> getInterfacesCallersCallers() {
-		return InterfacesCallersCallers;
-	}
-	public void setInterfacesCallersCallers(List<String> interfacesCallersCallers) {
-		InterfacesCallersCallers = interfacesCallersCallers;
-	}
-	public List<String> getInterfacesCallersCallersPredictions() {
-		return InterfacesCallersCallersPredictions;
-	}
-	public void setInterfacesCallersCallersPredictions(List<String> interfacesCallersCallersPredictions) {
-		InterfacesCallersCallersPredictions = interfacesCallersCallersPredictions;
-	}
-	public List<String> getInterfacesCallersCallersOwners() {
-		return InterfacesCallersCallersOwners;
-	}
-	public void setInterfacesCallersCallersOwners(List<String> interfacesCallersCallersOwners) {
-		InterfacesCallersCallersOwners = interfacesCallersCallersOwners;
-	}
-	public List<String> getImplementationCalleesCallees() {
-		return ImplementationCalleesCallees;
-	}
-	public void setImplementationCalleesCallees(List<String> implementationCalleesCallees) {
-		ImplementationCalleesCallees = implementationCalleesCallees;
-	}
-	public List<String> getImplementationCalleesCalleesPredictions() {
-		return ImplementationCalleesCalleesPredictions;
-	}
-	public void setImplementationCalleesCalleesPredictions(List<String> implementationCalleesCalleesPredictions) {
-		ImplementationCalleesCalleesPredictions = implementationCalleesCalleesPredictions;
-	}
-	public List<String> getImplementationCalleesCalleesOwners() {
-		return ImplementationCalleesCalleesOwners;
-	}
-	public void setImplementationCalleesCalleesOwners(List<String> implementationCalleesCalleesOwners) {
-		ImplementationCalleesCalleesOwners = implementationCalleesCalleesOwners;
-	}
-	public List<String> getSuperclassesCallersCallers() {
-		return SuperclassesCallersCallers;
-	}
-	public void setSuperclassesCallersCallers(List<String> superclassesCallersCallers) {
-		SuperclassesCallersCallers = superclassesCallersCallers;
-	}
-	public List<String> getSuperclassesCallersCallersPredictions() {
-		return SuperclassesCallersCallersPredictions;
-	}
-	public void setSuperclassesCallersCallersPredictions(List<String> superclassesCallersCallersPredictions) {
-		SuperclassesCallersCallersPredictions = superclassesCallersCallersPredictions;
-	}
-	public List<String> getSuperclassesCallersCallersOwners() {
-		return SuperclassesCallersCallersOwners;
-	}
-	public void setSuperclassesCallersCallersOwners(List<String> superclassesCallersCallersOwners) {
-		SuperclassesCallersCallersOwners = superclassesCallersCallersOwners;
-	}
-	public List<String> getChildrenCalleesCallees() {
-		return ChildrenCalleesCallees;
-	}
-	public void setChildrenCalleesCallees(List<String> childrenCalleesCallees) {
-		ChildrenCalleesCallees = childrenCalleesCallees;
-	}
-	public List<String> getChildrenCalleesCalleesPredictions() {
-		return ChildrenCalleesCalleesPredictions;
-	}
-	public void setChildrenCalleesCalleesPredictions(List<String> childrenCalleesCalleesPredictions) {
-		ChildrenCalleesCalleesPredictions = childrenCalleesCalleesPredictions;
-	}
-	public List<String> getChildrenCalleesCalleesOwners() {
-		return ChildrenCalleesCalleesOwners;
-	}
-	public void setChildrenCalleesCalleesOwners(List<String> childrenCalleesCalleesOwners) {
-		ChildrenCalleesCalleesOwners = childrenCalleesCalleesOwners;
-	}
+	
 	public List<String> getImplementations() {
 		return Implementations;
 	}
@@ -787,29 +753,26 @@ public class LogInfo {
 		String CalleesList=toString3(Callees); 
 		String CalleesOwnersList=toString3(CalleesOwners); 
 		String CalleesPredictionsList=toString3(CalleesPredictions); 
-		String CallersCallersList=toString3(CallersCallers); 
-		String CallersCallersOwnersList=toString3(CallersCallersOwners); 
-		String CallersCallersPredictionsList=toString3(CallersCallersPredictions); 
-		String CalleesCalleesList=toString3(CalleesCallees); 
-		String CalleesCalleesOwnersList=toString3(CalleesCalleesOwners); 
-		String CalleesCalleesPredictionsList=toString3(CalleesCalleesPredictions); 
+		
 		
 		String InterfaceCallerList=toString3(InterfaceCallers); 
 		String InterfaceCallerOwnerList=toString3(InterfaceCallersOwners); 
 		String InterfaceCallerPredictionList=toString3(InterfaceCallerPredictions); 
+		
+		String ImplementationCallerList=toString3(ImplementationCallers); 
+		String ImplementationCallerOwnerList=toString3(ImplementationCallersOwners); 
+		String ImplementationCallerPredictionList=toString3(ImplementationCallerPredictions); 
+		
+		
+		String ChildrenCallerList=toString3(ChildrenCallers); 
+		String ChildrenCallerOwnerList=toString3(ChildrenCallersOwners); 
+		String ChildrenCallerPredictionList=toString3(ChildrenCallerPredictions); 
 		
 		
 		String ImplementationCalleeList=toString3(ImplementationCallees); 
 		String ImplementationCalleeOwnerList=toString3(ImplementationCalleesOwners); 
 		String ImplementationCalleePredictionList=toString3(ImplementationCalleePredictions); 
 		
-		String SuperclassCallersCallersList=toString3(SuperclassesCallersCallers); 
-		String SuperclassCallersCallersOwnerList=toString3(SuperclassesCallersCallersOwners); 
-		String SuperclassCallersCallersPredictionList=toString3(SuperclassesCallersCallersPredictions); 
-		
-		String InterfaceCallersCallersList=toString3(InterfacesCallersCallers); 
-		String InterfaceCallersCallersOwnerList=toString3(InterfacesCallersCallersOwners); 
-		String InterfaceCallersCallersPredictionList=toString3(InterfacesCallersCallersPredictions); 
 		
 		String SuperclassCallerList=toString3(SuperclassCallers); 
 		String SuperclassCallerOwnerList=toString3(SuperclassCallersOwners); 
@@ -819,22 +782,10 @@ public class LogInfo {
 		String ChildrenCalleeOwnerList=toString3(ChildrenCalleesOwners); 
 		String ChildrenCalleePredictionList=toString3(ChildrenCalleePredictions); 
 		
+		String SuperclassCalleesList=toString3(SuperclassCallees); 
+		String SuperclassCalleesOwnerList=toString3(SuperclassCalleesOwners); 
+		String SuperclassCalleesPredictionList=toString3(SuperclassCalleePredictions); 
 		
-		String ChildrenCalleesCalleesList=toString3(ChildrenCalleesCallees); 
-		String ChildrenCalleesCalleesOwnerList=toString3(ChildrenCalleesCalleesOwners); 
-		String ChildrenCalleesCalleesPredictionList=toString3(ChildrenCalleesCalleesPredictions); 
-		
-		String ImplementationCalleesCalleesList=toString3(ImplementationCalleesCallees); 
-		String ImplementationCalleesCalleesOwnerList=toString3(ImplementationCalleesCalleesOwners); 
-		String ImplementationCalleesCalleesPredictionList=toString3(ImplementationCalleesCalleesPredictions); 
-		
-		String OuterCallersFinalList=toString3(OuterCallersFinal); 
-		String OuterCallersFinalOwnersList=toString3(OuterCallersOwnersFinal); 
-		String OuterCallersFinalPredictionsList=toString3(OuterCallersPredictionsFinal); 
-		
-		String OuterCalleesFinalList=toString3(OuterCalleesFinal); 
-		String OuterCalleesFinalOwnersList=toString3(OuterCalleesOwnersFinal); 
-		String OuterCalleesFinalPredictionsList=toString3(OuterCalleesPredictionsFinal); 
 		
 		String ExtendedCalleesList=toString3(ExtendedCalleesFinal); 
 		String ExtendedCalleesPredictionsList=toString3(ExtendedCalleesPredictionsFinal); 
@@ -842,8 +793,20 @@ public class LogInfo {
 		String ExtendedCallersPredictionsList=toString3(ExtendedCallersPredictionsFinal); 
 		String ExtendedOwnerCalleesList=toString3(ExtendedOwnerCalleesFinal); 
 		String ExtendedOwnerCallersList=toString3(ExtendedOwnerCallersFinal); 
-
+		
+		String CalleesCalleesInterfaceInheritanceList=toString3(CalleesCalleesInterfaceInheritance); 
+		String CalleesCalleesInterfaceInheritanceOwnersList		 =toString3(CalleesCalleesInterfaceInheritanceOwners); 
+		String CalleesCalleesInterfaceInheritancePredictionsList       =toString3(CalleesCalleesInterfaceInheritancePredictions); 
+		String ExecutedCalleesList=toString3(ExecutedCallees); 
+		String ExecutedCalleesPredictionsList=toString3(ExecutedCalleesPredictions); 
+		String ExecutedCallersList=toString3(ExecutedCallers); 
+		String ExecutedCallersPredictionsList=toString3(ExecutedCallersPredictions); 
+		String ExecutedOwnerCalleesList=toString3(ExecutedOwnerCallees); 
+		String ExecutedOwnerCallersList=toString3(ExecutedOwnerCallers); 
 		String reqClass= RequirementID+"-"+ClassID; 
+		
+
+
 		
 		
 		return MethodID+","+MethodName+","+RequirementID+","+RequirementName+","+ClassID+","+ClassName
@@ -853,22 +816,19 @@ public class LogInfo {
 				+","+CallersList+","+CallersPredictionsList+","+CallersOwnersList
 				+","+InterfaceCallerList+","+InterfaceCallerPredictionList+","+InterfaceCallerOwnerList
 				+","+SuperclassCallerList+","+SuperclassCallerPredictionList+","+SuperclassCallerOwnerList
-				+","+CallersCallersList+","+CallersCallersPredictionsList+","+CallersCallersOwnersList
-				+","+InterfaceCallersCallersList+","+InterfaceCallersCallersPredictionList+","+InterfaceCallersCallersOwnerList
-				+","+SuperclassCallersCallersList+","+SuperclassCallersCallersPredictionList+","+SuperclassCallersCallersOwnerList
+				+","+ImplementationCallerList+","+ImplementationCallerPredictionList+","+ImplementationCallerOwnerList
+				+","+ChildrenCallerList+","+ChildrenCallerPredictionList+","+ChildrenCallerOwnerList
 				
 				+","+CalleesList+","+CalleesPredictionsList+","+CalleesOwnersList
 				+","+ImplementationCalleeList+","+ImplementationCalleePredictionList+","+ImplementationCalleeOwnerList
 				+","+ChildrenCalleesList+","+ChildrenCalleePredictionList+","+ChildrenCalleeOwnerList
-				+","+CalleesCalleesList+","+CalleesCalleesPredictionsList+","+CalleesCalleesOwnersList
-				+","+ImplementationCalleesCalleesList+","+ImplementationCalleesCalleesPredictionList+","+ImplementationCalleesCalleesOwnerList
-				+","+ChildrenCalleesCalleesList+","+ChildrenCalleesCalleesPredictionList+","+ChildrenCalleesCalleesOwnerList
-				//TWO FOLLOWING LINES CAN BE REMOVED 
-				+","+OuterCallersFinalList+","+OuterCallersFinalPredictionsList+","+OuterCallersFinalOwnersList
-				+","+OuterCalleesFinalList+","+OuterCalleesFinalPredictionsList+","+OuterCalleesFinalOwnersList
+				+","+SuperclassCalleesList+","+SuperclassCalleesPredictionList+","+SuperclassCalleesOwnerList
+				+","+CalleesCalleesInterfaceInheritanceList+","+CalleesCalleesInterfaceInheritancePredictionsList+","+CalleesCalleesInterfaceInheritanceOwnersList
+
 				
-				+","+ExtendedCalleesList+","+ExtendedCalleesPredictionsList+","+ExtendedOwnerCalleesList+","+ExtendedCallersList+","+ExtendedCallersPredictionsList
-				+","+ExtendedOwnerCallersList
+				+","+ExtendedCalleesList+","+ExtendedCalleesPredictionsList+","+ExtendedOwnerCalleesList+","+ExtendedCallersList+","+ExtendedCallersPredictionsList+","+ExtendedOwnerCallersList
+				+","+ExecutedCalleesList+","+ExecutedCalleesPredictionsList+","+ExecutedOwnerCalleesList+","+ExecutedCallersList+","+ExecutedCallersPredictionsList+","+ExecutedOwnerCallersList
+
 				+","+Prediction	
 				+","+PrecisionRecall	
 		+","+	toString2(IterationValues); 
@@ -1374,19 +1334,16 @@ public class LogInfo {
 					+" Callers, CallersPredictions, CallersOwnerValues,"
 					+" InterfaceCallers, InterfaceCallersPredictions, InterfaceCallersOwnerValues,"
 					+" SuperclassCallers, SuperclassCallersPredictions, SuperclassCallersOwnerValues,"
-					+" CallersCallers, CallersCallersPredictions, CallersCallersOwnerValues,"
-					+" InterfaceCallersCallers, InterfaceCallersCallersPredictions, InterfaceCallersCallersOwnerValues,"
-					+" SuperclassCallersCallers, SuperclassCallersCallersPredictions, SuperclassCallersCallersOwnerValues,"
-					
+					+" ImplementationCallers, ImplementationCallersPredictions, ImplementationCallersOwnerValues,"
+					+" ChildrenCallers, ChildrenCallersPredictions, ChildrenCallersOwnerValues,"	
 					+" Callees, CalleesPredictions, CalleesOwnerValues,"
 					+" ImplementationCallees, ImplementationCalleesPredictions, ImplementationCalleesOwnerValues,"
 					+" ChildrenCallees, ChildrenCalleesPredictions, ChildrenCalleesOwnerValues,"
-					+" CalleesCallees, CalleesCalleesPredictions, CalleesCalleesOwnerValues,"
-					+" ImplementationCalleesCallees, ImplementationCalleesCalleesPredictions, ImplementationCalleesCalleesOwnerValues,"
-					+" ChildrenCalleesCallees, ChildrenCalleesCalleesPredictions, ChildrenCalleesCalleesOwnerValues,"
-					+" NEWOuterCallers, NEWOuterCallersPredictions, NEWOuterCallersOwners,"
-					+" NEWOuterCallees, NEWOuterCalleesPredictions, NEWOuterCalleesOwners,"
+					+" SuperclassCallees, SuperclassCalleesPredictions, SuperclassCalleesOwnerValues,"
+					+" CalleesCalleesInterfaceInheritance, CalleesCalleesInterfaceInheritancePredictions, CalleesCalleesInterfaceInheritanceOwners,"
 					+"ExtendedCallees, ExtendedCalleesPredictions, ExtendedOwnerCallees, ExtendedCallers, ExtendedCallersPredictions,ExtendedOwnerCallers,"
+					+"ExecutedCallees, ExecutedCalleesPredictions, ExecutedOwnerCallees, ExecutedCallers, ExecutedCallersPredictions,ExecutedOwnerCallers,"
+
 					+ "Prediction,"
 					+ "PrecisionRecall,IterationValues"
 					);
@@ -1400,19 +1357,16 @@ public class LogInfo {
 					+" Callers, CallersPredictions, CallersOwnerValues,"
 					+" InterfaceCallers, InterfaceCallersPredictions, InterfaceCallersOwnerValues,"
 					+" SuperclassCallers, SuperclassCallersPredictions, SuperclassCallersOwnerValues,"
-					+" CallersCallers, CallersCallersPredictions, CallersCallersOwnerValues,"
-					+" InterfaceCallersCallers, InterfaceCallersCallersPredictions, InterfaceCallersCallersOwnerValues,"
-					+" SuperclassCallersCallers, SuperclassCallersCallersPredictions, SuperclassCallersCallersOwnerValues,"
-					
+					+" ImplementationCallers, ImplementationCallersPredictions, ImplementationCallersOwnerValues,"
+					+" ChildrenCallers, ChildrenCallersPredictions, ChildrenCallersOwnerValues,"	
 					+" Callees, CalleesPredictions, CalleesOwnerValues,"
 					+" ImplementationCallees, ImplementationCalleesPredictions, ImplementationCalleesOwnerValues,"
 					+" ChildrenCallees, ChildrenCalleesPredictions, ChildrenCalleesOwnerValues,"
-					+" CalleesCallees, CalleesCalleesPredictions, CalleesCalleesOwnerValues,"
-					+" ImplementationCalleesCallees, ImplementationCalleesCalleesPredictions, ImplementationCalleesCalleesOwnerValues,"
-					+" ChildrenCalleesCallees, ChildrenCalleesCalleesPredictions, ChildrenCalleesCalleesOwnerValues,"
-					+" NEWOuterCallers, NEWOuterCallersPredictions, NEWOuterCallersOwners,"
-					+" NEWOuterCallees, NEWOuterCalleesPredictions, NEWOuterCalleesOwners,"
+					+" SuperclassCallees, SuperclassCalleesPredictions, SuperclassCalleesOwnerValues,"
+					+" CalleesCalleesInterfaceInheritance, CalleesCalleesInterfaceInheritancePredictions, CalleesCalleesInterfaceInheritanceOwners,"
 					+"ExtendedCallees, ExtendedCalleesPredictions, ExtendedOwnerCallees, ExtendedCallers, ExtendedCallersPredictions,ExtendedOwnerCallers,"
+					+"ExecutedCallees, ExecutedCalleesPredictions, ExecutedOwnerCallees, ExecutedCallers, ExecutedCallersPredictions,ExecutedOwnerCallers,"
+
 					+ "Prediction,"
 					+ "PrecisionRecall,IterationValues"
 					);
@@ -1450,19 +1404,16 @@ public class LogInfo {
 					+" Callers, CallersPredictions, CallersOwnerValues,"
 					+" InterfaceCallers, InterfaceCallersPredictions, InterfaceCallersOwnerValues,"
 					+" SuperclassCallers, SuperclassCallersPredictions, SuperclassCallersOwnerValues,"
-					+" CallersCallers, CallersCallersPredictions, CallersCallersOwnerValues,"
-					+" InterfaceCallersCallers, InterfaceCallersCallersPredictions, InterfaceCallersCallersOwnerValues,"
-					+" SuperclassCallersCallers, SuperclassCallersCallersPredictions, SuperclassCallersCallersOwnerValues,"
-					
+					+" ImplementationCallers, ImplementationCallersPredictions, ImplementationCallersOwnerValues,"
+					+" ChildrenCallers, ChildrenCallersPredictions, ChildrenCallersOwnerValues,"	
 					+" Callees, CalleesPredictions, CalleesOwnerValues,"
 					+" ImplementationCallees, ImplementationCalleesPredictions, ImplementationCalleesOwnerValues,"
 					+" ChildrenCallees, ChildrenCalleesPredictions, ChildrenCalleesOwnerValues,"
-					+" CalleesCallees, CalleesCalleesPredictions, CalleesCalleesOwnerValues,"
-					+" ImplementationCalleesCallees, ImplementationCalleesCalleesPredictions, ImplementationCalleesCalleesOwnerValues,"
-					+" ChildrenCalleesCallees, ChildrenCalleesCalleesPredictions, ChildrenCalleesCalleesOwnerValues,"
-					+" NEWOuterCallers, NEWOuterCallersPredictions, NEWOuterCallersOwners,"
-					+" NEWOuterCallees, NEWOuterCalleesPredictions, NEWOuterCalleesOwners,"
+					+" SuperclassCallees, SuperclassCalleesPredictions, SuperclassCalleesOwnerValues,"
+					+" CalleesCalleesInterfaceInheritance, CalleesCalleesInterfaceInheritancePredictions, CalleesCalleesInterfaceInheritanceOwners,"
 					+"ExtendedCallees, ExtendedCalleesPredictions, ExtendedOwnerCallees, ExtendedCallers, ExtendedCallersPredictions,ExtendedOwnerCallers,"
+					+"ExecutedCallees, ExecutedCalleesPredictions, ExecutedOwnerCallees, ExecutedCallers, ExecutedCallersPredictions,ExecutedOwnerCallers,"
+
 					+ "Prediction,"
 					+ "PrecisionRecall,IterationValues"
 					);
@@ -1476,22 +1427,16 @@ public class LogInfo {
 					+" Callers, CallersPredictions, CallersOwnerValues,"
 					+" InterfaceCallers, InterfaceCallersPredictions, InterfaceCallersOwnerValues,"
 					+" SuperclassCallers, SuperclassCallersPredictions, SuperclassCallersOwnerValues,"
-					+" CallersCallers, CallersCallersPredictions, CallersCallersOwnerValues,"
-					+" InterfaceCallersCallers, InterfaceCallersCallersPredictions, InterfaceCallersCallersOwnerValues,"
-					+" SuperclassCallersCallers, SuperclassCallersCallersPredictions, SuperclassCallersCallersOwnerValues,"
-					
+					+" ImplementationCallers, ImplementationCallersPredictions, ImplementationCallersOwnerValues,"
+					+" ChildrenCallers, ChildrenCallersPredictions, ChildrenCallersOwnerValues,"	
 					+" Callees, CalleesPredictions, CalleesOwnerValues,"
 					+" ImplementationCallees, ImplementationCalleesPredictions, ImplementationCalleesOwnerValues,"
 					+" ChildrenCallees, ChildrenCalleesPredictions, ChildrenCalleesOwnerValues,"
-					+" CalleesCallees, CalleesCalleesPredictions, CalleesCalleesOwnerValues,"
-					+" ImplementationCalleesCallees, ImplementationCalleesCalleesPredictions, ImplementationCalleesCalleesOwnerValues,"
-					+" ChildrenCalleesCallees, ChildrenCalleesCalleesPredictions, ChildrenCalleesCalleesOwnerValues,"
-					
-					//THESE TWO LINES CAN BE REMOVED 
-					+" NEWOuterCallers, NEWOuterCallersPredictions, NEWOuterCallersOwners,"
-					+" NEWOuterCallees, NEWOuterCalleesPredictions, NEWOuterCalleesOwners,"
-					//END OF THESE TWO LINES CAN BE REMOVED 
+					+" SuperclassCallees, SuperclassCalleesPredictions, SuperclassCalleesOwnerValues,"
+					+" CalleesCalleesInterfaceInheritance, CalleesCalleesInterfaceInheritancePredictions, CalleesCalleesInterfaceInheritanceOwners,"
 					+"ExtendedCallees, ExtendedCalleesPredictions, ExtendedOwnerCallees, ExtendedCallers, ExtendedCallersPredictions,ExtendedOwnerCallers,"
+					+"ExecutedCallees, ExecutedCalleesPredictions, ExecutedOwnerCallees, ExecutedCallers, ExecutedCallersPredictions,ExecutedOwnerCallers,"
+
 					+ "Prediction,"
 					+ "PrecisionRecall,IterationValues"
 					);

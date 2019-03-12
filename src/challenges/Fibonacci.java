@@ -7,22 +7,63 @@ Driver Code to call/invoke your function is mentioned above.*/
 //A Binary Tree node
 class Fibonacci
 {
-    int data;
-    Node left, right;
-    Fibonacci(int item)
-    {
-        data = item;
-        left = right = null;
-    }
+	public static void main (String [] args) {
+		int i=5; 
+		int counter=5; 
+		int j=5; 
+		int k=0; 
+		
+		
+		while(j<=counter && j>=i && counter<=10) {
+			 
+			while(k<i && j==i) {
+				System.out.print(" ");
+				
+				k++; 
+			}
+			if(k==i) {
+				k=0; 
+			}
+			System.out.print("*");
+			
+			if(j==counter) {
+				System.out.println();
+				counter++; 
+				i--; 
+				j=i; 
+			}else {
+				j++; 
+			}
+			
+		}
+		int counter2=1; 
+		int counter3=9; 
+		j=1; 
+		k=0; 
+		while(j>=counter2 && j<=counter3 && counter2!=6) {
+			while(k<counter2 && j==counter2) {
+				System.out.print(" ");
+				
+				k++; 
+			}
+			if(k==counter2) {
+				k=0; 
+			}
+			System.out.print("*");
+
+			if(j==counter3) {
+				System.out.println();
+				counter2++; 
+				counter3--; 
+				j=counter2; 
+			}else {
+				j++; 
+			}
+			
+			
+		}
+		}
+	
+	
 } 
-class GfG
-{
-    int height(Node node) 
-    {
-        if(node == null)
-            return 0;
-        //if(node.left == null && node.right == null)
-        //    return 1;
-        return 1 + Math.max(height(node.left), height(node.right)); 
-    }   
-}
+

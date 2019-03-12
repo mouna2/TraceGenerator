@@ -216,7 +216,28 @@ public static void CreateMethodCallsHashMapCallersCallees(Connection conn) throw
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
+public static void CreateMethodCallsExecutedHashMap(Connection conn) throws SQLException {
+	Statement st = conn.createStatement();
+	
+	ResultSet methodcalls = st.executeQuery("select methodcallsexecuted.* from methodcallsexecuted ");
+	
 
+
+	while (methodcalls.next()) {
+		String callerid = methodcalls.getString("callermethodid");
+		String calleeid = methodcalls.getString("calleemethodid");
+		
+		
+		mypackage.Method callerMethod = MethodHashMap.get(callerid); 
+		mypackage.Method calleeMethod = MethodHashMap.get(calleeid); 
+		
+		callerMethod.CalleesExecuted.add(calleeMethod);
+		calleeMethod.CallersExecuted.add(callerMethod);
+		
+		
+
+	} 
+}
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -378,10 +399,10 @@ public static void CreateRequirementsHashMap(Connection conn) throws SQLExceptio
 		CreateClassHashMap(conn);
 		CreateSuperclassesChildrenHashMap(conn); 
 		CreateInterfacesImplementations(conn);
-		
 		CreateMethodHashMap(conn);
 		CreateMethodCallsHashMapCallersCallees(conn); 
-	
+		CreateMethodCallsExecutedHashMap(conn); 
+
 		
 //		CreateMethodCallersofCallersHashMap(conn); 
 //		CreateMethodCallersofCallersInterfacesImplementationsHashMap(conn); 

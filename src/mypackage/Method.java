@@ -44,6 +44,8 @@ public class Method {
 	public Clazz Owner= new Clazz(); 
 	public MethodList Callees= new MethodList(); 
 	public MethodList Callers= new MethodList(); 
+	public MethodList CallersExecuted= new MethodList(); 
+	public MethodList CalleesExecuted= new MethodList(); 
 	public MethodList CallersofCallers= new MethodList(); 
 	public MethodList CalleesofCallees= new MethodList(); 
 	public MethodList CalleesImplementations= new MethodList(); 
@@ -613,14 +615,28 @@ return OuterCallees;
 		else {
 			ExtendedCallees= new MethodList();
 			MethodList TempCallees=new MethodList(); 
-			MethodList childrenCallees= new MethodList(); 
+
 			TempCallees.addAll(this.Callees); 
 				if(AlgoFinal.InterfaceImplementationFlag==true) {
-					TempCallees.addAll(getInterfaceImplementationCallees(TempCallees)); 
+					for(Method callee: this.Callees) {
+						
+						//case 5
+						TempCallees.addAll(callee.Implementations); 
+						//case 6
+						TempCallees.addAll(callee.Interfaces); 
+
+					}
+					//case 7
+					for(Method implementation: this.Implementations) {
+						TempCallees.AddAll(implementation.Callees); 
+					}
+					
 				}
 				if(AlgoFinal.InheritanceFlag==true) {
-					TempCallees.addAll(getInheritanceCallees(TempCallees, childrenCallees)); 
-
+					//case 12
+					for(Method callee: this.Callees) {
+						TempCallees.AddAll(callee.Children); 
+					}
 				}
 
 				if (AlgoFinal.RecursiveDescent==true) {
@@ -694,19 +710,36 @@ return OuterCallees;
 		if(ExtendedCallers!=null) {
 			return ExtendedCallers; 
 		}
+		
 		else {
 			ExtendedCallers= new MethodList(); 
-			MethodList TempCallers= new MethodList(); 
-			MethodList SuperclassCallers= new MethodList(); 
+			MethodList TempCallers= new MethodList();
+
 			TempCallers.addAll(this.Callers); 
-			if(AlgoFinal.InheritanceFlag==true) {
-				TempCallers.addAll(getInheritanceCallers(SuperclassCallers)); 
-			}
+			
 			if(AlgoFinal.InterfaceImplementationFlag==true) {
-				TempCallers.addAll(getInterfaceImplementationCallers(TempCallers)); 
+
+					//case 20
+					for(Method CallerInterface: this.Interfaces) {
+						TempCallers.addAll(CallerInterface.Callers); 
+					}
+					//case 21
+					for(Method CallerImplementation: this.Implementations) {
+						TempCallers.addAll(CallerImplementation.Callers); 
+					}
+					//case 22
+					for(Method Caller: this.Callers) {
+						TempCallers.addAll(Caller.Interfaces); 
+
+					}
 					
 				}
-			
+			if(AlgoFinal.InheritanceFlag==true) {
+				//case 28
+				for(Method mysuperclass: this.Superclasses) {
+					TempCallers.addAll(mysuperclass.Callers); 
+				}
+			}
 			if(AlgoFinal.RecursiveDescent==true) {
 				for(Method caller: TempCallers) {
 					if(!caller.Owner.ID.equals(this.Owner.ID)) {

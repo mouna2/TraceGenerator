@@ -186,20 +186,35 @@ public final class MethodTrace {
 		List<String> OuterCallersFinal= new ArrayList<String>(); 
 		List<String> OuterCallersFinalPredictions= new ArrayList<String>(); 
 		List<String> OuterCallersFinalOwners= new ArrayList<String>(); 
+		List<String> ImplementationCallersPredictions= new ArrayList<String>(); 
+		List<String> ImplementationCallersOwners= new ArrayList<String>(); 
+		List<String> SuperclassCalleesOwners= new ArrayList<String>(); 
+		List<String> SuperclassCalleesPredictions= new ArrayList<String>(); 
+		List<String> SuperclassCallees= new ArrayList<String>(); 
 
 		
 		List<String> Callees= new ArrayList<String>(); 
 		List<String> CalleesPredictions= new ArrayList<String>(); 
 		List<String> CalleesOwners= new ArrayList<String>(); 		
+		
+		List<String> InterfaceCallees= new ArrayList<String>(); 
+		List<String> InterfaceCalleesPredictions= new ArrayList<String>(); 
+		List<String> InterfaceCalleesOwners= new ArrayList<String>(); 		
 		List<String> CalleesofCallees= new ArrayList<String>(); 
 		List<String> CalleesofCalleesPredictions= new ArrayList<String>(); 
 		List<String> CalleesofCalleesOwners= new ArrayList<String>(); 
 		List<String> ImplementationCallees= new ArrayList<String>(); 
+		List<String> ImplementationCallers= new ArrayList<String>(); 
+
 		List<String> ImplementationCalleesPredictions= new ArrayList<String>(); 
 		List<String> ImplementationCalleesOwners= new ArrayList<String>(); 
 		List<String> ChildrenCallees= new ArrayList<String>(); 
+		List<String> ChildrenCallers= new ArrayList<String>(); 
+
 		List<String> ChildrenCalleesPredictions= new ArrayList<String>(); 
 		List<String> ChildrenCalleesOwners= new ArrayList<String>(); 
+		List<String> ChildrenCallersPredictions= new ArrayList<String>(); 
+		List<String> ChildrenCallersOwners= new ArrayList<String>(); 
 		List<String> ImplementationCalleesofCallees= new ArrayList<String>(); 
 		List<String> ImplementationCalleesofCalleesPredictions= new ArrayList<String>(); 
 		List<String> ImplementationCalleesofCalleesOwners= new ArrayList<String>(); 
@@ -216,29 +231,25 @@ public final class MethodTrace {
 		List<String> ExtendedCallersPredictions= new ArrayList<String>(); 
 		List<String> ExtendedCallersOwners= new ArrayList<String>(); 
 
+		
+		List<String> CalleesCalleesInterfaceInheritance= new ArrayList<String>(); 
+		List<String> CalleesCalleesInterfaceInheritancePredictions= new ArrayList<String>(); 
+		List<String> CalleesCalleesInterfaceInheritanceOwners= new ArrayList<String>(); 
+		
+		List<String> ExecutedCallers= new ArrayList<String>(); 
+		List<String> ExecutedCallersPredictions= new ArrayList<String>(); 
+		List<String> ExecutedCallersOwners= new ArrayList<String>(); 
+
+		List<String> ExecutedCallees= new ArrayList<String>(); 
+		List<String> ExecutedCalleesPredictions= new ArrayList<String>(); 
+		List<String> ExecutedCalleesOwners= new ArrayList<String>(); 
+		
+		
 		String reqMethod=this.Requirement.ID+"-"+this.Method.ID; 
 		
 		
 		
-//		////////////////////////////////////////////////////////////////////////////////////////////
-//		////////////////////////////////////////////////////////////////////////////////////////////
-//		//CALLERS 
-//		for(Method caller: this.Method.Callers) {
-//			Callers.add(caller.toString()); 
-//			SetPredictionsSetOwners(caller, this, CallersPredictions, CallersOwners); 
-//			
-//			
-//		}
-//		////////////////////////////////////////////////////////////////////////////////////////////
-//		////////////////////////////////////////////////////////////////////////////////////////////
-//		//CALLEES
-//		for(Method callee: this.Method.Callees) {
-//			Callees.add(callee.toString()); 
-//			SetPredictionsSetOwners(callee, this, CalleesPredictions, CalleesOwners); 
-//
-//			
-//			
-//		}
+
 //		
 //			////////////////////////////////////////////////////////////////////////////////////////////
 //			////////////////////////////////////////////////////////////////////////////////////////////
@@ -315,8 +326,8 @@ public final class MethodTrace {
 		
 		
 		
-////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////////////////////
 		////////////////////////////////////////////////////////////////////////////////////////////
 		////////////////////////////////////////////////////////////////////////////////////////////
 		//CALLERS 
@@ -332,6 +343,27 @@ public final class MethodTrace {
 		for(Method callee: this.Method.Callees) {
 			Callees.add(callee.toString()); 
 			SetPredictionsSetOwners(callee, this, CalleesPredictions, CalleesOwners); 
+
+			
+			
+		}
+		////////////////////////////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////////////////////
+		//EXECUTED CALLERS 
+		for(Method ExecutedCaller: this.Method.CallersExecuted) {
+			ExecutedCallers.add(ExecutedCaller.toString()); 
+			SetPredictionsSetOwners(ExecutedCaller, this, ExecutedCallersPredictions, ExecutedCallersOwners); 
+			
+			
+		}
+		////////////////////////////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////////////////////
+		//EXECUTED CALLEES
+		for(Method ExecutedCallee: this.Method.CalleesExecuted) {
+			ExecutedCallees.add(ExecutedCallee.toString()); 
+			SetPredictionsSetOwners(ExecutedCallee, this, ExecutedCalleesPredictions, ExecutedCalleesOwners); 
 
 			
 			
@@ -363,12 +395,39 @@ if(!this.Method.Implementations.isEmpty()) {
 					for(mypackage.Method impCallee: imp.Callees) {
 							ImplementationCallees.add(impCallee.toString()); 
 							SetPredictionsSetOwners(impCallee, this, ImplementationCalleesPredictions, ImplementationCalleesOwners); 
-
 							
-							
-								}
+							for(mypackage.Method impCalleeInterface: impCallee.Interfaces) {
+								CalleesCalleesInterfaceInheritance.add(impCalleeInterface.toString()); 
+								SetPredictionsSetOwners(impCalleeInterface, this, CalleesCalleesInterfaceInheritancePredictions, CalleesCalleesInterfaceInheritanceOwners); 
+							}
+							for(mypackage.Method impCalleeInterface: impCallee.Implementations) {
+								CalleesCalleesInterfaceInheritance.add(impCalleeInterface.toString()); 
+								SetPredictionsSetOwners(impCalleeInterface, this, CalleesCalleesInterfaceInheritancePredictions, CalleesCalleesInterfaceInheritanceOwners); 
+							}
+							for(mypackage.Method impCalleeInterface: impCallee.Children) {
+								CalleesCalleesInterfaceInheritance.add(impCalleeInterface.toString()); 
+								SetPredictionsSetOwners(impCalleeInterface, this, CalleesCalleesInterfaceInheritancePredictions, CalleesCalleesInterfaceInheritanceOwners); 
+							}
+							for(mypackage.Method impCalleeInterface: impCallee.Superclasses) {
+								CalleesCalleesInterfaceInheritance.add(impCalleeInterface.toString()); 
+								SetPredictionsSetOwners(impCalleeInterface, this, CalleesCalleesInterfaceInheritancePredictions, CalleesCalleesInterfaceInheritanceOwners); 
+							}
+						}
 		
 							}
+			
+			//CALLERS OF IMPLEMENTATIONS
+
+			if(!imp.Callers.isEmpty()) {
+				for(mypackage.Method impCaller: imp.Callers) {
+						ImplementationCallers.add(impCaller.toString()); 
+						SetPredictionsSetOwners(impCaller, this, ImplementationCallersPredictions, ImplementationCallersOwners); 
+
+						
+						
+							}
+	
+						}
 			}
 }
 		////////////////////////////////////////////////////////////////////////////////////////////
@@ -386,6 +445,33 @@ if(!this.Method.Implementations.isEmpty()) {
 					}
 
 				}
+				
+				//CALLEES OF SUPERCLASSES 
+				if(!superclass.Callees.isEmpty()) {
+					for(mypackage.Method superclassCallee: superclass.Callees) {
+						SuperclassCallees.add(superclassCallee.toString()); 
+						
+						SetPredictionsSetOwners(superclassCallee, this, SuperclassCalleesPredictions, SuperclassCalleesOwners); 
+						
+						for(mypackage.Method impCalleeInterface: superclassCallee.Interfaces) {
+							CalleesCalleesInterfaceInheritance.add(impCalleeInterface.toString()); 
+							SetPredictionsSetOwners(impCalleeInterface, this, CalleesCalleesInterfaceInheritancePredictions, CalleesCalleesInterfaceInheritanceOwners); 
+						}
+						for(mypackage.Method impCalleeInterface: superclassCallee.Implementations) {
+							CalleesCalleesInterfaceInheritance.add(impCalleeInterface.toString()); 
+							SetPredictionsSetOwners(impCalleeInterface, this, CalleesCalleesInterfaceInheritancePredictions, CalleesCalleesInterfaceInheritanceOwners); 
+						}
+						for(mypackage.Method impCalleeInterface: superclassCallee.Children) {
+							CalleesCalleesInterfaceInheritance.add(impCalleeInterface.toString()); 
+							SetPredictionsSetOwners(impCalleeInterface, this, CalleesCalleesInterfaceInheritancePredictions, CalleesCalleesInterfaceInheritanceOwners); 
+						}
+						for(mypackage.Method impCalleeInterface: superclassCallee.Superclasses) {
+							CalleesCalleesInterfaceInheritance.add(impCalleeInterface.toString()); 
+							SetPredictionsSetOwners(impCalleeInterface, this, CalleesCalleesInterfaceInheritancePredictions, CalleesCalleesInterfaceInheritanceOwners); 
+						}
+					}
+
+				}
 			}
 		}
 ////////////////////////////////////////////////////////////////////////////////////////////
@@ -399,116 +485,142 @@ if(!this.Method.Children.isEmpty()) {
 								ChildrenCallees.add(ChildrenCallee.toString()); 
 								SetPredictionsSetOwners(ChildrenCallee, this, ChildrenCalleesPredictions, ChildrenCalleesOwners); 
 
-					
+								for(mypackage.Method impCalleeInterface: ChildrenCallee.Interfaces) {
+									CalleesCalleesInterfaceInheritance.add(impCalleeInterface.toString()); 
+									SetPredictionsSetOwners(impCalleeInterface, this, CalleesCalleesInterfaceInheritancePredictions, CalleesCalleesInterfaceInheritanceOwners); 
+								}
+								for(mypackage.Method impCalleeInterface: ChildrenCallee.Implementations) {
+									CalleesCalleesInterfaceInheritance.add(impCalleeInterface.toString()); 
+									SetPredictionsSetOwners(impCalleeInterface, this, CalleesCalleesInterfaceInheritancePredictions, CalleesCalleesInterfaceInheritanceOwners); 
+								}
+								for(mypackage.Method impCalleeInterface: ChildrenCallee.Children) {
+									CalleesCalleesInterfaceInheritance.add(impCalleeInterface.toString()); 
+									SetPredictionsSetOwners(impCalleeInterface, this, CalleesCalleesInterfaceInheritancePredictions, CalleesCalleesInterfaceInheritanceOwners); 
+								}
+								for(mypackage.Method impCalleeInterface: ChildrenCallee.Superclasses) {
+									CalleesCalleesInterfaceInheritance.add(impCalleeInterface.toString()); 
+									SetPredictionsSetOwners(impCalleeInterface, this, CalleesCalleesInterfaceInheritancePredictions, CalleesCalleesInterfaceInheritanceOwners); 
+								}
 						}
 
 				}
+				
+				if(!children.Callers.isEmpty()) {
+					for(mypackage.Method ChildrenCaller: children.Callers) {
+						
+							ChildrenCallers.add(ChildrenCaller.toString()); 
+							SetPredictionsSetOwners(ChildrenCaller, this, ChildrenCallersPredictions, ChildrenCallersOwners); 
+
+				
+					}
+
+			}
 		}
 	}
 
 
 
-////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////
-//CALLERS OF CALLERS 
-for(Method caller: this.Method.getCallersAugmentedInterfacesSuperclasses(Requirement)) {
-	
-		for(mypackage.Method callerofcaller: caller.Callers) {
-			CallersofCallers.add(callerofcaller.toString()); 
-			SetPredictionsSetOwners(callerofcaller, this, CallersofCallersPredictions, CallersofCallersOwners); 
-
-			
-			
-			//SUPERCLASS CALLERS OF CALLERS 
-			if(!callerofcaller.Superclasses.isEmpty()) {
-				for(mypackage.Method callerofcallerSuperclass: callerofcaller.Superclasses) {
-					for(mypackage.Method CallerCallerSuperclass: callerofcallerSuperclass.Callers) {
-
-					SuperclassCallersofCallers.add(CallerCallerSuperclass.toString());
-					SetPredictionsSetOwners(CallerCallerSuperclass, this, SuperclassCallersofCallersPredictions, SuperclassCallersofCallersOwners); 
-
-					}
-					
-				}
-			}
-			//INTERFACE CALLERS OF CALLERS 
-			if(!callerofcaller.Interfaces.isEmpty()) {
-				for(mypackage.Method callerofcallerInterface: callerofcaller.Interfaces) {
-					for(mypackage.Method CallerCallerInterface: callerofcallerInterface.Callers) {
-						InterfaceCallersofCallers.add(CallerCallerInterface.toString()); 
-						SetPredictionsSetOwners(CallerCallerInterface, this, InterfaceCallersofCallersPredictions, InterfaceCallersofCallersOwners); 
-					}
-				
-
-				
-					
-				}
-			}
-		}
-	
-
-	
-	
-}
-////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////
-//CALLEES OF CALLEES 
-for(Method callee: this.Method.getCalleesAugmentedChildrenImplementations(Requirement)) {
-			for(mypackage.Method calleeofcallee: callee.Callees) {
-//				System.out.println(calleeofcallee.toString());
-					CalleesofCallees.add(calleeofcallee.toString()); 
-					SetPredictionsSetOwners(calleeofcallee, this, CalleesofCalleesPredictions, CalleesofCalleesOwners); 
-
-					
-		
-		
-		//CHILDREN CALLEES OF CALLEES 
-		if(!calleeofcallee.Children.isEmpty()) {
-			for(mypackage.Method calleeofcalleeChildren: calleeofcallee.Superclasses) {
-				for(mypackage.Method calleeofcalleeChild: calleeofcalleeChildren.Callees) {
-					ChildrenCalleesofCallees.add(calleeofcalleeChild.toString()); 
-					SetPredictionsSetOwners(calleeofcalleeChild, this, ChildrenCalleesofCalleesPredictions, ChildrenCalleesofCalleesOwners); 
-				}
-				
-
-				
-			}
-		}
-		//IMPLEMENTATION CALLEES OF CALLEES 
-		if(!calleeofcallee.Implementations.isEmpty()) {
-			for(mypackage.Method calleeofcalleeImp: calleeofcallee.Implementations) {
-				for(mypackage.Method calleeofcalleeImplementation: calleeofcalleeImp.Callees) {
-				ImplementationCalleesofCallees.add(calleeofcalleeImplementation.toString()); 
-				SetPredictionsSetOwners(calleeofcalleeImplementation, this, ImplementationCalleesofCalleesPredictions, ImplementationCalleesofCalleesOwners); 
-				}
-			
-				
-			}
-		}
-		
-	}
-		
-
-}
-////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////
-//FINAL CALLERS 
-for(Method caller: this.Method.getOuterCallersFinal(Requirement)) {
-OuterCallersFinal.add(caller.toString()); 
-SetPredictionsSetOwners(caller, this, OuterCallersFinalPredictions, OuterCallersFinalOwners); 
-
-
-}
-////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////
-//FINAL CALLEES
-for(Method callee: this.Method.getOuterCalleesFinal(Requirement)) {
-OuterCalleesFinal.add(callee.toString()); 
-SetPredictionsSetOwners(callee, this, OuterCalleesFinalPredictions, OuterCalleesFinalOwners); 
-
-
-
-}	
+//////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+////CALLERS OF CALLERS 
+//for(Method caller: this.Method.getCallersAugmentedInterfacesSuperclasses(Requirement)) {
+//	
+//		for(mypackage.Method callerofcaller: caller.Callers) {
+//			CallersofCallers.add(callerofcaller.toString()); 
+//			SetPredictionsSetOwners(callerofcaller, this, CallersofCallersPredictions, CallersofCallersOwners); 
+//
+//			
+//			
+//			//SUPERCLASS CALLERS OF CALLERS 
+//			if(!callerofcaller.Superclasses.isEmpty()) {
+//				for(mypackage.Method callerofcallerSuperclass: callerofcaller.Superclasses) {
+//					for(mypackage.Method CallerCallerSuperclass: callerofcallerSuperclass.Callers) {
+//
+//					SuperclassCallersofCallers.add(CallerCallerSuperclass.toString());
+//					SetPredictionsSetOwners(CallerCallerSuperclass, this, SuperclassCallersofCallersPredictions, SuperclassCallersofCallersOwners); 
+//
+//					}
+//					
+//				}
+//			}
+//			//INTERFACE CALLERS OF CALLERS 
+//			if(!callerofcaller.Interfaces.isEmpty()) {
+//				for(mypackage.Method callerofcallerInterface: callerofcaller.Interfaces) {
+//					for(mypackage.Method CallerCallerInterface: callerofcallerInterface.Callers) {
+//						InterfaceCallersofCallers.add(CallerCallerInterface.toString()); 
+//						SetPredictionsSetOwners(CallerCallerInterface, this, InterfaceCallersofCallersPredictions, InterfaceCallersofCallersOwners); 
+//					}
+//				
+//
+//				
+//					
+//				}
+//			}
+//		}
+//	
+//
+//	
+//	
+//}
+//////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+////CALLEES OF CALLEES 
+//for(Method callee: this.Method.getCalleesAugmentedChildrenImplementations(Requirement)) {
+//			for(mypackage.Method calleeofcallee: callee.Callees) {
+////				System.out.println(calleeofcallee.toString());
+//					CalleesofCallees.add(calleeofcallee.toString()); 
+//					SetPredictionsSetOwners(calleeofcallee, this, CalleesofCalleesPredictions, CalleesofCalleesOwners); 
+//
+//					
+//		
+//		
+//		//CHILDREN CALLEES OF CALLEES 
+//		if(!calleeofcallee.Children.isEmpty()) {
+//			for(mypackage.Method calleeofcalleeChildren: calleeofcallee.Superclasses) {
+//				for(mypackage.Method calleeofcalleeChild: calleeofcalleeChildren.Callees) {
+//					ChildrenCalleesofCallees.add(calleeofcalleeChild.toString()); 
+//					SetPredictionsSetOwners(calleeofcalleeChild, this, ChildrenCalleesofCalleesPredictions, ChildrenCalleesofCalleesOwners); 
+//				}
+//				
+//
+//				
+//			}
+//		}
+//		//IMPLEMENTATION CALLEES OF CALLEES 
+//		if(!calleeofcallee.Implementations.isEmpty()) {
+//			for(mypackage.Method calleeofcalleeImp: calleeofcallee.Implementations) {
+//				for(mypackage.Method calleeofcalleeImplementation: calleeofcalleeImp.Callees) {
+//				ImplementationCalleesofCallees.add(calleeofcalleeImplementation.toString()); 
+//				SetPredictionsSetOwners(calleeofcalleeImplementation, this, ImplementationCalleesofCalleesPredictions, ImplementationCalleesofCalleesOwners); 
+//				}
+//			
+//				
+//			}
+//		}
+//		
+//	}
+//		
+//
+//}
+//////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+////FINAL CALLERS 
+//for(Method caller: this.Method.getOuterCallersFinal(Requirement)) {
+//OuterCallersFinal.add(caller.toString()); 
+//SetPredictionsSetOwners(caller, this, OuterCallersFinalPredictions, OuterCallersFinalOwners); 
+//
+//
+//}
+//////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+////FINAL CALLEES
+//for(Method callee: this.Method.getOuterCalleesFinal(Requirement)) {
+//OuterCalleesFinal.add(callee.toString()); 
+//SetPredictionsSetOwners(callee, this, OuterCalleesFinalPredictions, OuterCalleesFinalOwners); 
+//
+//
+//
+//}	
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////
@@ -538,19 +650,16 @@ SetPredictionsSetOwners(callee, this, ExtendedCalleesPredictions, ExtendedCallee
 
 			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setExtendedCalleesFinal(ExtendedCallees);
 			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setExtendedCalleesPredictionsFinal(ExtendedCalleesPredictions);
-			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setExtendedCallersPredictionsFinal(ExtendedCallersPredictions);
 			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setExtendedOwnerCalleesFinal(ExtendedCalleesOwners); 
 
 
-		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setOuterCallersFinal(OuterCallersFinal);
-		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setOuterCallersPredictionsFinal(OuterCallersFinalPredictions);
-		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setOuterCallersOwnersFinal(OuterCallersFinalOwners);
-		
-		
-		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setOuterCalleesFinal(OuterCalleesFinal);
-		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setOuterCalleesPredictionsFinal(OuterCalleesFinalPredictions);
-		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setOuterCalleesOwnersFinal(OuterCalleesFinalOwners);
+			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setExecutedCallees(ExecutedCallees);
+			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setExecutedCalleesPredictions(ExecutedCalleesPredictions);
+			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setExecutedOwnerCallees(ExecutedCalleesOwners);
 
+			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setExecutedCallers(ExecutedCallers);
+			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setExecutedCallersPredictions(ExecutedCallersPredictions);
+			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setExecutedOwnerCallers(ExecutedCallersOwners);
 
 
 		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setCallers(Callers);
@@ -558,30 +667,32 @@ SetPredictionsSetOwners(callee, this, ExtendedCalleesPredictions, ExtendedCallee
 		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setCallersPredictions(CallersPredictions);
 
 		
-		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setCallersCallers(CallersofCallers);
-		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setCallersCallersOwners(CallersofCallersOwners);
-		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setCallersCallersPredictions(CallersofCallersPredictions);
 		
-
-		
-		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setCallersCallers(CallersofCallers);
-		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setCallersCallersOwners(CallersofCallersOwners);
-		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setCallersCallersPredictions(CallersofCallersPredictions);
 		
 		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setCallees(Callees);
 		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setCalleesOwners(CalleesOwners);
 		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setCalleesPredictions(CalleesPredictions);
 
 		
-		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setCalleesCallees(CalleesofCallees);
-		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setCalleesCalleesOwners(CalleesofCalleesOwners);
-		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setCalleesCalleesPredictions(CalleesofCalleesPredictions);
+		
 		
 		
 		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setInterfaceCallers(InterfaceCallers);
 		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setInterfaceCallersOwners(InterfaceCallersOwners);
 		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setInterfaceCallerPredictions(InterfaceCallersPredictions);
-
+		
+		
+		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setImplementationCallers(ImplementationCallers);
+		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setImplementationCallersOwners(ImplementationCallersOwners);
+		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setImplementationCallerPredictions(ImplementationCallersPredictions);
+		
+		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setChildrenCallers(ChildrenCallers);
+		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setChildrenCallersOwners(ChildrenCallersOwners);
+		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setChildrenCallerPredictions(ChildrenCallersPredictions);
+		
+		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setSuperclassCallers(SuperclassCallers);
+		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setSuperclassCallersOwners(SuperclassCallersOwners);
+		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setSuperclassCallerPredictions(SuperclassCallersPredictions);
 		
 		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setChildrenCallees(ChildrenCallees);
 		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setChildrenCalleesOwners(ChildrenCalleesOwners);
@@ -591,26 +702,14 @@ SetPredictionsSetOwners(callee, this, ExtendedCalleesPredictions, ExtendedCallee
 		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setImplementationCalleesOwners(ImplementationCalleesOwners);
 		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setImplementationCalleePredictions(ImplementationCalleesPredictions);
 		
-		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setSuperclassCallers(SuperclassCallers);
-		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setSuperclassCallersOwners(SuperclassCallersOwners);
-		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setSuperclassCallerPredictions(SuperclassCallersPredictions);
+		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setSuperclassCallees(SuperclassCallees);
+		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setSuperclassCalleesOwners(SuperclassCalleesOwners);
+		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setSuperclassCalleePredictions(SuperclassCalleesPredictions);
 		
-		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setInterfacesCallersCallers(InterfaceCallersofCallers);
-		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setInterfacesCallersCallersOwners(InterfaceCallersofCallersOwners); 
-		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setInterfacesCallersCallersPredictions(InterfaceCallersofCallersPredictions);
-
 		
-		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setSuperclassesCallersCallers(SuperclassCallersofCallers);
-		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setSuperclassesCallersCallersOwners(SuperclassCallersofCallersOwners);
-		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setSuperclassesCallersCallersPredictions(SuperclassCallersofCallersPredictions);
-		
-		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setChildrenCalleesCallees(ChildrenCalleesofCallees);
-		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setChildrenCalleesCalleesOwners(ChildrenCalleesofCalleesOwners);
-		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setChildrenCalleesCalleesPredictions(ChildrenCalleesofCalleesPredictions);
-		
-		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setImplementationCalleesCallees(ImplementationCalleesofCallees);
-		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setImplementationCalleesCalleesOwners(ImplementationCalleesofCalleesOwners);
-		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setImplementationCalleesCalleesPredictions(ImplementationCalleesofCalleesPredictions);
+		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setCalleesCalleesInterfaceInheritance(CalleesCalleesInterfaceInheritance);
+		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setCalleesCalleesInterfaceInheritancePredictions(CalleesCalleesInterfaceInheritancePredictions);
+		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setCalleesCalleesInterfaceInheritanceOwners(CalleesCalleesInterfaceInheritanceOwners);
 		
 	}
 	private void SetPredictionsSetOwners(mypackage.Method caller, MethodTrace methodTrace, List<String> CallersPredictions, List<String> CallersOwners) {

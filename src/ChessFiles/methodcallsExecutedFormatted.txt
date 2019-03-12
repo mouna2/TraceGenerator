@@ -82,7 +82,7 @@ de.java_chess.javaChess.JavaChess.jbInit()--- de.java_chess.javaChess.renderer2d
 de.java_chess.javaChess.JavaChess.jbInit()--- de.java_chess.javaChess.util.ResourceLoader.-init-()
 de.java_chess.javaChess.JavaChess.jbInit()--- de.java_chess.javaChess.util.ResourceLoader.addLocation(java.lang.String)
 de.java_chess.javaChess.JavaChess.jbInit()--- de.java_chess.javaChess.util.ResourceLoader.getInstance()
-de.java_chess.javaChess.JavaChess.main([java.lang.String)--- de.java_chess.javaChess.JavaChess.-init-()
+de.java_chess.javaChess.JavaChess.main(java.lang.String[])--- de.java_chess.javaChess.JavaChess.-init-()
 de.java_chess.javaChess.JavaChess.reset()--- de.java_chess.javaChess.GameController.reset()
 de.java_chess.javaChess.JavaChess.reset()--- de.java_chess.javaChess.bitboard.BitBoardImpl.initialPosition()
 de.java_chess.javaChess.JavaChess.reset()--- de.java_chess.javaChess.engine.ChessEngineImpl.reset()
