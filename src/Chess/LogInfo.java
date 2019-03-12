@@ -1724,6 +1724,26 @@ public class LogInfo {
 		}
 		bwchessMethodCallsWriter.close();
 	}
+	public static void CheckCallersCalleesSymmetry() throws CloneNotSupportedException {
+		// TODO Auto-generated method stub
+		HashMap<Method, List<Method>>	CallerHashMap= new HashMap<Method, List<Method>>(); 
+		HashMap<Method, List<Method>>	CalleeHashMap= new HashMap<Method, List<Method>>(); 
+		for (String methodKey : DatabaseInput.MethodHashMap.keySet()) {
+			Method method = DatabaseInput.MethodHashMap.get(methodKey); 
+			CallerHashMap.put(method, method.getCallersShell()); 
+			CalleeHashMap.put(method, method.getCalleesShell()); 	
+		}	
+		for(Method calleekey: CallerHashMap.keySet()){
+			List<Method> callermethods = CallerHashMap.get(calleekey); 
+			for(Method caller: callermethods) {
+				if(CalleeHashMap.get(caller).contains(calleekey)) {
+					System.out.println("yes");
+				}else {
+					System.out.println("no");
+				}
+			}
+		}
+	}
 
 
 

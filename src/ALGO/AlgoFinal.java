@@ -939,8 +939,8 @@ public class AlgoFinal extends JFrame {
 
 				
 		ComputeStepResults2(Step4PatternCumulative, Step4PredictionValues, LogInfoHashMap, ProgramName, "Step 4 Cumulative", "Step 4 Prediction Values Cumulative", zeroPred); 
-
-				
+			
+		LogInfo.CheckCallersCalleesSymmetry(); 
 				
 				int counter2=0; 
 				for (MethodTrace methodtrace : MethodTracesHashmapValues) {
