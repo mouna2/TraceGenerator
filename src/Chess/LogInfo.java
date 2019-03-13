@@ -841,22 +841,26 @@ public class LogInfo {
 		// TODO Auto-generated method stub
 		String s= ""; 
 		int counter=0; 
-		if(values!=null) {
-			for(String value: values) {
-				
-				counter++; 
-				if(counter==values.size()) {
-					s=s+value; 
-				}
-				else {
-					s=s+value+"/"; 
-				}
-				
-			}
-			s=s.replaceAll(",", "_"); 
+//		if(values!=null) {
+//			for(String value: values) {
+//				
+//				counter++; 
+//				if(counter==values.size()) {
+//					s=s+value; 
+//				}
+//				else {
+//					s=s+value+"/"; 
+//				}
+//				
+//			}
+//			s=s.replaceAll(",", "_"); 
+//
+//			return s;
+//		}
+		 s= String.join("/", values );
 
-			return s;
-		}
+		s=s.replaceAll(",","_");
+		
 		return s; 
 	}
 	public String getRequirementID() {
@@ -1736,11 +1740,14 @@ public class LogInfo {
 		for(Method calleekey: CallerHashMap.keySet()){
 			List<Method> callermethods = CallerHashMap.get(calleekey); 
 			for(Method caller: callermethods) {
-				if(CalleeHashMap.get(caller).contains(calleekey)) {
-					System.out.println("yes");
-				}else {
-					System.out.println("no");
+				if(caller!=null && calleekey!=null && CalleeHashMap.get(caller)!=null && !CalleeHashMap.isEmpty()) {
+					if(CalleeHashMap.get(caller).contains(calleekey)) {
+						System.out.println("yes");
+					}else {
+						System.out.println("no");
+					}
 				}
+				
 			}
 		}
 	}

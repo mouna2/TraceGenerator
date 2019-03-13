@@ -352,23 +352,33 @@ public final class MethodTrace {
 		////////////////////////////////////////////////////////////////////////////////////////////
 		////////////////////////////////////////////////////////////////////////////////////////////
 		//EXECUTED CALLERS 
+		if(AlgoFinal.ProgramName.equals("chess")) {
 		for(Method ExecutedCaller: this.Method.CallersExecuted) {
-			ExecutedCallers.add(ExecutedCaller.toString()); 
-			SetPredictionsSetOwners(ExecutedCaller, this, ExecutedCallersPredictions, ExecutedCallersOwners); 
+			if(ExecutedCaller!=null) {
+				ExecutedCallers.add(ExecutedCaller.toString()); 
+				SetPredictionsSetOwners(ExecutedCaller, this, ExecutedCallersPredictions, ExecutedCallersOwners); 
+			}
+			
 			
 			
 		}
 		////////////////////////////////////////////////////////////////////////////////////////////
 		////////////////////////////////////////////////////////////////////////////////////////////
+		
+			
+		
 		//EXECUTED CALLEES
 		for(Method ExecutedCallee: this.Method.CalleesExecuted) {
-			ExecutedCallees.add(ExecutedCallee.toString()); 
-			SetPredictionsSetOwners(ExecutedCallee, this, ExecutedCalleesPredictions, ExecutedCalleesOwners); 
+			if(ExecutedCallee!=null) {
+				ExecutedCallees.add(ExecutedCallee.toString()); 
+				SetPredictionsSetOwners(ExecutedCallee, this, ExecutedCalleesPredictions, ExecutedCalleesOwners); 
+			}
+			
 
 			
 			
 		}
-			////////////////////////////////////////////////////////////////////////////////////////////
+		}	////////////////////////////////////////////////////////////////////////////////////////////
 			////////////////////////////////////////////////////////////////////////////////////////////
 		//CALLERS OF INTERFACES 
 		if(!this.Method.Interfaces.isEmpty()) {
@@ -718,6 +728,8 @@ SetPredictionsSetOwners(callee, this, ExtendedCalleesPredictions, ExtendedCallee
 			CallersPredictions.add(AlgoFinal.methodtraces2HashMap.get(this.Requirement.ID+"-"+caller.ID).getPrediction().toLowerCase()); 
 
 		}else {
+//			System.out.println(this.Requirement.ID+"-"+caller.ID);
+//			System.out.println(AlgoFinal.methodtraces2HashMap.get(this.Requirement.ID+"-"+caller.ID));
 			CallersPredictions.add(AlgoFinal.methodtraces2HashMap.get(this.Requirement.ID+"-"+caller.ID).getPrediction()); 
 		}
 		if(caller.Owner.ID.equals(this.Method.Owner.ID)) {

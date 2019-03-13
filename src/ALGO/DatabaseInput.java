@@ -230,9 +230,13 @@ public static void CreateMethodCallsExecutedHashMap(Connection conn) throws SQLE
 		
 		mypackage.Method callerMethod = MethodHashMap.get(callerid); 
 		mypackage.Method calleeMethod = MethodHashMap.get(calleeid); 
-		
-		callerMethod.CalleesExecuted.add(calleeMethod);
-		calleeMethod.CallersExecuted.add(callerMethod);
+		if(callerMethod!=null) {
+			callerMethod.CalleesExecuted.add(calleeMethod);
+		}
+		if(calleeMethod!=null) {
+			calleeMethod.CallersExecuted.add(callerMethod);
+		}
+	
 		
 		
 

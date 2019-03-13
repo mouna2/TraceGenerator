@@ -55,9 +55,10 @@ import mypackage.Requirement;
 
 
 public class AlgoFinal extends JFrame {
+	public static String ProgramName=""; 
 	public static boolean InheritanceFlag=true; 
 	public static boolean InterfaceImplementationFlag=true; 
-	public static boolean RecursiveDescent=true; 
+	public static boolean RecursiveDescent=false; 
 	
 
 	 PredictionValues zeroPred= new PredictionValues(0,0,0); 
@@ -142,7 +143,7 @@ public class AlgoFinal extends JFrame {
 
 	public AlgoFinal(String ProgramName) throws Exception {
 
-	
+		AlgoFinal.ProgramName=ProgramName; 
 //		List<MethodTrace> methodtracesNew = InitializePredictionsHashMap2(methodtraces2);
 		TracePredictionFunction( ProgramName);
 
@@ -943,6 +944,7 @@ public class AlgoFinal extends JFrame {
 		LogInfo.CheckCallersCalleesSymmetry(); 
 				
 				int counter2=0; 
+				
 				for (MethodTrace methodtrace : MethodTracesHashmapValues) {
 					
 						methodtrace.UpdateCallersCallees(LogInfoHashMap);
@@ -1026,7 +1028,7 @@ public class AlgoFinal extends JFrame {
 
 		 
 		 
-	 LogInfo.updateTableLog(ProgramName, MethodTracesHashmapValues, LogInfoHashMap);
+//	 LogInfo.updateTableLog(ProgramName, MethodTracesHashmapValues, LogInfoHashMap);
 
 		 System.out.println("YES6");
 		 LogInfo.closeLogFile(); 
@@ -1322,18 +1324,20 @@ public class AlgoFinal extends JFrame {
 		AlgoFinal frame = new AlgoFinal(
 				ProgramName);
 
-//		String ProgramName2 = "gantt";
-//			 frame = new AlgoFinal(ProgramName2);
-//		
-////		String ProgramName2 = "dummy";
-////		AlgoFinal	 frame = new AlgoFinal(ProgramName2);
-//
-//		String ProgramName3 = "itrust";
-//			 frame = new AlgoFinal(ProgramName3);
-//
-//		
-//		String ProgramName4 = "jhotdraw";
-//			frame = new AlgoFinal(ProgramName4);
+		String ProgramName2 = "gantt";
+			 frame = new AlgoFinal(ProgramName2);
+////		
+//////		String ProgramName2 = "dummy";
+//////		AlgoFinal	 frame = new AlgoFinal(ProgramName2);
+////
+		String ProgramName3 = "itrust";
+			 frame = new AlgoFinal(ProgramName3);
+
+		
+		String ProgramName4 = "jhotdraw";
+			frame = new AlgoFinal(ProgramName4);
+		
+		
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);
