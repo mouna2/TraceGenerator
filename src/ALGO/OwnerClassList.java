@@ -115,6 +115,29 @@ public boolean AllTs(Requirement requirement) throws Exception {
 }
 
 
+public boolean AllTsAtLeast2T(Requirement requirement) throws Exception {
+	// TODO Auto-generated method stub
+	List<String> TraceList = new ArrayList<String>(); 
+	if(!this.isEmpty()) {
+		for (Clazz clazz : this) {
+
+			String trace = DatabaseInput.OwnerTraceHashMap.get(requirement.ID + "-" + clazz.ID);
+			if (trace == null) 	throw new Exception();
+			if(trace.equals("T")) {
+				TraceList.add(trace); 
+				if(TraceList.size()>=2) return true; 
+			}
+		}
+		
+	}
+	
+	return false; 
+	
+
+	
+}
+
+
 
 
 

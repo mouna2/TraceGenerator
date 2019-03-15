@@ -1118,7 +1118,7 @@ public class LogInfo {
 	 * @param string2 
 	 * @param string **********************************************************************************************************************************************/
 
-	public static void ComputePrecisionAndRecall(
+	public static void ComputePrecisionAndRecallNONCUMULATIVE(
 			HashMap<String, MethodTrace> methodTraceHashMap,
 			PredictionEvaluation Pattern, String ProgramName,  PredictionValues ownerClassPredictionValues, LinkedHashMap<String, LogInfo> logInfoHashMap) throws SQLException {
 		// TODO Auto-generated method stub
@@ -1186,7 +1186,7 @@ public class LogInfo {
 	
 	
 	
-	public static void ComputePrecisionAndRecall2(
+	public static void ComputePrecisionAndRecallCUMULATIVE(
 			HashMap<String, MethodTrace> methodTraceHashMap,
 			PredictionEvaluation Pattern, String ProgramName,  PredictionValues ownerClassPredictionValues, LinkedHashMap<String, LogInfo> logInfoHashMap) throws SQLException {
 		// TODO Auto-generated method stub

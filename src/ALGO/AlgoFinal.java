@@ -58,12 +58,16 @@ public class AlgoFinal extends JFrame {
 	public static String ProgramName=""; 
 	public static boolean InheritanceFlag=true; 
 	public static boolean InterfaceImplementationFlag=true; 
-	public static boolean RecursiveDescent=false; 
+	public static boolean RecursiveDescent=true; 
 	
+
 
 	 PredictionValues zeroPred= new PredictionValues(0,0,0); 
 
 	public static boolean InheritanceOnFlagSteps2And4=true; 
+	
+	
+	public static boolean AtLeast2FlagOnStep3=false; 
 	public static boolean InheritanceRecursion=false; 
 
 	/**
@@ -293,7 +297,7 @@ public class AlgoFinal extends JFrame {
 		SetSubjectGoldDeveloperGoldEqualityFlag(methodtraces2HashMap, TotalPattern, LogInfoHashMap, ProgramName); 
 			
 
-			LogInfo.ComputePrecisionAndRecall(methodtraces2HashMap,TotalPattern, ProgramName, OwnerClassPredictionValues, LogInfoHashMap);
+			LogInfo.ComputePrecisionAndRecallNONCUMULATIVE(methodtraces2HashMap,TotalPattern, ProgramName, OwnerClassPredictionValues, LogInfoHashMap);
 
 			LogInfo.updateResultsLog(TotalPattern, OwnerClassPredictionValues, ProgramName, "OWNER CLASS PRED", "owner class prediction values", "INDIVIDUAL");
 		
@@ -600,14 +604,14 @@ public class AlgoFinal extends JFrame {
 						LogInfoHashMap.put(reqMethod, loginfo); 
 							}
 							 //MIXED T LEAF 
-							 	 if(
+						else 	 if(
 							 			
 
 //											 methodtrace.Method.getCallersShell().getOwnerClasses(methodtrace.Requirement).remove(methodtrace.Method.Owner).AtLeast1T(methodtrace.Requirement)
 										 methodtrace.Method.getCallersShell().getOwnerClasses(methodtrace.Requirement).AtLeast1T(methodtrace.Requirement)
 							 			 && methodtrace.Method.getCalleesShell().isEmpty()		
 											&& !methodtrace.Method.getCallersShell().AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
-											 
+											 && AtLeast2FlagOnStep3==false
 
 
 											)
@@ -623,14 +627,31 @@ public class AlgoFinal extends JFrame {
 								
 								 //ALL CALLERS 
 								
-								if (	
-//										 methodtrace.Method.getCallersShell().getOwnerClasses(methodtrace.Requirement).remove(methodtrace.Method.Owner).AllTs(methodtrace.Requirement)
+						else	if (	
 								
-										methodtrace.Method.getCallersShell().getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
+
+//										methodtrace.Method.getCallersShell().getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
+										AtLeast2FlagOnStep3==true &&
+										methodtrace.Method.getCallersShell().getOwnerClasses(methodtrace.Requirement).AllTsAtLeast2T(methodtrace.Requirement)
 										&& !methodtrace.Method.getCallersShell().AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
 										&& !methodtrace.Method.getCalleesShell().AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
 
+										) {
+									LogInfo loginfo = LogInfoHashMap.get(reqMethod); 
+									methodtrace.SetPrediction(LogInfoHashMap,"T", "T,Remaining/AllCallersTSTEP3");
+							
+							LogInfoHashMap.put(reqMethod, loginfo); 
+								}
+								
+								 //ALL CALLERS 
+								
+						else	if (	
+								
 
+										methodtrace.Method.getCallersShell().getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
+										&& AtLeast2FlagOnStep3==false 
+										&& !methodtrace.Method.getCallersShell().AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
+										&& !methodtrace.Method.getCalleesShell().AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
 
 										) {
 									LogInfo loginfo = LogInfoHashMap.get(reqMethod); 
@@ -639,10 +660,25 @@ public class AlgoFinal extends JFrame {
 							LogInfoHashMap.put(reqMethod, loginfo); 
 								}
 								//ALL CALLEES 
-								if (	
-//										 methodtrace.Method.getCalleesShell().getOwnerClasses(methodtrace.Requirement).remove(methodtrace.Method.Owner).AllTs(methodtrace.Requirement)
-									
-										methodtrace.Method.getCalleesShell().getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
+						else	if (	
+										methodtrace.Method.getCalleesShell().getOwnerClasses(methodtrace.Requirement).AllTsAtLeast2T(methodtrace.Requirement)
+										&& AtLeast2FlagOnStep3==true 
+//										methodtrace.Method.getCalleesShell().getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
+										&& !methodtrace.Method.getCalleesShell().AtLeast1N(methodtrace.Requirement, methodtraces2HashMap) 
+										&& !methodtrace.Method.getCallersShell().AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
+
+
+
+										) {
+									LogInfo loginfo = LogInfoHashMap.get(reqMethod); 
+									methodtrace.SetPrediction(LogInfoHashMap,"T", "T,Remaining/AllCalleesTSTEP3");
+							
+							LogInfoHashMap.put(reqMethod, loginfo); 
+								}
+								//ALL CALLEES 
+						else	if (	
+										 AtLeast2FlagOnStep3==false 
+										&& methodtrace.Method.getCalleesShell().getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
 										&& !methodtrace.Method.getCalleesShell().AtLeast1N(methodtrace.Requirement, methodtraces2HashMap) 
 										&& !methodtrace.Method.getCallersShell().AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
 
@@ -1046,7 +1082,7 @@ public class AlgoFinal extends JFrame {
 
 	private void ComputeStepResults(PredictionEvaluation step2Pattern2, PredictionValues step2PredictionValues, LinkedHashMap<String, LogInfo> LogInfoHashMap, String ProgramName, String Step, String PredictionValues, PredictionValues step1PredictionValues) throws IOException, SQLException {
 		// TODO Auto-generated method stub
-		LogInfo.ComputePrecisionAndRecall(methodtraces2HashMap, step2Pattern2, ProgramName, step2PredictionValues, LogInfoHashMap);
+		LogInfo.ComputePrecisionAndRecallNONCUMULATIVE(methodtraces2HashMap, step2Pattern2, ProgramName, step2PredictionValues, LogInfoHashMap);
 		System.out.println("RemainingpredictionValues"+TotalPattern);
 		
 		PredictionValues SubstractedPredictionValues = new PredictionValues(); 
@@ -1058,7 +1094,7 @@ public class AlgoFinal extends JFrame {
 	
 	private void ComputeStepResults2(PredictionEvaluation step2Pattern2, PredictionValues step2PredictionValues, LinkedHashMap<String, LogInfo> LogInfoHashMap, String ProgramName, String Step, String PredictionValues, PredictionValues step1PredictionValues) throws IOException, SQLException {
 		// TODO Auto-generated method stub
-		LogInfo.ComputePrecisionAndRecall2(methodtraces2HashMap, step2Pattern2, ProgramName, step2PredictionValues, LogInfoHashMap);
+		LogInfo.ComputePrecisionAndRecallCUMULATIVE(methodtraces2HashMap, step2Pattern2, ProgramName, step2PredictionValues, LogInfoHashMap);
 		System.out.println("RemainingpredictionValues"+TotalPattern);
 		
 //		PredictionValues SubstractedPredictionValues = SubstractPredictionValues(step2PredictionValues, step1PredictionValues); 
@@ -1320,22 +1356,22 @@ public class AlgoFinal extends JFrame {
 	public static void main(String[] args) throws Exception {
 		
 		
-		String ProgramName = "chess";
-		AlgoFinal frame = new AlgoFinal(
-				ProgramName);
-
-		String ProgramName2 = "gantt";
-			 frame = new AlgoFinal(ProgramName2);
-////		
-//////		String ProgramName2 = "dummy";
-//////		AlgoFinal	 frame = new AlgoFinal(ProgramName2);
-////
-		String ProgramName3 = "itrust";
-			 frame = new AlgoFinal(ProgramName3);
+//		String ProgramName = "chess";
+//		AlgoFinal frame = new AlgoFinal(
+//				ProgramName);
+//
+//		String ProgramName2 = "gantt";
+//			 frame = new AlgoFinal(ProgramName2);
+//////		
+////////		String ProgramName2 = "dummy";
+////////		AlgoFinal	 frame = new AlgoFinal(ProgramName2);
+//////
+//		String ProgramName3 = "itrust";
+//			 frame = new AlgoFinal(ProgramName3);
 
 		
 		String ProgramName4 = "jhotdraw";
-			frame = new AlgoFinal(ProgramName4);
+		AlgoFinal	frame = new AlgoFinal(ProgramName4);
 		
 		
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);

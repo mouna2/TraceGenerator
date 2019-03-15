@@ -21,10 +21,10 @@ import spoon.SpoonAPI;
 
 public class AddSubjectTSubjectNGoldfinalJHOTDRAWTRACES_NEW {
 	/** The name of the MySQL account to use (or empty for anonymous) */
-	private final String userName = "root";
+	private final static String userName = "root";
 	
 	/** The password for the MySQL account (or empty for anonymous) */
-	private final String password = "root";
+	private final static String password = "root";
 
 	/** The name of the computer running MySQL */
 	private final String serverName = "localhost";
@@ -41,12 +41,12 @@ public class AddSubjectTSubjectNGoldfinalJHOTDRAWTRACES_NEW {
 	 * @return
 	 * @throws SQLException
 	 */
-	public Connection getConnection() throws SQLException {
+	public static Connection getConnection() throws SQLException {
 		Connection conn = null;
 		Properties connectionProps = new Properties();
 		connectionProps.put("root", userName);
 		connectionProps.put("123456", password);
-		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/databasegantt","root","123456");
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/databasejhotdraw","root","123456");
 
 		return conn;
 	}
@@ -115,13 +115,17 @@ public class AddSubjectTSubjectNGoldfinalJHOTDRAWTRACES_NEW {
 
 	public static void AddColumns() throws SQLException {
 		// TODO Auto-generated method stub
-		Connection conn = null;
+		Connection conn = getConnection();
 		Statement st = conn.createStatement();
 		Statement st2 = conn.createStatement();
 		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN SubjectT"); 
 		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN SubjectN");
+		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN goldfinal");
+
 		st.executeUpdate("ALTER TABLE `traces` ADD SubjectT LONGTEXT"); 
 		st.executeUpdate("ALTER TABLE `traces` ADD SubjectN LONGTEXT");
+		st.executeUpdate("ALTER TABLE `traces` ADD goldfinal LONGTEXT");
+
 		try {
 			File file = new File("C:\\Users\\mouna\\new_workspace\\TracePredictor\\java\\JHotDrawFiles\\jhotdrawnew_meth_votes.txt");
 			FileReader fileReader = new FileReader(file);
@@ -188,8 +192,11 @@ public class AddSubjectTSubjectNGoldfinalJHOTDRAWTRACES_NEW {
 	
 	static String PredictGoldUnionFinal(int SubjectT, int SubjectN) {
 		String goldUnion=null; 
-		
-			if((SubjectT>=2 && SubjectN==0) || SubjectT>=3) {
+			
+			if((SubjectT>=1 && SubjectN==0) || SubjectT>=2) 
+
+//			if((SubjectT>=2 && SubjectN==0) || SubjectT>=3) 
+			{
 				goldUnion="T"; 
 			}
 			else if(SubjectT==0 && SubjectN>=2) {
