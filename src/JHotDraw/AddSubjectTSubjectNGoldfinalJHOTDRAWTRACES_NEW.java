@@ -120,14 +120,10 @@ public class AddSubjectTSubjectNGoldfinalJHOTDRAWTRACES_NEW {
 		Statement st2 = conn.createStatement();
 		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN SubjectT"); 
 		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN SubjectN");
-		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN goldfinal");
-
 		st.executeUpdate("ALTER TABLE `traces` ADD SubjectT LONGTEXT"); 
 		st.executeUpdate("ALTER TABLE `traces` ADD SubjectN LONGTEXT");
-		st.executeUpdate("ALTER TABLE `traces` ADD goldfinal LONGTEXT");
-
 		try {
-			File file = new File("C:\\Users\\mouna\\new_workspace\\TracePredictor\\java\\JHotDrawFiles\\jhotdrawnew_meth_votes.txt");
+			File file = new File("C:\\Users\\mouna\\new_workspace\\TraceGenerator\\src\\JHotDrawFiles\\JHotDrawMethodsFormatted2.txt");
 			FileReader fileReader = new FileReader(file);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 			StringBuffer stringBuffer = new StringBuffer();
@@ -140,7 +136,7 @@ public class AddSubjectTSubjectNGoldfinalJHOTDRAWTRACES_NEW {
 				stringBuffer.append(line);
 				stringBuffer.append("\n");
 				int counter =1; 
-				for(int i=1; i<splittedline.length; i+=2) {
+				for(int i=1; i<splittedline.length-1; i+=2) {
 					SubjectTSubjectNObject SubjectTSubjectNObj = new SubjectTSubjectNObject(); 
 					String methodname= splittedline[0]; 
 					methodname=methodname.replaceAll("::", "."); 
@@ -170,10 +166,13 @@ public class AddSubjectTSubjectNGoldfinalJHOTDRAWTRACES_NEW {
 				
 				
 				String	goldfinal= PredictGoldUnionFinal(Integer.parseInt(entry.SubjectT), Integer.parseInt(entry.SubjectN)); 
-				st.executeUpdate("UPDATE `traces` SET `SubjectT` ='"+ entry.SubjectT +"',"+"`SubjectN` ='"+ entry.SubjectN +
-						"',"+"`goldfinal` ='"+ goldfinal +"'WHERE requirementid='"+entry.RequirementID+"' AND method ='"+name+"'"); 
-				//st.executeUpdate("UPDATE `traces` SET  +"'WHERE requirementid='"+entry.RequirementID+"' AND method='"+name+"'"); 
-				count++;
+				if(!entry.SubjectT.equals("0")||!entry.SubjectN.equals("0")) {
+					st.executeUpdate("UPDATE `traces` SET `SubjectT` ='"+ entry.SubjectT +"',"+"`SubjectN` ='"+ entry.SubjectN +
+							"',"+"`goldfinal` ='"+ goldfinal +"'WHERE requirementid='"+entry.RequirementID+"' AND method ='"+name+"'"); 
+					//st.executeUpdate("UPDATE `traces` SET  +"'WHERE requirementid='"+entry.RequirementID+"' AND method='"+name+"'"); 
+					count++;
+				}
+				
 			}
 			
 		 	st.executeUpdate("UPDATE `traces` SET `goldfinal` ='"+ "E" +"'WHERE goldfinal is null"); 

@@ -257,38 +257,7 @@ public class Method {
 
 	/////////////////////////////////////////////////////////
 	
-	
-	public MethodList getCalleesAugmentedChildrenImplementations(Requirement requirement) {
-		MethodList NewCallees= new MethodList();
-		NewCallees.addAll(Callees);
 
-		if(!this.Implementations.isEmpty()) {
-			for(Method imp: this.Implementations) {
-
-				if(!imp.Callees.isEmpty()) {
-					NewCallees=NewCallees.AddAll(imp.Callees); 
-				}
-
-
-			}
-
-
-		}
-
-		if(!this.Children.isEmpty()) {
-
-
-			for(Method child: this.Children) {
-				if(!child.Callees.isEmpty()) {
-					NewCallees=	NewCallees.AddAll(child.Callees); 
-
-				}
-
-
-			}
-		}
-	return NewCallees; 
-	}
 	
 	public void setCallees(MethodList callees) {
 		Callees = callees;
@@ -363,42 +332,6 @@ public class Method {
 			
 		
 
-	
-	//////////////////////////////////////////////////////////////////////////////////////////
-	//////////////////////////////////////////////////////////////////////////////////////////
-	//////////////////////////////////////////////////////////////////////////////////////////
-
-	public MethodList getCallersAugmentedInterfacesSuperclasses(Requirement requirement) {
-		
-		MethodList NewCallers= new MethodList();
-		NewCallers.addAll(Callers);
-		MethodList FinalCallers = new MethodList();
-		
-			if(!this.Interfaces.isEmpty()) {
-				for(Method inter: this.Interfaces) {
-					if(!inter.Callers.isEmpty()) {
-
-
-						NewCallers=NewCallers.AddAll(inter.Callers); 
-
-					}
-				}
-			}
-
-			if(!this.Superclasses.isEmpty()) {
-				for(Method superclass: this.Superclasses) {
-					if(!superclass.Callers.isEmpty()) {
-
-						NewCallers=NewCallers.AddAll(superclass.Callers); 
-
-					}
-				}
-			}
-			return NewCallers; 
-	}
-	
-	
-	
 	
 	
 	//////////////////////////////////////////////////////////////////////////////////

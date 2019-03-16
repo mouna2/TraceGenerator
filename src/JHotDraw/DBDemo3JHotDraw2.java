@@ -572,144 +572,144 @@ public class DBDemo3JHotDraw2 {
 //////////////        /*********************************************************************************************************************************************************************************/	
 ////////////    	  	
 //////////     	//BUILD INTERFACES TABLE 
-    	 
-
-    	List<String> mylist2 = new ArrayList<String>(); 
-    	for(CtType clazz : classFactory.getAll(true)) {
-    		
-    		if(clazz instanceof CtClass) {
-    			String myinterfaceclassid = null;
-        		String myinterfacename = null;
-        		String myclassid = null;
-        		String myclassname = null;
-        		
-    			String FullClassName= clazz.getQualifiedName(); 
-    			Set<CtTypeReference<?>> interfaces = clazz.getSuperInterfaces(); 
-
-    			for(CtTypeReference<?> inter: interfaces) {
-    			
-    					
-    				
-    		
-    				ResultSet interfacesnames = st.executeQuery("SELECT * from classes where classname='"+inter+"'"); 
-					while(interfacesnames.next()){
-						myinterfacename= interfacesnames.getString("classname"); 
-						myinterfaceclassid= interfacesnames.getString("id"); 
-
-			   		   }
-					if(myinterfaceclassid==null) {
-						String interclassname = inter.toString().replaceAll("\\.(?!.*\\.)","\\$");
-						 interfacesnames = st.executeQuery("SELECT * from classes where classname='"+interclassname+"'"); 
-    					while(interfacesnames.next()){
-    						myinterfacename= interfacesnames.getString("classname"); 
-    						myinterfaceclassid= interfacesnames.getString("id"); 
-
-    			   		   }
-					}
-					
-					
-					ResultSet classesnames= st.executeQuery("SELECT * from classes where classname='"+FullClassName+"'"); 
-					while(classesnames.next()){
-						myclassname= classesnames.getString("classname"); 
-						myclassid= classesnames.getString("id"); 
-
-			   		   }
-    					String interface1= myinterfaceclassid+ myinterfacename;  
-    					String implementation1= myclassid+ myclassname; 
-    					
-    						System.out.println("INTERRRR "+inter.getQualifiedName());
-    						System.out.println("CLAZZZZ "+clazz.getQualifiedName());
-    					
-    		
-    		
-					
-					
-					if(myinterfaceclassid!=null && !mylist2.contains(interface1+implementation1) ) {
-		    			st.executeUpdate("INSERT INTO `interfaces`(`interfaceclassid`,`interfacename`,`ownerclassid`, `classname`) VALUES ('"+myinterfaceclassid +"','" +myinterfacename+"','" +myclassid+"','" +myclassname+"')");
-		    			mylist2.add(interface1+implementation1); 
-					}
-    			}
-
-					
-				
-					
-					
-					
-			
-				
-				
-				
-			}
-			
-    		
-       	List<String> mylist = new ArrayList<String>(); 
-
-     		if(clazz instanceof CtInterface) {
-    			String myinterfaceclassid = null;
-        		String myinterfacename = null;
-        		String myclassid = null;
-        		String myclassname = null;
-        		
-    			String FullClassName= clazz.getQualifiedName(); 
-    			Set<CtTypeReference<?>> interfaces = clazz.getSuperInterfaces(); 
-
-    			for(CtTypeReference<?> inter: interfaces) {
-    			
-    				ResultSet interfacesnames = st.executeQuery("SELECT classname from classes where classname='"+inter+"'"); 
-					while(interfacesnames.next()){
-						myinterfacename= interfacesnames.getString("classname"); 
-			   		   }
-					
-					ResultSet interfacesclasses = st.executeQuery("SELECT id from classes where classname='"+inter+"'"); 
-					while(interfacesclasses.next()){
-						myinterfaceclassid= interfacesclasses.getString("id"); 
-			   		   }
-					
-					ResultSet classesnames= st.executeQuery("SELECT classname from classes where classname='"+FullClassName+"'"); 
-					while(classesnames.next()){
-						myclassname= classesnames.getString("classname"); 
-			   		   }
-					
-					ResultSet interfacesname = st.executeQuery("SELECT id from classes where classname='"+FullClassName+"'"); 
-					while(interfacesname.next()){
-						myclassid= interfacesname.getString("id"); 
-			   		   }
-					String interface1= myinterfaceclassid+ myinterfacename;  
-					String implementation1= myclassid+ myclassname; 
-    				
-    		
-    					
-    				
-    					
-    					
-    						System.out.println("INTERRRR2 "+inter.getQualifiedName());
-    						System.out.println("CLAZZZZ2 "+clazz.getQualifiedName());
-    					
-    		
-    		
-					
-					
-					if(myinterfaceclassid!=null && !mylist.contains(interface1+implementation1) ) {
-		    			st.executeUpdate("INSERT INTO `superclasses`(`superclassid`, `superclassname`, `ownerclassid`, `childclassname`) VALUES ('"+myinterfaceclassid +"','" +myinterfacename+"','" +myclassid+"','" +myclassname+"')");
-		    			mylist.add(interface1+implementation1); 
-					}
-    			}
-
-					
-				
-					
-					
-					
-			
-				
-				
-				
-			}
-    		
-
-    	}
-
-
+//    	 
+//
+//    	List<String> mylist2 = new ArrayList<String>(); 
+//    	for(CtType clazz : classFactory.getAll(true)) {
+//    		
+//    		if(clazz instanceof CtClass) {
+//    			String myinterfaceclassid = null;
+//        		String myinterfacename = null;
+//        		String myclassid = null;
+//        		String myclassname = null;
+//        		
+//    			String FullClassName= clazz.getQualifiedName(); 
+//    			Set<CtTypeReference<?>> interfaces = clazz.getSuperInterfaces(); 
+//
+//    			for(CtTypeReference<?> inter: interfaces) {
+//    			
+//    					
+//    				
+//    		
+//    				ResultSet interfacesnames = st.executeQuery("SELECT * from classes where classname='"+inter+"'"); 
+//					while(interfacesnames.next()){
+//						myinterfacename= interfacesnames.getString("classname"); 
+//						myinterfaceclassid= interfacesnames.getString("id"); 
+//
+//			   		   }
+//					if(myinterfaceclassid==null) {
+//						String interclassname = inter.toString().replaceAll("\\.(?!.*\\.)","\\$");
+//						 interfacesnames = st.executeQuery("SELECT * from classes where classname='"+interclassname+"'"); 
+//    					while(interfacesnames.next()){
+//    						myinterfacename= interfacesnames.getString("classname"); 
+//    						myinterfaceclassid= interfacesnames.getString("id"); 
+//
+//    			   		   }
+//					}
+//					
+//					
+//					ResultSet classesnames= st.executeQuery("SELECT * from classes where classname='"+FullClassName+"'"); 
+//					while(classesnames.next()){
+//						myclassname= classesnames.getString("classname"); 
+//						myclassid= classesnames.getString("id"); 
+//
+//			   		   }
+//    					String interface1= myinterfaceclassid+ myinterfacename;  
+//    					String implementation1= myclassid+ myclassname; 
+//    					
+//    						System.out.println("INTERRRR "+inter.getQualifiedName());
+//    						System.out.println("CLAZZZZ "+clazz.getQualifiedName());
+//    					
+//    		
+//    		
+//					
+//					
+//					if(myinterfaceclassid!=null && !mylist2.contains(interface1+implementation1) ) {
+//		    			st.executeUpdate("INSERT INTO `interfaces`(`interfaceclassid`,`interfacename`,`ownerclassid`, `classname`) VALUES ('"+myinterfaceclassid +"','" +myinterfacename+"','" +myclassid+"','" +myclassname+"')");
+//		    			mylist2.add(interface1+implementation1); 
+//					}
+//    			}
+//
+//					
+//				
+//					
+//					
+//					
+//			
+//				
+//				
+//				
+//			}
+//			
+//    		
+//       	List<String> mylist = new ArrayList<String>(); 
+//
+//     		if(clazz instanceof CtInterface) {
+//    			String myinterfaceclassid = null;
+//        		String myinterfacename = null;
+//        		String myclassid = null;
+//        		String myclassname = null;
+//        		
+//    			String FullClassName= clazz.getQualifiedName(); 
+//    			Set<CtTypeReference<?>> interfaces = clazz.getSuperInterfaces(); 
+//
+//    			for(CtTypeReference<?> inter: interfaces) {
+//    			
+//    				ResultSet interfacesnames = st.executeQuery("SELECT classname from classes where classname='"+inter+"'"); 
+//					while(interfacesnames.next()){
+//						myinterfacename= interfacesnames.getString("classname"); 
+//			   		   }
+//					
+//					ResultSet interfacesclasses = st.executeQuery("SELECT id from classes where classname='"+inter+"'"); 
+//					while(interfacesclasses.next()){
+//						myinterfaceclassid= interfacesclasses.getString("id"); 
+//			   		   }
+//					
+//					ResultSet classesnames= st.executeQuery("SELECT classname from classes where classname='"+FullClassName+"'"); 
+//					while(classesnames.next()){
+//						myclassname= classesnames.getString("classname"); 
+//			   		   }
+//					
+//					ResultSet interfacesname = st.executeQuery("SELECT id from classes where classname='"+FullClassName+"'"); 
+//					while(interfacesname.next()){
+//						myclassid= interfacesname.getString("id"); 
+//			   		   }
+//					String interface1= myinterfaceclassid+ myinterfacename;  
+//					String implementation1= myclassid+ myclassname; 
+//    				
+//    		
+//    					
+//    				
+//    					
+//    					
+//    						System.out.println("INTERRRR2 "+inter.getQualifiedName());
+//    						System.out.println("CLAZZZZ2 "+clazz.getQualifiedName());
+//    					
+//    		
+//    		
+//					
+//					
+//					if(myinterfaceclassid!=null && !mylist.contains(interface1+implementation1) ) {
+//		    			st.executeUpdate("INSERT INTO `superclasses`(`superclassid`, `superclassname`, `ownerclassid`, `childclassname`) VALUES ('"+myinterfaceclassid +"','" +myinterfacename+"','" +myclassid+"','" +myclassname+"')");
+//		    			mylist.add(interface1+implementation1); 
+//					}
+//    			}
+//
+//					
+//				
+//					
+//					
+//					
+//			
+//				
+//				
+//				
+//			}
+//    		
+//
+//    	}
+//
+//
 //////////////////////    	
 //////////////////////    
 //////////////////////    	
@@ -1682,257 +1682,257 @@ public class DBDemo3JHotDraw2 {
 ///////////////*********************************************************************************************************************************************************************************/	
 ///////////////*********************************************************************************************************************************************************************************/	
 ///////////////*********************************************************************************************************************************************************************************/   
+//
+//////////////CREATE TRACES TABLE 
+//////////
+
+
+HashMap<String, String> RequirementIDNameHashMap=new HashMap<String, String> (); 
+RequirementIDNameHashMap.put("1", "01: Paint figures and connections"); 
+RequirementIDNameHashMap.put("2", "02: Create figures and connections"); 
+RequirementIDNameHashMap.put("3", "03: Delete figures"); 
+RequirementIDNameHashMap.put("4", "04: Delete connections"); 
+RequirementIDNameHashMap.put("5", "05: Select and deselect figures"); 
+RequirementIDNameHashMap.put("6", "06: Move- scale- or rotate figures"); 
+RequirementIDNameHashMap.put("7", "07: Change properties of figures"); 
+RequirementIDNameHashMap.put("8", "08: Edit  text in figures"); 
+RequirementIDNameHashMap.put("9", "09: Align figures"); 
+RequirementIDNameHashMap.put("10", "10: Change z-ordering"); 
+RequirementIDNameHashMap.put("11", "11: Grouping and ungrouping figures"); 
+RequirementIDNameHashMap.put("12", "12: Launch the application"); 
+RequirementIDNameHashMap.put("13", "13: Open an existing drawing"); 
+RequirementIDNameHashMap.put("14", "14: Save a drawing"); 
+RequirementIDNameHashMap.put("15", "15: Scalability:  Drawings should be as large as possible"); 
+RequirementIDNameHashMap.put("16", "16: Performance: Quickly redraw figures if changed"); 
+RequirementIDNameHashMap.put("17", "17: Performance: Quickly locate figures based on x-y coordinates"); 
+RequirementIDNameHashMap.put("18", "18: Interoperability: Support data exchange via the clipboard"); 
+RequirementIDNameHashMap.put("19", "19: Usability: Support operating system specific user interfaces"); 
+RequirementIDNameHashMap.put("20", "20: Performance: Strive for a short startup latency"); 
+RequirementIDNameHashMap.put("21", "21: Recoverability: periodic auto-save"); 
+
+
+List<String> mylist = new ArrayList<String>(); 
+HashMap<String, SubjectTSubjectNObject> myhashmap= new HashMap<String, SubjectTSubjectNObject>() ; 
+
+try {
+	File file = new File("C:\\Users\\mouna\\new_workspace\\TracePredictor\\src\\JHotDrawFiles\\JHotDrawMethodsFormatted.txt");
+	FileReader fileReader = new FileReader(file);
+	BufferedReader bufferedReader = new BufferedReader(fileReader);
+	StringBuffer stringBuffer = new StringBuffer();
+	String line;
+	line = bufferedReader.readLine(); 
+
+	while ((line = bufferedReader.readLine()) != null) {
+		String[] splittedline = line.split(","); 
+	
+		stringBuffer.append(line);
+		stringBuffer.append("\n");
+		  int counter = 1; 
+		for(int j=1; j<splittedline.length-1; j+=2) {
+			SubjectTSubjectNObject SubjectTSubjectNObj = new SubjectTSubjectNObject(); 
+			String methodname2= splittedline[0]; 
+			methodname2=methodname2.replaceAll("::", "."); 
+			methodname2=methodname2.replaceAll("constructor", "-init-"); 
+			methodname2=Pattern.compile("[{}<>]").matcher(methodname2).replaceAll(""); 
+			methodname2="org.jhotdraw."+methodname2; 
+			String RequirementID= ""+counter;
+			String SubjectT= splittedline[j];
+			String SubjectN= splittedline[j+1]; 
+			SubjectTSubjectNObj.setMethodName(methodname2);
+			SubjectTSubjectNObj.setRequirementID(RequirementID);
+			SubjectTSubjectNObj.setSubjectT(SubjectT);
+			SubjectTSubjectNObj.setSubjectN(SubjectN);
+			counter++; 
+			String reqMethod=RequirementID+"-"+methodname2; 
+			myhashmap.put(reqMethod,SubjectTSubjectNObj); 
+			mylist.add(reqMethod); 
+		}
+	
+	}
+	fileReader.close();
+	int count=1;
+
+
+//	System.out.println(stringBuffer.toString());
+} catch (IOException e) {
+	e.printStackTrace();
+}
+
+ResultSet mymeths = st2.executeQuery("SELECT methods.* from methods"); 
+while(mymeths.next()){
+String methodid = mymeths.getString("id"); 
+String method = mymeths.getString("methodabbreviation"); 
+String methodname = mymeths.getString("methodname"); 
+String fullmethod = mymeths.getString("fullmethod"); 
+
+String classname = mymeths.getString("classname"); 
+String classid = mymeths.getString("classid"); 
+
+// TODO Auto-generated method stub
+
+
+
+
+
+
+//st.executeUpdate("SELECT * FROM `traces` where method LIKE `% %`"); 
+
+
+
+for(String key: RequirementIDNameHashMap.keySet()) {
+tracesmethods tr= new tracesmethods(key, methodid,  classid); 
+SubjectTSubjectNObject entry = myhashmap.get(tr.getRequirementid()+"-"+method); 
+//System.out.println(tr.getRequirementid());
+//System.out.println(method);
+
+if(entry!=null) {
+String	goldfinal= PredictGoldUnionFinal(Integer.parseInt(entry.SubjectT), Integer.parseInt(entry.SubjectN)); 
+
+
+	String statement = "INSERT INTO `traces`(`requirement`, `requirementid`, `method`, `methodname`, `fullmethod`,  `methodid`,`classname`, `classid`,`goldfinal`,`SubjectT`,`SubjectN`) VALUES ('"+RequirementIDNameHashMap.get(tr.getRequirementid())+"','" +tr.getRequirementid()+"','" +method+"','" +methodname+"','" +fullmethod+"','" +methodid+"','"+classname +"','" +classid
+			+"','" +goldfinal+"','"+entry.SubjectT +"','" +entry.SubjectN+"')";		
+			st.executeUpdate(statement);	
+			mylist.remove(tr.getRequirementid()+"-"+method); 
+}
+else {
+	String statement = "INSERT INTO `traces`(`requirement`, `requirementid`, `method`, `methodname`, `fullmethod`,  `methodid`,`classname`, `classid`,`goldfinal`,`SubjectT`,`SubjectN`) VALUES ('"+RequirementIDNameHashMap.get(tr.getRequirementid())+"','" +tr.getRequirementid()+"','" +method+"','" +methodname+"','" +fullmethod+"','" +methodid+"','"+classname +"','" +classid
+			+"','" + "E" +"','"+ "0"  +"','" + "0"+"')";		
+			st.executeUpdate(statement);	
+}
+
+
+}
+
+
+
+
+}
+
+
+for(String s: mylist) {
+	System.out.println(s);
+}
+System.out.println("OVER");
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+/////////////////*********************************************************************************************************************************************************************************/   
 ////
-////////////////CREATE TRACES TABLE 
+////////////////CREATE TRACES CLASSES TABLE 
 ////////////
-//
-//
-//HashMap<String, String> RequirementIDNameHashMap=new HashMap<String, String> (); 
-//RequirementIDNameHashMap.put("1", "01: Paint figures and connections"); 
-//RequirementIDNameHashMap.put("2", "02: Create figures and connections"); 
-//RequirementIDNameHashMap.put("3", "03: Delete figures"); 
-//RequirementIDNameHashMap.put("4", "04: Delete connections"); 
-//RequirementIDNameHashMap.put("5", "05: Select and deselect figures"); 
-//RequirementIDNameHashMap.put("6", "06: Move- scale- or rotate figures"); 
-//RequirementIDNameHashMap.put("7", "07: Change properties of figures"); 
-//RequirementIDNameHashMap.put("8", "08: Edit  text in figures"); 
-//RequirementIDNameHashMap.put("9", "09: Align figures"); 
-//RequirementIDNameHashMap.put("10", "10: Change z-ordering"); 
-//RequirementIDNameHashMap.put("11", "11: Grouping and ungrouping figures"); 
-//RequirementIDNameHashMap.put("12", "12: Launch the application"); 
-//RequirementIDNameHashMap.put("13", "13: Open an existing drawing"); 
-//RequirementIDNameHashMap.put("14", "14: Save a drawing"); 
-//RequirementIDNameHashMap.put("15", "15: Scalability:  Drawings should be as large as possible"); 
-//RequirementIDNameHashMap.put("16", "16: Performance: Quickly redraw figures if changed"); 
-//RequirementIDNameHashMap.put("17", "17: Performance: Quickly locate figures based on x-y coordinates"); 
-//RequirementIDNameHashMap.put("18", "18: Interoperability: Support data exchange via the clipboard"); 
-//RequirementIDNameHashMap.put("19", "19: Usability: Support operating system specific user interfaces"); 
-//RequirementIDNameHashMap.put("20", "20: Performance: Strive for a short startup latency"); 
-//RequirementIDNameHashMap.put("21", "21: Recoverability: periodic auto-save"); 
-//
-//
-//List<String> mylist = new ArrayList<String>(); 
-//HashMap<String, SubjectTSubjectNObject> myhashmap= new HashMap<String, SubjectTSubjectNObject>() ; 
-//
-//try {
-//	File file = new File("C:\\Users\\mouna\\new_workspace\\TracePredictor\\src\\JHotDrawFiles\\JHotDrawMethodsFormatted.txt");
-//	FileReader fileReader = new FileReader(file);
-//	BufferedReader bufferedReader = new BufferedReader(fileReader);
-//	StringBuffer stringBuffer = new StringBuffer();
-//	String line;
-//	line = bufferedReader.readLine(); 
-//
-//	while ((line = bufferedReader.readLine()) != null) {
-//		String[] splittedline = line.split(","); 
-//	
-//		stringBuffer.append(line);
-//		stringBuffer.append("\n");
-//		  int counter = 1; 
-//		for(int j=1; j<splittedline.length-1; j+=2) {
-//			SubjectTSubjectNObject SubjectTSubjectNObj = new SubjectTSubjectNObject(); 
-//			String methodname2= splittedline[0]; 
-//			methodname2=methodname2.replaceAll("::", "."); 
-//			methodname2=methodname2.replaceAll("constructor", "-init-"); 
-//			methodname2=Pattern.compile("[{}<>]").matcher(methodname2).replaceAll(""); 
-//			methodname2="org.jhotdraw."+methodname2; 
-//			String RequirementID= ""+counter;
-//			String SubjectT= splittedline[j];
-//			String SubjectN= splittedline[j+1]; 
-//			SubjectTSubjectNObj.setMethodName(methodname2);
-//			SubjectTSubjectNObj.setRequirementID(RequirementID);
-//			SubjectTSubjectNObj.setSubjectT(SubjectT);
-//			SubjectTSubjectNObj.setSubjectN(SubjectN);
-//			counter++; 
-//			String reqMethod=RequirementID+"-"+methodname2; 
-//			myhashmap.put(reqMethod,SubjectTSubjectNObj); 
-//			mylist.add(reqMethod); 
-//		}
-//	
-//	}
-//	fileReader.close();
-//	int count=1;
-//
-//
-////	System.out.println(stringBuffer.toString());
-//} catch (IOException e) {
-//	e.printStackTrace();
-//}
-//
-//ResultSet mymeths = st2.executeQuery("SELECT methods.* from methods"); 
-//while(mymeths.next()){
-//String methodid = mymeths.getString("id"); 
-//String method = mymeths.getString("methodabbreviation"); 
-//String methodname = mymeths.getString("methodname"); 
-//String fullmethod = mymeths.getString("fullmethod"); 
-//
-//String classname = mymeths.getString("classname"); 
-//String classid = mymeths.getString("classid"); 
-//
-//// TODO Auto-generated method stub
-//
-//
-//
-//
-//
-//
-////st.executeUpdate("SELECT * FROM `traces` where method LIKE `% %`"); 
-//
-//
-//
-//for(String key: RequirementIDNameHashMap.keySet()) {
-//tracesmethods tr= new tracesmethods(key, methodid,  classid); 
-//SubjectTSubjectNObject entry = myhashmap.get(tr.getRequirementid()+"-"+method); 
-////System.out.println(tr.getRequirementid());
-////System.out.println(method);
-//
-//if(entry!=null) {
-//String	goldfinal= PredictGoldUnionFinal(Integer.parseInt(entry.SubjectT), Integer.parseInt(entry.SubjectN)); 
-//
-//
-//	String statement = "INSERT INTO `traces`(`requirement`, `requirementid`, `method`, `methodname`, `fullmethod`,  `methodid`,`classname`, `classid`,`goldfinal`,`SubjectT`,`SubjectN`) VALUES ('"+RequirementIDNameHashMap.get(tr.getRequirementid())+"','" +tr.getRequirementid()+"','" +method+"','" +methodname+"','" +fullmethod+"','" +methodid+"','"+classname +"','" +classid
-//			+"','" +goldfinal+"','"+entry.SubjectT +"','" +entry.SubjectN+"')";		
-//			st.executeUpdate(statement);	
-//			mylist.remove(tr.getRequirementid()+"-"+method); 
-//}
-//else {
-//	String statement = "INSERT INTO `traces`(`requirement`, `requirementid`, `method`, `methodname`, `fullmethod`,  `methodid`,`classname`, `classid`,`goldfinal`,`SubjectT`,`SubjectN`) VALUES ('"+RequirementIDNameHashMap.get(tr.getRequirementid())+"','" +tr.getRequirementid()+"','" +method+"','" +methodname+"','" +fullmethod+"','" +methodid+"','"+classname +"','" +classid
-//			+"','" + "E" +"','"+ "0"  +"','" + "0"+"')";		
-//			st.executeUpdate(statement);	
-//}
-//
-//
-//}
-//
-//
-//
-//
-//}
-//
-//
-//for(String s: mylist) {
-//	System.out.println(s);
-//}
-//System.out.println("OVER");
-//
-//
-//
-//
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
-///////////////////*********************************************************************************************************************************************************************************/   
-//////
-//////////////////CREATE TRACES CLASSES TABLE 
-//////////////
-//FileReader fileReader = new FileReader("C:\\Users\\mouna\\new_workspace\\TracePredictor\\src\\JHotDrawFiles\\TracesClassesNEW.txt");
-//BufferedReader bufferedReader = new BufferedReader(fileReader);
-//HashMap<String,  String> ReqClassHashMap= new HashMap<String,  String> (); 
-//String line = null;
-//line = bufferedReader.readLine(); 
-//String[] requirements = line.split(","); 
-//List<String> TraceClassList = new ArrayList<String>(); 
-//while((line = bufferedReader.readLine()) != null) {
-////    System.out.println(line);
-//	 String[] splitted = line.split("\\,", -1);
-//    
-//    for(int k=1; k<splitted.length; k++) {
-//    	
-//    	if(splitted[k].equals("x")) {
-//    		ReqClassHashMap.put(k+"-"+splitted[0], "T"); 
-//    	}else {
-//    		ReqClassHashMap.put(k+"-"+splitted[0], "N"); 
-//    	}
-//    	
-//    	TraceClassList.add(k+"-"+splitted[0]); 
-//    	
-//    }
-////    System.out.println(line);
-//}   
-//
-//// Always close files.
-//bufferedReader.close();         
-//
-//Hashtable<String,List<String>> RequirementClassHashMapUnionGold=new Hashtable<String,List<String>>(); 
-//List<String> ListUnionGold= new ArrayList<String>(); 
-//mylist = new ArrayList<String>(); 
-//ResultSet traces = st.executeQuery("SELECT traces.* from traces "); 
-//while(traces.next()){		
-//	//THIS IS GOLD 2
-//	String requirementid=traces.getString("requirementid").trim(); 
-//	String classid=traces.getString("classid").trim(); 
-//
-//	String ReqClass=requirementid+"-"+classid; 
-//	
-//	String goldfinal=traces.getString("goldfinal").trim(); 
-//	if(RequirementClassHashMapUnionGold.get(ReqClass)==null) {
-//		ListUnionGold= new ArrayList<String>(); 
-//		ListUnionGold.add(goldfinal); 
-//		RequirementClassHashMapUnionGold.put(ReqClass, ListUnionGold); 
-//	}else {
-//		ListUnionGold = RequirementClassHashMapUnionGold.get(ReqClass); 
-//		ListUnionGold.add(goldfinal); 
-//		RequirementClassHashMapUnionGold.put(ReqClass, ListUnionGold); 
-//	}
-//	
-//	
-//	   }
-//HashMap <String, String > RequirementClassHashMap= new HashMap <String, String > (); 
-//
-//String classname=""; 
-//String classid=""; 
-//String requirementname=""; 
-//String requirementid="";
-//ResultSet Traces = st.executeQuery("SELECT classes.* from classes "); 
-//while(Traces.next()){
-//classname = Traces.getString("classname"); 
-//classid = Traces.getString("id"); 
-//for(String keyreq: RequirementIDNameHashMap.keySet()) {
-//	String key= keyreq+"/"+classid; 
-//	String val= keyreq+"/"+RequirementIDNameHashMap.get(keyreq)+"/"+classid+"/"+classname; 
-//
-//	RequirementClassHashMap.put(key, val); 
-//}
-//
-//
-//
-//
-//
-//}
-//
-//
-//
-//
-//
-//for(Entry<String, String> entry :RequirementClassHashMap.entrySet()) {
-//String myvalue = entry.getValue(); 
-//String[] myvalues = myvalue.split("/"); 
-////System.out.println(myvalues[1]);
-////System.out.println(myvalues[0]);
-////System.out.println(myvalues[3]);
-////System.out.println(myvalues[2]);
-//int CountT=0, CountN=0, CountE=0; 
-//List<String> list = RequirementClassHashMapUnionGold.get(myvalues[0]+"-"+myvalues[2]); 
-//CountTNE count=ComputeProportions(list, CountT, CountN, CountE); 
-//
-//String SubjectGeneralization=ComputeSubjectGeneralization(count);
-//String reqclassValue = ReqClassHashMap.get(myvalues[0]+"-"+myvalues[3]); 
-//if(reqclassValue!=null) {
-//	String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`,`SubjectGold`,`goldfinal`) VALUES ('"+myvalues[1]+"','" +myvalues[0]+"','"  +myvalues[3]+"','" +myvalues[2]
-//			+"','"  +SubjectGeneralization+"','"  +reqclassValue+"')";	
-//	st2.executeUpdate(statement8);
-//	TraceClassList.remove(myvalues[0]+"-"+myvalues[3]); 
-//}else {
-//	String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`,`SubjectGold`,`goldfinal`) VALUES ('"+myvalues[1]+"','" +myvalues[0]+"','"  +myvalues[3]+"','" +myvalues[2]
-//			+"','"  +SubjectGeneralization+"','"  +"E"+"')";	
-//	st2.executeUpdate(statement8);
-//}
-//
-//}
-//
-//
-//
-//for(String s: TraceClassList) {
-//	System.out.println(s);
-//}
-//System.out.println("OVER");
+FileReader fileReader = new FileReader("C:\\Users\\mouna\\new_workspace\\TracePredictor\\src\\JHotDrawFiles\\TracesClassesNEW.txt");
+BufferedReader bufferedReader = new BufferedReader(fileReader);
+HashMap<String,  String> ReqClassHashMap= new HashMap<String,  String> (); 
+String line = null;
+line = bufferedReader.readLine(); 
+String[] requirements = line.split(","); 
+List<String> TraceClassList = new ArrayList<String>(); 
+while((line = bufferedReader.readLine()) != null) {
+//    System.out.println(line);
+	 String[] splitted = line.split("\\,", -1);
+    
+    for(int k=1; k<splitted.length; k++) {
+    	
+    	if(splitted[k].equals("x")) {
+    		ReqClassHashMap.put(k+"-"+splitted[0], "T"); 
+    	}else {
+    		ReqClassHashMap.put(k+"-"+splitted[0], "N"); 
+    	}
+    	
+    	TraceClassList.add(k+"-"+splitted[0]); 
+    	
+    }
+//    System.out.println(line);
+}   
+
+// Always close files.
+bufferedReader.close();         
+
+Hashtable<String,List<String>> RequirementClassHashMapUnionGold=new Hashtable<String,List<String>>(); 
+List<String> ListUnionGold= new ArrayList<String>(); 
+mylist = new ArrayList<String>(); 
+ResultSet traces = st.executeQuery("SELECT traces.* from traces "); 
+while(traces.next()){		
+	//THIS IS GOLD 2
+	String requirementid=traces.getString("requirementid").trim(); 
+	String classid=traces.getString("classid").trim(); 
+
+	String ReqClass=requirementid+"-"+classid; 
+	
+	String goldfinal=traces.getString("goldfinal").trim(); 
+	if(RequirementClassHashMapUnionGold.get(ReqClass)==null) {
+		ListUnionGold= new ArrayList<String>(); 
+		ListUnionGold.add(goldfinal); 
+		RequirementClassHashMapUnionGold.put(ReqClass, ListUnionGold); 
+	}else {
+		ListUnionGold = RequirementClassHashMapUnionGold.get(ReqClass); 
+		ListUnionGold.add(goldfinal); 
+		RequirementClassHashMapUnionGold.put(ReqClass, ListUnionGold); 
+	}
+	
+	
+	   }
+HashMap <String, String > RequirementClassHashMap= new HashMap <String, String > (); 
+
+String classname=""; 
+String classid=""; 
+String requirementname=""; 
+String requirementid="";
+ResultSet Traces = st.executeQuery("SELECT classes.* from classes "); 
+while(Traces.next()){
+classname = Traces.getString("classname"); 
+classid = Traces.getString("id"); 
+for(String keyreq: RequirementIDNameHashMap.keySet()) {
+	String key= keyreq+"/"+classid; 
+	String val= keyreq+"/"+RequirementIDNameHashMap.get(keyreq)+"/"+classid+"/"+classname; 
+
+	RequirementClassHashMap.put(key, val); 
+}
+
+
+
+
+
+}
+
+
+
+
+
+for(Entry<String, String> entry :RequirementClassHashMap.entrySet()) {
+String myvalue = entry.getValue(); 
+String[] myvalues = myvalue.split("/"); 
+//System.out.println(myvalues[1]);
+//System.out.println(myvalues[0]);
+//System.out.println(myvalues[3]);
+//System.out.println(myvalues[2]);
+int CountT=0, CountN=0, CountE=0; 
+List<String> list = RequirementClassHashMapUnionGold.get(myvalues[0]+"-"+myvalues[2]); 
+CountTNE count=ComputeProportions(list, CountT, CountN, CountE); 
+
+String SubjectGeneralization=ComputeSubjectGeneralization(count);
+String reqclassValue = ReqClassHashMap.get(myvalues[0]+"-"+myvalues[3]); 
+if(reqclassValue!=null) {
+	String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`,`SubjectGold`,`goldfinal`) VALUES ('"+myvalues[1]+"','" +myvalues[0]+"','"  +myvalues[3]+"','" +myvalues[2]
+			+"','"  +SubjectGeneralization+"','"  +reqclassValue+"')";	
+	st2.executeUpdate(statement8);
+	TraceClassList.remove(myvalues[0]+"-"+myvalues[3]); 
+}else {
+	String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`,`SubjectGold`,`goldfinal`) VALUES ('"+myvalues[1]+"','" +myvalues[0]+"','"  +myvalues[3]+"','" +myvalues[2]
+			+"','"  +SubjectGeneralization+"','"  +"E"+"')";	
+	st2.executeUpdate(statement8);
+}
+
+}
+
+
+
+for(String s: TraceClassList) {
+	System.out.println(s);
+}
+System.out.println("OVER");
 
 	}
 	
@@ -1940,8 +1940,9 @@ public class DBDemo3JHotDraw2 {
 	
 	static String PredictGoldUnionFinal(int SubjectT, int SubjectN) {
 		String goldUnion=null; 
-		
-			if((SubjectT>=2 && SubjectN==0) || SubjectT>=3) {
+		if((SubjectT>=1 && SubjectN==0) || SubjectT>=2) {
+
+//			if((SubjectT>=2 && SubjectN==0) || SubjectT>=3) {
 				goldUnion="T"; 
 			}
 			else if(SubjectT==0 && SubjectN>=2) {

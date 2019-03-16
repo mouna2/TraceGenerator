@@ -113,7 +113,14 @@ public class LogInfo {
 	public List<String> ExecutedOwnerCallees; 
 
 	
-	
+	public List<String> Parents; 
+	public List<String> ParentsPredictions; 
+	public List<String> Children; 
+	public List<String> ChildrenPredictions; 
+	public List<String> Interfaces; 
+	public List<String> InterfacesPredictions; 
+	public List<String> Implementations; 
+	public List<String> ImplementationsPredictions; 
 	
 	
 	
@@ -363,15 +370,15 @@ public class LogInfo {
 	List<String> ChildrenOwnersPredictions;
 	
 	
-	List<String> Implementations;
-	List<String> Interfaces;
+//	List<String> Implementations;
+//	List<String> Interfaces;
 	List<String> Superclasses;
-	List<String> Children;
+//	List<String> Children;
 	
 	List<String> ImplementationPredictions;
 	List<String> InterfacePredictions;
 	List<String> SuperclassPredictions;
-	List<String> ChildrenPredictions;
+//	List<String> ChildrenPredictions;
 	
 	
 	
@@ -380,6 +387,30 @@ public class LogInfo {
 
 	public List<String> getClassCalleesOwnerClasses() {
 		return ClassCalleesOwnerClasses;
+	}
+	public List<String> getParents() {
+		return Parents;
+	}
+	public void setParents(List<String> parents) {
+		Parents = parents;
+	}
+	public List<String> getParentsPredictions() {
+		return ParentsPredictions;
+	}
+	public void setParentsPredictions(List<String> parentsPredictions) {
+		ParentsPredictions = parentsPredictions;
+	}
+	public List<String> getInterfacesPredictions() {
+		return InterfacesPredictions;
+	}
+	public void setInterfacesPredictions(List<String> interfacesPredictions) {
+		InterfacesPredictions = interfacesPredictions;
+	}
+	public List<String> getImplementationsPredictions() {
+		return ImplementationsPredictions;
+	}
+	public void setImplementationsPredictions(List<String> implementationsPredictions) {
+		ImplementationsPredictions = implementationsPredictions;
 	}
 	public void setClassCalleesOwnerClasses(List<String> classCalleesOwnerClasses) {
 		ClassCalleesOwnerClasses = classCalleesOwnerClasses;
@@ -804,15 +835,24 @@ public class LogInfo {
 		String ExecutedOwnerCalleesList=toString3(ExecutedOwnerCallees); 
 		String ExecutedOwnerCallersList=toString3(ExecutedOwnerCallers); 
 		String reqClass= RequirementID+"-"+ClassID; 
+		String iterfaces= toString3(Interfaces); 
 		
-
+		
+		String parentsList = toString3(Parents); 
+		String parentsPredictionList = toString3(ParentsPredictions); 
+		String childrenList = toString3(Children); 
+		String childrenPredictionList = toString3(ChildrenPredictions); 
+		String interfaceList = toString3(Interfaces); 
+		String interfacePredictionList = toString3(InterfacesPredictions); 
+		String implementationList = toString3(Implementations); 
+		String implementationPredictionList = toString3(ImplementationPredictions); 
 
 		
 		
 		return MethodID+","+MethodName+","+RequirementID+","+RequirementName+","+ClassID+","+ClassName
 				
 				+","+TraceValue+","+DatabaseInput.OwnerTraceHashMap.get(reqClass)
-		
+				+","+interfaceList+","+interfacePredictionList+","+implementationList+","+implementationPredictionList+","+parentsList+","+parentsPredictionList+","+childrenList+","+childrenPredictionList
 				+","+CallersList+","+CallersPredictionsList+","+CallersOwnersList
 				+","+InterfaceCallerList+","+InterfaceCallerPredictionList+","+InterfaceCallerOwnerList
 				+","+SuperclassCallerList+","+SuperclassCallerPredictionList+","+SuperclassCallerOwnerList
@@ -1335,6 +1375,7 @@ public class LogInfo {
 			LogInfo.bwfileChess.write(
 					"MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, "
 					+ "Gold, TraceClassValue,"
+					+" Interfaces, InterfacesPredictions, Implementations, ImplementationsPredictions, Parents, ParentPredictions, Children, ChildrenPredictions,"
 					+" Callers, CallersPredictions, CallersOwnerValues,"
 					+" InterfaceCallers, InterfaceCallersPredictions, InterfaceCallersOwnerValues,"
 					+" SuperclassCallers, SuperclassCallersPredictions, SuperclassCallersOwnerValues,"
@@ -1358,6 +1399,7 @@ public class LogInfo {
 			LogInfo.bwfile2.write(
 					"MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, "
 					+ "Gold, TraceClassValue,"
+					+" Interfaces, InterfacesPredictions, Implementations, ImplementationsPredictions, Parents, ParentPredictions, Children, ChildrenPredictions,"
 					+" Callers, CallersPredictions, CallersOwnerValues,"
 					+" InterfaceCallers, InterfaceCallersPredictions, InterfaceCallersOwnerValues,"
 					+" SuperclassCallers, SuperclassCallersPredictions, SuperclassCallersOwnerValues,"
@@ -1405,6 +1447,7 @@ public class LogInfo {
 			LogInfo.bwfile3.write(
 					"MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, "
 					+ "Gold, TraceClassValue,"
+					+" Interfaces, InterfacesPredictions, Implementations, ImplementationsPredictions, Parents, ParentPredictions, Children, ChildrenPredictions,"
 					+" Callers, CallersPredictions, CallersOwnerValues,"
 					+" InterfaceCallers, InterfaceCallersPredictions, InterfaceCallersOwnerValues,"
 					+" SuperclassCallers, SuperclassCallersPredictions, SuperclassCallersOwnerValues,"
@@ -1428,6 +1471,7 @@ public class LogInfo {
 			LogInfo.bwfile4.write(
 					"MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, "
 					+ "Gold, TraceClassValue,"
+					+" Interfaces, InterfacesPredictions, Implementations, ImplementationsPredictions, Parents, ParentPredictions, Children, ChildrenPredictions,"
 					+" Callers, CallersPredictions, CallersOwnerValues,"
 					+" InterfaceCallers, InterfaceCallersPredictions, InterfaceCallersOwnerValues,"
 					+" SuperclassCallers, SuperclassCallersPredictions, SuperclassCallersOwnerValues,"

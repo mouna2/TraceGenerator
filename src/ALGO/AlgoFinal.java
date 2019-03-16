@@ -58,7 +58,7 @@ public class AlgoFinal extends JFrame {
 	public static String ProgramName=""; 
 	public static boolean InheritanceFlag=true; 
 	public static boolean InterfaceImplementationFlag=true; 
-	public static boolean RecursiveDescent=true; 
+	public static boolean RecursiveDescent=false; 
 	
 
 
@@ -393,7 +393,7 @@ public class AlgoFinal extends JFrame {
 						
 						String reqClass= methodtrace.Requirement.ID+"-"+methodtrace.Method.Owner.ID; 
 
-						 
+						
 						 
 						 methodtrace.SetPrediction(LogInfoHashMap,"N", "N,AllNInheritance");
 					
@@ -543,10 +543,10 @@ public class AlgoFinal extends JFrame {
 			// PRINT
 			SetLogFileIterations(MethodTracesHashmapValues, methodtraces, LogInfoHashMap, ITERATION); 
 			
-			System.out.println("ITERATION  "+ITERATION);
+			
 			// END PRINT
 			ITERATION++;
-			
+			System.out.println("ITERATION  "+ITERATION);
 		}
 		ComputeStepResults(Step2Pattern, Step2PredictionValues, LogInfoHashMap, ProgramName,  "Step 2", "Step 2 Prediction Values", OwnerClassPredictionValues); 
 		ComputeStepResults2(Step2PatternCumulative, Step2PredictionValues, LogInfoHashMap, ProgramName, "Step 2 Cumulative", "Step 2 Prediction Values Cumulative", zeroPred); 
@@ -1064,7 +1064,7 @@ public class AlgoFinal extends JFrame {
 
 		 
 		 
-//	 LogInfo.updateTableLog(ProgramName, MethodTracesHashmapValues, LogInfoHashMap);
+	 LogInfo.updateTableLog(ProgramName, MethodTracesHashmapValues, LogInfoHashMap);
 
 		 System.out.println("YES6");
 		 LogInfo.closeLogFile(); 
@@ -1356,9 +1356,9 @@ public class AlgoFinal extends JFrame {
 	public static void main(String[] args) throws Exception {
 		
 		
-//		String ProgramName = "chess";
-//		AlgoFinal frame = new AlgoFinal(
-//				ProgramName);
+		String ProgramName = "chess";
+		AlgoFinal frame = new AlgoFinal(
+				ProgramName);
 //
 //		String ProgramName2 = "gantt";
 //			 frame = new AlgoFinal(ProgramName2);
@@ -1368,10 +1368,10 @@ public class AlgoFinal extends JFrame {
 //////
 //		String ProgramName3 = "itrust";
 //			 frame = new AlgoFinal(ProgramName3);
-
-		
-		String ProgramName4 = "jhotdraw";
-		AlgoFinal	frame = new AlgoFinal(ProgramName4);
+//
+//		
+//		String ProgramName4 = "jhotdraw";
+//		AlgoFinal	frame = new AlgoFinal(ProgramName4);
 		
 		
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);

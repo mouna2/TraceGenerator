@@ -243,8 +243,14 @@ public final class MethodTrace {
 		List<String> ExecutedCallees= new ArrayList<String>(); 
 		List<String> ExecutedCalleesPredictions= new ArrayList<String>(); 
 		List<String> ExecutedCalleesOwners= new ArrayList<String>(); 
-		
-		
+		List<String> Interfaces= new ArrayList<String>(); 
+		List<String> InterfacesPredictions= new ArrayList<String>(); 
+		List<String> Parents= new ArrayList<String>(); 
+		List<String> ParentPredictions= new ArrayList<String>(); 
+		List<String> Children= new ArrayList<String>(); 
+		List<String> ChildrenPredictions= new ArrayList<String>(); 		
+		List<String> Implementations= new ArrayList<String>(); 
+		List<String> ImplementationsPredictions= new ArrayList<String>(); 	
 		String reqMethod=this.Requirement.ID+"-"+this.Method.ID; 
 		
 		
@@ -652,7 +658,68 @@ ExtendedCallees.add(callee.toString());
 SetPredictionsSetOwners(callee, this, ExtendedCalleesPredictions, ExtendedCalleesOwners); 
 
 
-}		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setPrediction(AlgoFinal.methodtraces2HashMap.get(this.Requirement.ID+"-"+this.Method.ID).prediction);
+}	
+
+
+////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+//INTERFACES  
+for(Method myinterface: this.Method.Interfaces) {
+Interfaces.add(myinterface.toString()); 
+InterfacesPredictions.add(AlgoFinal.methodtraces2HashMap.get(this.Requirement.ID+"-"+myinterface.ID).getPrediction()); 
+
+}
+////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+//IMPLEMENTATIONS  
+for(Method myimplementation: this.Method.Implementations) {
+Implementations.add(myimplementation.toString()); 
+ImplementationsPredictions.add(AlgoFinal.methodtraces2HashMap.get(this.Requirement.ID+"-"+myimplementation.ID).getPrediction()); 
+
+
+}
+////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+//PARENTS  
+for(Method mysuperclass: this.Method.Superclasses) {
+Parents.add(mysuperclass.toString()); 
+ParentPredictions.add(AlgoFinal.methodtraces2HashMap.get(this.Requirement.ID+"-"+mysuperclass.ID).getPrediction()); 
+
+
+}
+////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+//CHILDREN  
+for(Method mychild: this.Method.Children) {
+Children.add(mychild.toString()); 
+ChildrenPredictions.add(AlgoFinal.methodtraces2HashMap.get(this.Requirement.ID+"-"+mychild.ID).getPrediction()); 
+
+
+}
+
+
+				LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setInterfaces(Interfaces);
+				LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setInterfacesPredictions(InterfacesPredictions);
+				
+				LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setImplementations(Implementations);
+				LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setImplementationPredictions(ImplementationsPredictions);
+				
+				LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setChildren(Children);
+				LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setChildrenPredictions(ChildrenPredictions);
+				
+				LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setParents(Parents);
+				LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setParentsPredictions(ParentPredictions);
+				
+				
+			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setPrediction(AlgoFinal.methodtraces2HashMap.get(this.Requirement.ID+"-"+this.Method.ID).prediction);
 
 			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setExtendedCallersFinal(ExtendedCallers);
 			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setExtendedCallersPredictionsFinal(ExtendedCallersPredictions);
