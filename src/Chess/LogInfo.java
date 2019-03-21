@@ -1245,6 +1245,10 @@ public class LogInfo {
 					
 
 
+				}else {
+					String Result = Pattern.ComparePredictionToGold(methodTrace.getGold().trim(),"E");
+					logInfoHashMap.get(mykey).setPrecisionRecall(Result);
+					Pattern.UpdateCounters(Result, Pattern);
 				}
 				
 //				ownerClassPredictionValues.ComputePredictionValues(ownerClassPredictionValues, methodTrace.getPrediction().trim());
