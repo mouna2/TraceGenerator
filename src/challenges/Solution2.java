@@ -1,75 +1,82 @@
 package challenges;
 
+import java.lang.*;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.PriorityQueue;
 import java.util.Scanner;
-import java.util.TreeSet;
+import java.util.Stack;
 
 
-public class Solution2 {
+import java.io.*;
+class Solution2
+ {
+	Character c; 
+	int count; 
+	 
+	public Solution2(Character c, int count) {
+		super();
+		this.c = c;
+		this.count = count;
+	}
+
+	private static void kSorted(int size, String r){
+		char[] arr = r.toCharArray(); 
+//		Arrays.sort(arr);
+		if(r.contains("1")) {
+			System.out.println("1");
+		}else { 
+			System.out.println("0");
+		}
+		
+	}
+	 
+	 public static void main (String[] args) throws IOException {
+		 BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		 String  line = br.readLine();    
+		 int t = Integer.parseInt(line); 
+        
+        int count=0; 
+//        System.out.println("T "+t);
+        while (t --> 0) {
+        	 line = br.readLine();    
+//        	System.out.println(line);
+        	 line = br.readLine();    
+			String[] lines = line.split(" "); 
+//			int size=Integer.parseInt(lines[0]); 
+//			int index=Integer.parseInt(lines[1]); 
+//
+//        	 String line2 = br.readLine();    
+//        	 String[] lines2 = line2.split(" "); 
+//        	 System.out.println(index-1);
+//        	 System.out.println(size-index);
+//        	 System.out.println(index-1);
+        	 Stack<String> mystack = new Stack<String>(); 
+        	 for(String s: lines) {
+        		 mystack.push(s); 
+        	 }
+        	
+        	 while(!mystack.isEmpty()) {
+        		 System.out.print(mystack.pop()+" ");
+        	 }
+			
+			
+			
+        	 System.out.println();
+        	count++; 
+        }
+    }
 
 	
 
-	private static void PrintJobScheduling(int n, int[] array) {
-		
-		int Maxarea=0; 
-		for(int i=0; i<array.length; i++) {
-			int area=array[i]; 
-			int j=i-1; 
-			int k=i+1; 
-			boolean flag1=true; 
-			boolean flag2=true; 
+	public static void kSorted(String base, String s1, String s2, String s3) {
+		// TODO Auto-generated method stub
+//		System.out.println(base);
+//		System.out.println(s1);
 
-			while( j>=0 && flag1==true) {
-				if(array[j]>=array[i] ) {
-					area=area+array[i]; 
-					j--; 
-				}else {
-					flag1=false; 
-				}
-				
-			}
-			while( k<=array.length-1 && flag2==true) {
-				if(array[k]>=array[i] ) {
-					area=area+array[i]; 
-					k++; 
-				}
-				else {
-					flag2=false; 
-				}
-			}
-//			System.out.println(i+"   "+area);
-			if(area>Maxarea) {
-				Maxarea=area; 
-			}
-			
-		}
+	
 		
-		System.out.println(Maxarea);
 	}
-	public static void main(String [] args) {
-		Scanner sc= new Scanner(System.in); 
-		int TestCases=sc.nextInt(); 
-//		System.out.println(TestCases);
-		
-		int counter=0; 
-		while(counter<TestCases) {
-			int TestCaseSize=sc.nextInt(); 
-//			System.out.println(TestCaseSize);
-
-			String TestCase= sc.nextLine(); 
-			 TestCase= sc.nextLine(); 
-
-//			System.out.println(TestCase);
-			String[] SplittedTestcase = TestCase.split(" "); 
-			int [] arr= new int[SplittedTestcase.length]; 
-			for(int i=0; i<TestCaseSize; i++) {
-				arr[i]=Integer.parseInt(SplittedTestcase[i]); 
-			}
-			PrintJobScheduling(TestCaseSize, arr); 
-//			System.out.println("yes");
-			counter++; 
-		}
-		
-	}	
 }
