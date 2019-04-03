@@ -1369,9 +1369,7 @@ public class AlgoFinal extends JFrame {
 		String ProgramName3 = "itrust";
 			 frame = new AlgoFinal(ProgramName3);
 
-		//heyyy 
-			 
-			 
+			 //l
 			 
 		String ProgramName4 = "jhotdraw";
 			frame = new AlgoFinal(ProgramName4);
