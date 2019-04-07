@@ -13,9 +13,9 @@ public class MethodCallsExecutedFormatter {
 
 	
 	public static void main (String [] args) throws IOException {
-		BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\mouna\\new_workspace\\TracePredictorFinal\\src\\GanttFiles\\dataMethodCallsExecutedGanttFormatted.txt"));
+		BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\mouna\\new_workspace\\TraceGenerator\\src\\GanttFiles\\dataMethodCallsExecutedGantt.txt"));
 		String line = reader.readLine(); 
-		File myfile3 = new File("C:\\Users\\mouna\\new_workspace\\TracePredictorFinal\\src\\GanttFiles\\dataMethodCallsExecutedGanttFormattedFinal.txt");
+		File myfile3 = new File("C:\\Users\\mouna\\new_workspace\\TraceGenerator\\src\\GanttFiles\\dataMethodCallsExecutedGanttFormatted2.txt");
 		FileOutputStream myFileOutputStream3 = new FileOutputStream(myfile3);
 		 BufferedWriter bwWriter = new BufferedWriter(new OutputStreamWriter(myFileOutputStream3));
 		while(line!=null) {
