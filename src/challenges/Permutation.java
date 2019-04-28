@@ -2,6 +2,7 @@ package challenges;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
@@ -17,40 +18,42 @@ public class Permutation
         int TestCases=sc.nextInt();
         int count=0; 
         while(count<TestCases) {
-        	String s= sc.next(); 
-        	func(s);         	
+        	int amount= sc.nextInt();  
+        	int myindex=0; 
+        	String s =""; 
+        	while(myindex<amount) {
+        		s=s+" "+sc.nextInt(); 
+        		myindex++; 
+        	}
+        	func(s);      	
         	count++; 
         }
     }
 
 	private static void func(String s) {
-		int counter=0; 
-		char[] chars=s.toCharArray(); 
 		
-		char[] chars2 = null;
-		char[] chars3 =null; 
-		chars2=Arrays.copyOf(chars, chars.length/2); 
-		if(chars.length%2==1) {
-			chars3 = Arrays.copyOfRange(chars, chars.length/2+1, chars.length); 
-
-		}else {
-			 chars3 = Arrays.copyOfRange(chars, chars.length/2, chars.length); 
-
+			String[] myarr = s.trim().split(" "); 
+			int [] arr2=new int[myarr.length]; 
+			int i=0; 
+			for(String s2: myarr) {
+				arr2[i]=Integer.parseInt(s2); 
+				i++; 
+			}
+			Arrays.sort(arr2);
+			boolean flag=false; 
+			for(int j=0; j<arr2.length-1; j+=2) {
+				if(arr2[j]==arr2[j+1]) {
+					
+				}
+				else {
+					System.out.println(arr2[j]);
+					flag=true; 
+					break; 
+				}
+			}
+		if(flag==false) {
+			System.out.println(arr2[arr2.length-1]);
 		}
-//		Arrays.sort(chars);
-//		System.out.println("chars  "+chars2.toString());
-//		System.out.println("chars3  "+chars3.toString());
-
-		Arrays.sort(chars2);
-		Arrays.sort(chars3);
-		if(String.copyValueOf(chars2).equals(String.copyValueOf(chars3))){
-			System.out.println("YES");
-		}else {
-			System.out.println("NO");
-
-		}
-		
-		
 	}
 
 

@@ -590,7 +590,7 @@ public class AlgoFinal extends JFrame {
 //								&& methodtrace.Method.getCalleesShell().getOwnerClasses(methodtrace.Requirement).remove(methodtrace.Method.Owner).AtLeast1T(methodtrace.Requirement)			
 							
 								methodtrace.Method.getCallersShell().getOwnerClasses(methodtrace.Requirement).AtLeast1T(methodtrace.Requirement)
-									&& methodtrace.Method.getCalleesShell().getOwnerClasses(methodtrace.Requirement).AtLeast1T(methodtrace.Requirement)			
+								&& methodtrace.Method.getCalleesShell().getOwnerClasses(methodtrace.Requirement).AtLeast1T(methodtrace.Requirement)			
 								&& !methodtrace.Method.getCallersShell().AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
 								&& !methodtrace.Method.getCalleesShell().AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
 								 
