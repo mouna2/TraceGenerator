@@ -12,19 +12,61 @@ class GFG
       
       while(t-- > 0)
       {
-          int n = sc.nextInt();
-          int arr[] = new int[n];
+        
           
-          for(int i = 0; i < n; i++) {
-          	arr[i] = sc.nextInt();
+          String s = sc.next(); 
+//          System.out.println(s);
+          String[] arr=s.split(""); 
+          int j=0; 
+          String str1=arr[j]; 
+          int count=0; 
+          int sum=0; 
+          boolean flag=false; 
+          while(j<arr.length) {     
+              if(arr[j].equals(str1)) {
+            	  count++; 
+            	  flag=false; 
+            	  if(count==3) {
+            		  sum++; 
+            		  count=1; 
+            	  }
+              }else {
+            	  
+            	  count=1; 
+            	  str1=arr[j]; 
+              }
+             
+        	  j++; 
           }
-           
-           
+         
+          System.out.println(sum);
           
-          Geeks obj = new Geeks();
-         Geeks.sumExists(arr,n);
+         
       }
   }
+
+private static void Function(int[] arr, int windowSize) {
+	// TODO Auto-generated method stub
+	for(int i=0; i<arr.length; i++) {
+		int j=0; 
+		boolean flag=false; 
+		while( arr.length-i>=windowSize && j<windowSize) {
+//			System.out.println(i+" "+j);
+			if(arr[i+j]<0) {
+				 flag=true; 
+				System.out.print(arr[i+j]+" ");
+				break; 
+			}
+			j++; 
+		}
+		if(flag==false && arr.length-i>=windowSize ) {
+			System.out.print("0 ");
+
+		}
+		
+	}
+	System.out.println();
+}
 }
 
 

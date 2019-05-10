@@ -38,8 +38,11 @@ public class DatabaseReading {
 		Properties connectionProps = new Properties();
 		connectionProps.put("root", this.userName);
 		connectionProps.put("123456", this.password);
+		if(!programName.equals("test")) {
 		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/database"+programName+"?useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "123456");
-
+		}else {
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+programName+"?useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "123456");
+		}
 
 		// Interact with model
 

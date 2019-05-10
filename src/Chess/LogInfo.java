@@ -1016,7 +1016,7 @@ public class LogInfo {
 		
 	
 
-		if (ProgramName.equals("chess")) {
+		if (ProgramName.equals("chess") || ProgramName.equals("test") ) {
 			File filelogChess = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\TableLogChess.txt");
 			FileOutputStream fosfilChess = new FileOutputStream(filelogChess);
 			bwfileChess = new BufferedWriter(new OutputStreamWriter(fosfilChess));
@@ -1374,7 +1374,7 @@ public class LogInfo {
 		// TODO Auto-generated method stub			
 		 // Create a new file output stream.
        
-		if (ProgramName.equals("chess")) {
+		if (ProgramName.equals("chess")|| ProgramName.equals("test")) {
 			
 			LogInfo.bwfileChess.write(
 					"MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, "
@@ -1512,7 +1512,7 @@ public class LogInfo {
 			
 				
 			}
-			if (ProgramName.equals("chess")) {
+			if (ProgramName.equals("chess") ||ProgramName.equals("test")  ) {
 				LogInfo.bwfileChess.write(LogInfoHashMap.get(reqmethod).toString());
 				LogInfo.bwfileChess.newLine();
 				
