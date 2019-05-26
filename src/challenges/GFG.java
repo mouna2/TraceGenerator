@@ -14,34 +14,41 @@ class GFG
       {
         
           
-          String s = sc.next(); 
-//          System.out.println(s);
-          String[] arr=s.split(""); 
-          int j=0; 
-          String str1=arr[j]; 
-          int count=0; 
-          int sum=0; 
-          boolean flag=false; 
-          while(j<arr.length) {     
-              if(arr[j].equals(str1)) {
-            	  count++; 
-            	  flag=false; 
-            	  if(count==3) {
-            		  sum++; 
-            		  count=1; 
-            	  }
-              }else {
-            	  
-            	  count=1; 
-            	  str1=arr[j]; 
-              }
-             
-        	  j++; 
-          }
+         long first= sc.nextLong(); 
+
+         String FirstString =Long.toBinaryString(first);       
+        
+
+         if(8>FirstString.length()) {
+        	
+        	 String repeated = new String(new char[8-FirstString.length()]).replace("\0", "0");
+        	 FirstString = repeated+FirstString; 
+        	 
+         }
          
-          System.out.println(sum);
-          
+//         System.out.println(FirstString);
+//         System.out.println(SecondString);
          
+      
+         String[] firstarray = FirstString.split(""); 
+      
+         
+         
+        
+         
+         for(int k=0; k<4; k++) {
+        	 String temp=firstarray[k]; 
+        	 firstarray[k]=firstarray[k+4];
+        	 firstarray[k+4]=temp; 
+         }
+         String binary=""; 
+         for(int k=0; k<8; k++) {
+        	binary=binary+firstarray[k]; 
+        	
+         }
+         
+         int decimal=Integer.parseInt(binary,2);
+         System.out.println(decimal);
       }
   }
 

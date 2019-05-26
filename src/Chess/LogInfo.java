@@ -1017,31 +1017,31 @@ public class LogInfo {
 	
 
 		if (ProgramName.equals("chess") || ProgramName.equals("test") ) {
-			File filelogChess = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\TableLogChess.txt");
+			File filelogChess = new File("C:\\Users\\mouna\\ownCloud\\Mouna Hammoudi\\dumps\\LatestLogFiles\\TableLogChess.txt");
 			FileOutputStream fosfilChess = new FileOutputStream(filelogChess);
 			bwfileChess = new BufferedWriter(new OutputStreamWriter(fosfilChess));
 			
 		
-			 File file1log = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\PrecisionRecallChess.txt");
+			 File file1log = new File("C:\\Users\\mouna\\ownCloud\\Mouna Hammoudi\\dumps\\LatestLogFiles\\PrecisionRecallChess.txt");
 				FileOutputStream fosfila1 = new FileOutputStream(file1log);
 				bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
 				
-				File  file2log = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\PrecisionRecallChessCumulative.txt");
+				File  file2log = new File("C:\\Users\\mouna\\ownCloud\\Mouna Hammoudi\\dumps\\LatestLogFiles\\PrecisionRecallChessCumulative.txt");
 				FileOutputStream	 fosfila2 = new FileOutputStream(file2log);
 					bwfileCumulative = new BufferedWriter(new OutputStreamWriter(fosfila2));
 
 				
-				File mytraceClass = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\TracesClassesChess.txt");
+				File mytraceClass = new File("C:\\Users\\mouna\\ownCloud\\Mouna Hammoudi\\dumps\\LatestLogFiles\\TracesClassesChess.txt");
 				FileOutputStream fosTraceClass = new FileOutputStream(mytraceClass);
 				bwTraceClass = new BufferedWriter(new OutputStreamWriter(fosTraceClass));
 				
 				
-				File myfile = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\ComparisonInterfacesImplementationsChess.txt");
+				File myfile = new File("C:\\Users\\mouna\\ownCloud\\Mouna Hammoudi\\dumps\\LatestLogFiles\\ComparisonInterfacesImplementationsChess.txt");
 				FileOutputStream myFileOutputStream = new FileOutputStream(myfile);
 				bwInterfacesImpChess = new BufferedWriter(new OutputStreamWriter(myFileOutputStream));
 				
 				
-				File myfile2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\ComparisonSuperclassesChildrenChess.txt");
+				File myfile2 = new File("C:\\Users\\mouna\\ownCloud\\Mouna Hammoudi\\dumps\\LatestLogFiles\\ComparisonSuperclassesChildrenChess.txt");
 				FileOutputStream myFileOutputStream2 = new FileOutputStream(myfile2);
 				bwSuperclassesChildrenChess = new BufferedWriter(new OutputStreamWriter(myFileOutputStream2));
 				
@@ -1053,26 +1053,26 @@ public class LogInfo {
 		}
 
 		if (ProgramName.equals("gantt")) {
-			File filelog2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\TableLogGantt.txt");
+			File filelog2 = new File("C:\\Users\\mouna\\ownCloud\\Mouna Hammoudi\\dumps\\LatestLogFiles\\TableLogGantt.txt");
 			FileOutputStream fosfila2 = new FileOutputStream(filelog2);
 			bwfile2 = new BufferedWriter(new OutputStreamWriter(fosfila2));
 			
 		
-			 File file1log = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\PrecisionRecallGantt.txt");
+			 File file1log = new File("C:\\Users\\mouna\\ownCloud\\Mouna Hammoudi\\dumps\\LatestLogFiles\\PrecisionRecallGantt.txt");
 				FileOutputStream fosfila1 = new FileOutputStream(file1log);
 				bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
 
 				
-				File mytraceClass = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\TracesClassesGantt.txt");
+				File mytraceClass = new File("C:\\Users\\mouna\\ownCloud\\Mouna Hammoudi\\dumps\\LatestLogFiles\\TracesClassesGantt.txt");
 				FileOutputStream fosTraceClass = new FileOutputStream(mytraceClass);
 				bwTraceClass = new BufferedWriter(new OutputStreamWriter(fosTraceClass));
 		
-				File myfile = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\ComparisonInterfacesImplementationsGantt.txt");
+				File myfile = new File("C:\\Users\\mouna\\ownCloud\\Mouna Hammoudi\\dumps\\LatestLogFiles\\ComparisonInterfacesImplementationsGantt.txt");
 				FileOutputStream myFileOutputStream = new FileOutputStream(myfile);
 				bwInterfacesImpGantt = new BufferedWriter(new OutputStreamWriter(myFileOutputStream));
 				
 				
-				File myfile2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\ComparisonSuperclassesChildrenGantt.txt");
+				File myfile2 = new File("C:\\Users\\mouna\\ownCloud\\Mouna Hammoudi\\dumps\\LatestLogFiles\\ComparisonSuperclassesChildrenGantt.txt");
 				FileOutputStream myFileOutputStream2 = new FileOutputStream(myfile2);
 				bwSuperclassesChildrenGantt = new BufferedWriter(new OutputStreamWriter(myFileOutputStream2));
 		
@@ -1083,28 +1083,28 @@ public class LogInfo {
 		}
 
 		if (ProgramName.equals("itrust")) {
-			File filelog3 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\TableLogiTrust.txt");
+			File filelog3 = new File("C:\\Users\\mouna\\ownCloud\\Mouna Hammoudi\\dumps\\LatestLogFiles\\TableLogiTrust.txt");
 			FileOutputStream fosfila5 = new FileOutputStream(filelog3);
 			bwfile3 = new BufferedWriter(new OutputStreamWriter(fosfila5));
 			
 			
 			
 			
-			File file1log = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\PrecisionRecalliTrust.txt");
+			File file1log = new File("C:\\Users\\mouna\\ownCloud\\Mouna Hammoudi\\dumps\\LatestLogFiles\\PrecisionRecalliTrust.txt");
 			FileOutputStream fosfila1 = new FileOutputStream(file1log);
 			bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
 
 			
-			File mytraceClass = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\TracesClassesiTrust.txt");
+			File mytraceClass = new File("C:\\Users\\mouna\\ownCloud\\Mouna Hammoudi\\dumps\\LatestLogFiles\\TracesClassesiTrust.txt");
 			FileOutputStream fosTraceClass = new FileOutputStream(mytraceClass);
 			bwTraceClass = new BufferedWriter(new OutputStreamWriter(fosTraceClass));
 			
-			File myfile = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\ComparisonInterfacesImplementationsiTrust.txt");
+			File myfile = new File("C:\\Users\\mouna\\ownCloud\\Mouna Hammoudi\\dumps\\LatestLogFiles\\ComparisonInterfacesImplementationsiTrust.txt");
 			FileOutputStream myFileOutputStream = new FileOutputStream(myfile);
 			bwInterfacesImpiTrust = new BufferedWriter(new OutputStreamWriter(myFileOutputStream));
 			
 			
-			File myfile2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\ComparisonSuperclassesChildreniTrust.txt");
+			File myfile2 = new File("C:\\Users\\mouna\\ownCloud\\Mouna Hammoudi\\dumps\\LatestLogFiles\\ComparisonSuperclassesChildreniTrust.txt");
 			FileOutputStream myFileOutputStream2 = new FileOutputStream(myfile2);
 			bwSuperclassesChildreniTrust = new BufferedWriter(new OutputStreamWriter(myFileOutputStream2));
 			
@@ -1114,29 +1114,29 @@ public class LogInfo {
 		}
 
 		if (ProgramName.equals("jhotdraw")) {
-			File filelog4 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\TableLogJHotDraw.txt");
+			File filelog4 = new File("C:\\Users\\mouna\\ownCloud\\Mouna Hammoudi\\dumps\\LatestLogFiles\\TableLogJHotDraw.txt");
 			FileOutputStream fosfila4 = new FileOutputStream(filelog4);
 			bwfile4 = new BufferedWriter(new OutputStreamWriter(fosfila4));
 			
 			
 				
 				
-				File file1log = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\PrecisionRecallJHotDraw.txt");
+				File file1log = new File("C:\\Users\\mouna\\ownCloud\\Mouna Hammoudi\\dumps\\LatestLogFiles\\PrecisionRecallJHotDraw.txt");
 				FileOutputStream fosfila1 = new FileOutputStream(file1log);
 				bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
 
 				
-				File mytraceClass = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\TracesClassesJHotDraw.txt");
+				File mytraceClass = new File("C:\\Users\\mouna\\ownCloud\\Mouna Hammoudi\\dumps\\LatestLogFiles\\TracesClassesJHotDraw.txt");
 				FileOutputStream fosTraceClass = new FileOutputStream(mytraceClass);
 				bwTraceClass = new BufferedWriter(new OutputStreamWriter(fosTraceClass));
 				
 				
-				File myfile = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\ComparisonInterfacesImplementationsJHotDraw.txt");
+				File myfile = new File("C:\\Users\\mouna\\ownCloud\\Mouna Hammoudi\\dumps\\LatestLogFiles\\ComparisonInterfacesImplementationsJHotDraw.txt");
 				FileOutputStream myFileOutputStream = new FileOutputStream(myfile);
 				bwInterfacesImpJHotDraw = new BufferedWriter(new OutputStreamWriter(myFileOutputStream));
 				
 				
-				File myfile2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\ComparisonSuperclassesChildrenJHotDraw.txt");
+				File myfile2 = new File("C:\\Users\\mouna\\ownCloud\\Mouna Hammoudi\\dumps\\LatestLogFiles\\ComparisonSuperclassesChildrenJHotDraw.txt");
 				FileOutputStream myFileOutputStream2 = new FileOutputStream(myfile2);
 				bwSuperclassesChildrenJHotDraw = new BufferedWriter(new OutputStreamWriter(myFileOutputStream2));
 			
@@ -1426,7 +1426,7 @@ public class LogInfo {
 			
 
 			 // Create a new file output stream.
-            PrintStream fileOut = new PrintStream("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\TableLogiTrust.txt");
+            PrintStream fileOut = new PrintStream("C:\\Users\\mouna\\ownCloud\\Mouna Hammoudi\\dumps\\LatestLogFiles\\TableLogiTrust.txt");
             
             // Redirect standard out to file.
 //            System.setOut(fileOut);

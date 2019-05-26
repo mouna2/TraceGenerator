@@ -171,15 +171,15 @@ public class AlgoFinal extends JFrame {
 		BufferedWriter bwfile3 = null ; 
 		
 	if(ProgramName.equals("chess")) {
-		File file1log = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\InterfacesNewRule.txt");
+		File file1log = new File("C:\\Users\\mouna\\ownCloud\\Mouna Hammoudi\\dumps\\LatestLogFiles\\InterfacesNewRule.txt");
 		FileOutputStream fosfila1 = new FileOutputStream(file1log);
 		 bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
 		
-		File file2log = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\LogFileUnderstandFP.txt");
+		File file2log = new File("C:\\Users\\mouna\\ownCloud\\Mouna Hammoudi\\dumps\\LatestLogFiles\\LogFileUnderstandFP.txt");
 		FileOutputStream fosfila2 = new FileOutputStream(file2log);
 		 bwfile2 = new BufferedWriter(new OutputStreamWriter(fosfila2));
 		 
-			File file3log = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\LogFileUnderstandFN.txt");
+			File file3log = new File("C:\\Users\\mouna\\ownCloud\\Mouna Hammoudi\\dumps\\LatestLogFiles\\LogFileUnderstandFN.txt");
 			FileOutputStream fosfila3 = new FileOutputStream(file3log);
 			 bwfile3 = new BufferedWriter(new OutputStreamWriter(fosfila3));
 	}
