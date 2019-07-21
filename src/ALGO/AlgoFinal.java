@@ -1378,16 +1378,16 @@ public class AlgoFinal extends JFrame {
 ////////		String ProgramName2 = "dummy";
 ////////		AlgoFinal	 frame = new AlgoFinal(ProgramName2);
 //////
-//		String ProgramName3 = "itrust";
-//			 frame = new AlgoFinal(ProgramName3);
+		String ProgramName3 = "itrust";
+		AlgoFinal	 frame = new AlgoFinal(ProgramName3);
 //
 //			 //ooo
 //			 
 //		String ProgramName4 = "jhotdraw";
 //			frame = new AlgoFinal(ProgramName4);
-		String ProgramName = "test";
-		AlgoFinal frame = new AlgoFinal(
-				ProgramName);
+//		String ProgramName = "test";
+//		AlgoFinal frame = new AlgoFinal(
+//				ProgramName);
 		
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frame.pack();

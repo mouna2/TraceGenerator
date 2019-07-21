@@ -3,6 +3,9 @@ package challenges;
 
 //Initial Template for Java
 import java.util.*;
+import java.util.stream.Collectors;
+
+import org.apache.commons.lang3.ArrayUtils;
 class GFG
 {
   public static void main(String args[])
@@ -12,68 +15,35 @@ class GFG
       
       while(t-- > 0)
       {
-        
-          
-         long first= sc.nextLong(); 
+    	  int size1=sc.nextInt(); 
+    	  int size2=sc.nextInt(); 
+    	  
+    	  int arr1[]= new int [size1]; 
+    	  int arr2[]= new int [size2]; 
 
-         String FirstString =Long.toBinaryString(first);       
-        
-
-         if(8>FirstString.length()) {
-        	
-        	 String repeated = new String(new char[8-FirstString.length()]).replace("\0", "0");
-        	 FirstString = repeated+FirstString; 
-        	 
-         }
-         
-//         System.out.println(FirstString);
-//         System.out.println(SecondString);
-         
-      
-         String[] firstarray = FirstString.split(""); 
-      
-         
-         
-        
-         
-         for(int k=0; k<4; k++) {
-        	 String temp=firstarray[k]; 
-        	 firstarray[k]=firstarray[k+4];
-        	 firstarray[k+4]=temp; 
-         }
-         String binary=""; 
-         for(int k=0; k<8; k++) {
-        	binary=binary+firstarray[k]; 
-        	
-         }
-         
-         int decimal=Integer.parseInt(binary,2);
-         System.out.println(decimal);
+    	  Function(arr1, arr2, size1, size2); 
+    	  
+    	  
       }
   }
 
-private static void Function(int[] arr, int windowSize) {
-	// TODO Auto-generated method stub
-	for(int i=0; i<arr.length; i++) {
-		int j=0; 
-		boolean flag=false; 
-		while( arr.length-i>=windowSize && j<windowSize) {
-//			System.out.println(i+" "+j);
-			if(arr[i+j]<0) {
-				 flag=true; 
-				System.out.print(arr[i+j]+" ");
-				break; 
-			}
-			j++; 
-		}
-		if(flag==false && arr.length-i>=windowSize ) {
-			System.out.print("0 ");
+private static void Function(int[] arr1, int[] arr2, int size1, int size2) {
+	int [] newarr= new int[size1+size2]; 
+	
+    int [] combined = ArrayUtils.addAll(arr1, arr2);
+    Integer[] combinedInteger = Arrays.stream( combined ).boxed().toArray( Integer[]::new );
 
-		}
-		
-	}
-	System.out.println();
+    Arrays.sort(combinedInteger, Collections.reverseOrder());
+    
+    
+    for(int num: combinedInteger) {
+    	System.out.print(num+" ");
+    }
+    System.out.println();
 }
+
+
+
 }
 
 
