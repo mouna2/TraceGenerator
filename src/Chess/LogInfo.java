@@ -1196,8 +1196,7 @@ public class LogInfo {
 				}
 				if (methodTrace.getGold() != null && methodTrace.getPrediction() != null 
 						&& !methodTrace.isTraceSet()) {
-					String Result = Pattern.ComparePredictionToGold(methodTrace.getGold().trim(),
-							methodTrace.getPrediction().trim());
+					String Result = Pattern.ComparePredictionToGold(methodTrace.getGold().trim(),	methodTrace.getPrediction().trim());
 					logInfoHashMap.get(mykey).setPrecisionRecall(Result);
 					Pattern.UpdateCounters(Result, Pattern);
 					if(!Result.equals("E")) {

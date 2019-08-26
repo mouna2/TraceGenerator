@@ -750,23 +750,29 @@ private MethodList getInheritanceCallers(MethodList SuperclassCallers) {
 	}
 	public MethodList getCalleesShell() throws CloneNotSupportedException {
 		// TODO Auto-generated method stub
-//		for(String key: DatabaseInput.MethodHashMap.keySet()) {
-//			DatabaseInput.MethodHashMap.get(key).VisitedFlag=false; 
-//		}
-		
-		MethodList Callees =getExtendedCallees(); 
-//		this.FirstTimeCallees=true; 
+
+		MethodList Callees= new MethodList(); 
+		if(AlgoFinal.XCalls==true && AlgoFinal.BasicCalls==false) {
+			 Callees =getExtendedCallees(); 
+
+		}else if(AlgoFinal.BasicCalls==true && AlgoFinal.XCalls==false ) {
+			 Callees =this.Callees; 
+		}
+//		this.FirstTimeCallers=true; 
 		return Callees; 
+	
 	}
 	public MethodList getCallersShell() {
 		// TODO Auto-generated method stub
 
-		// TODO Auto-generated method stub
-//		for(String key: DatabaseInput.MethodHashMap.keySet()) {
-//			DatabaseInput.MethodHashMap.get(key).VisitedFlag=false; 
-//		}
-		
-		MethodList Callers =getExtendedCallers(); 
+		MethodList Callers= new MethodList(); 
+
+		if(AlgoFinal.XCalls==true && AlgoFinal.BasicCalls==false) {
+			 Callers =getExtendedCallers(); 
+
+		}else if(AlgoFinal.BasicCalls==true && AlgoFinal.XCalls==false ) {
+			 Callers =this.Callers; 
+		}
 //		this.FirstTimeCallers=true; 
 		return Callers; 
 	
