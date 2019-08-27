@@ -45,6 +45,8 @@ import javax.swing.table.*;
 import Chess.LogInfo;
 import Chess.PredictionEvaluation;
 import TraceRefiner.TraceRefiner;
+import TraceValidator.Prediction;
+import TraceValidator.TraceValidator;
 import mypackage.Children2;
 import mypackage.ClassField2;
 import mypackage.ClassTrace2;
@@ -55,13 +57,18 @@ import mypackage.Requirement;
 
 
 public class AlgoFinal extends JFrame {
+	PredictionValues CountPredictionValues = new PredictionValues(); 
+	
+	public static HashMap<String, Integer> ErrorSeedingPercentages = new HashMap<String, Integer> ();
+
+	
 	public static String ProgramName=""; 
 	public static boolean InheritanceFlag=true; 
 	public static boolean InterfaceImplementationFlag=true; 
 	public static boolean RecursiveDescent=false; 
 	
-	public static boolean TraceRefiner=true; 
-	public static boolean TraceValidator=false; 
+	public static boolean TraceRefinerFlag=false; 
+	public static boolean TraceValidatorFlag=true; 
 
 
 	public static boolean XCalls=true; 
@@ -118,6 +125,8 @@ public class AlgoFinal extends JFrame {
 	static List<MethodTrace> methodtraces = new ArrayList<MethodTrace>();
 	HashMap<String, List<String>> classMethodsHashMap = new HashMap<String, List<String>>();
 	public static HashMap<String, MethodTrace> methodtraces2HashMap = new HashMap<String, MethodTrace>();
+	private static boolean ClassLevelTraces=false;
+	private static boolean MethodLevelTraces=true;
 	LinkedHashMap<String, ClassTrace2> methodtracesRequirementClass = new LinkedHashMap<String, ClassTrace2>();
 
 
@@ -171,17 +180,49 @@ public class AlgoFinal extends JFrame {
 		
 
 		Collection<MethodTrace> MethodTracesHashmapValues = methodtraces2HashMap.values();
-		if(AlgoFinal.TraceRefiner && !AlgoFinal.TraceValidator) {
+		if(AlgoFinal.TraceRefinerFlag && !AlgoFinal.TraceValidatorFlag) {
 			TraceRefiner tr= new TraceRefiner(); 
 			tr.TracePredictionFunction( ProgramName);
 		}
-		else if(AlgoFinal.TraceValidator && !AlgoFinal.TraceRefiner) {
+		else if(AlgoFinal.TraceValidatorFlag && !AlgoFinal.TraceRefinerFlag) {
 			
+			
+			TraceValidator tr= new TraceValidator(); 
+			tr.TracePredictionFunction( ProgramName, LogInfoHashMap, CountPredictionValues, TotalPattern);
+
+			
+	
 		}
+		
 
 	}
 
 	
+	
+	
+	/************************************************************************************************************************************************/
+	/************************************************************************************************************************************************/
+	public LinkedHashMap<String, LogInfo> InitializeInputHashMapNoSeeding(
+			List<MethodTrace> methodTracesHashmapValues, LinkedHashMap<String, LogInfo> LogInfoHashMap) {
+		// TODO Auto-generated method stub
+
+
+		for (MethodTrace methodtrace : methodTracesHashmapValues) {
+			if(AlgoFinal.ClassLevelTraces) {
+				methodtrace.setInput(methodtrace.getClassLevelGold());
+				
+			}else if(AlgoFinal.MethodLevelTraces){
+				methodtrace.setInput(methodtrace.getGold());
+
+			}
+			methodtrace.setPredictionType(Prediction.EInitializedPrediction);
+			LogInfoHashMap.get(methodtrace.Requirement.ID+"-"+methodtrace.Method.ID).setPrediction("E");
+
+
+		}
+
+		return LogInfoHashMap;
+	}
 
 	/************************************************************************************************************************************************/
 	/************************************************************************************************************************************************/
@@ -907,7 +948,6 @@ public class AlgoFinal extends JFrame {
 //
 //		 
 //		 
-//	 LogInfo.updateTableLog(ProgramName, MethodTracesHashmapValues, LogInfoHashMap);
 //
 //		 System.out.println("YES6");
 //		 LogInfo.closeLogFile(); 

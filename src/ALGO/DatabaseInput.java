@@ -33,6 +33,7 @@ public class DatabaseInput {
 
 	static List<ArrayList<String>> CallsList = new ArrayList<ArrayList<String>>(); 
 	
+	public static HashMap<String, HashMap<String, MethodTrace>> OwnerClassestoMethodsHashMap = new HashMap<String, HashMap<String, MethodTrace>>();
 
 
 
@@ -524,13 +525,15 @@ public static void CreateRequirementsHashMap(Connection conn) throws SQLExceptio
 	public static void CreateMethodTraces(Connection conn) throws SQLException {
 	// TODO Auto-generated method stub
 		
-
+		
 		Statement st = conn.createStatement();
-
+		OwnerTraceHashMap=new LinkedHashMap<String, String>();
+		SubjectTraceHashMap=  new LinkedHashMap<String, String>(); 
 		ResultSet myresults = st.executeQuery("SELECT traces.* from traces");
 
 		while (myresults.next()) {
 			MethodTrace MethodTrace = new MethodTrace();
+			HashMap<String, mypackage.MethodTrace> methodTraceList = new HashMap<String, mypackage.MethodTrace>(); 
 			Method method= new Method(); 
 			Requirement requirement= new Requirement(); 
 			 requirement=RequirementHashMap.get(myresults.getString("requirementid")); 
@@ -540,13 +543,17 @@ public static void CreateRequirementsHashMap(Connection conn) throws SQLExceptio
 			MethodTrace.setRequirement(requirement);
 
 			//checking whether the method is present in the superclasses
-			
-
+			if(AlgoFinal.ProgramName.equals("gantt")|| AlgoFinal.ProgramName.equals("jhotdraw")) {
+				MethodTrace.setSubjectT(myresults.getString("SubjectT"));
+				MethodTrace.setSubjectN(myresults.getString("SubjectN"));
+			}
+		
 			MethodTrace.setGold(myresults.getString("goldfinal"));
 			String reqMethod=MethodTrace.Requirement.ID+"-"+MethodTrace.Method.ID; 
 			String reqClass=MethodTrace.Requirement.ID+"-"+MethodTrace.Method.Owner.ID;  
 
 			MethodTrace.Method.Owner.DeveloperGold=classTraceHashMap.get(reqClass).DeveloperGold; 
+			MethodTrace.setClassLevelGold(classTraceHashMap.get(reqClass).DeveloperGold);
 
 
 			
@@ -559,6 +566,11 @@ public static void CreateRequirementsHashMap(Connection conn) throws SQLExceptio
 	        
 	        OwnerTraceHashMap.put(reqClass, classTraceHashMap.get(reqClass).DeveloperGold); 
 	        SubjectTraceHashMap.put(reqClass, classTraceHashMap.get(reqClass).SubjectGold); 
+	        if(OwnerClassestoMethodsHashMap.get(MethodTrace.Requirement.ID+"-"+MethodTrace.Method.Owner.ID)!=null) {
+	        	methodTraceList = OwnerClassestoMethodsHashMap.get(MethodTrace.Requirement.ID+"-"+MethodTrace.Method.Owner.ID); 
+	        }
+	        methodTraceList.put(reqMethod, MethodTrace); 
+        	OwnerClassestoMethodsHashMap.put(MethodTrace.Requirement.ID+"-"+MethodTrace.Method.Owner.ID, methodTraceList); 
 
 		}
 		

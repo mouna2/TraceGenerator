@@ -1,13 +1,18 @@
 package TraceValidator;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import ALGO.AlgoFinal;
 import ALGO.MethodList;
+import ALGO.PredictionValues;
 import Chess.LogInfo;
+import Chess.PredictionEvaluation;
 import mypackage.Method;
 import mypackage.MethodTrace;
 import mypackage.Requirement;
@@ -222,7 +227,7 @@ public class TraceValidator {
 			put("T-T", Prediction.TPureTPredictionInner) ; 
 			put("N-N", Prediction.NPureNPredictionInner) ; 
 		}}; 
-		static void MakePredictions(List<MethodTrace> MethodTracesList, LinkedHashMap<String, LogInfo> LogInfoHashMap) throws Exception {
+		public static void MakePredictions(List<MethodTrace> MethodTracesList, LinkedHashMap<String, LogInfo> LogInfoHashMap) throws Exception {
 			// TODO Auto-generated method stub
 			int iteration =1; 
 			MethodTrace.modified=true; 
@@ -254,7 +259,7 @@ public class TraceValidator {
 
 					//LEAF METHOD  
 
-					else if(!methodtrace.Method.getCallersShell().isEmpty() && methodtrace.Method.getCalleesShell().isEmpty() && !methodtrace.Method.getCallersofCallers().isEmpty())
+					else if(!methodtrace.Method.getCallersShell().isEmpty() && methodtrace.Method.getCalleesShell().isEmpty() && !methodtrace.Method.getCallersCallersShell().isEmpty())
 					{
 
 						TraceValidator.Predict(methodtrace, methodtrace.Method.getCallersShell(), methodtrace.Method.getCallersCallersShell(), TraceValidator.LeafMatrix, LogInfoHashMap, "Leaf", iteration);
@@ -367,6 +372,56 @@ public class TraceValidator {
 
 			// return new sorted string 
 			return new String(SortedKeyArray); 
+		}
+		public void TracePredictionFunction(String ProgramName, LinkedHashMap<String, LogInfo> logInfoHashMap, PredictionValues countPredictionValues, PredictionEvaluation totalPattern) throws Exception {
+		
+		AlgoFinal af= new AlgoFinal(); 
+		HashMap<String, MethodTrace> methodhashmap = AlgoFinal.methodtraces2HashMap; 
+		Collection<MethodTrace> MethodTracesHashmapValues = methodhashmap.values();
+		List<MethodTrace> MethodTracesList = new ArrayList<MethodTrace>(MethodTracesHashmapValues); 
+		LogInfo.InitializeLogInfoHashMap(logInfoHashMap,MethodTracesHashmapValues, AlgoFinal.methodtraces2HashMap); 
+
+		af.InitializeInputHashMapNoSeeding(MethodTracesList, logInfoHashMap); 
+		TraceValidator.MakePredictions(MethodTracesList, logInfoHashMap); 
+		LogInfo.ComputePrecisionAndRecallNONCUMULATIVE(AlgoFinal.methodtraces2HashMap,totalPattern, ProgramName, countPredictionValues, logInfoHashMap);
+		LogInfo.CreateLogFiles(ProgramName);
+		
+		
+		UpdateTableLogCallersCallees(logInfoHashMap); 
+		
+		
+		
+		
+		
+		if(ProgramName.equals("chess")) {
+			LogInfo.updateRunResultsHeaders(MethodTracesList, 0, 0, "",LogInfo.bwchessRunResultsWriter);
+			LogInfo.updateRunMethodResults(MethodTracesList, 0, 0, "NA", LogInfo.bwchessRunResultsWriter);
+			 LogInfo.updateTableLog(ProgramName, MethodTracesHashmapValues, logInfoHashMap);
+
+		}else if(ProgramName.equals("gantt")) {
+			LogInfo.updateRunResultsHeaders(MethodTracesList, 0, 0, "",LogInfo.bwGanttRunResultsWriter);
+			LogInfo.updateRunMethodResults(MethodTracesList, 0, 0, "NA", LogInfo.bwGanttRunResultsWriter);
+
+			 LogInfo.updateTableLog(ProgramName, MethodTracesHashmapValues, logInfoHashMap);
+
+		}else if(ProgramName.equals("itrust")) {
+			LogInfo.updateRunResultsHeaders(MethodTracesList, 0, 0, "",LogInfo.bwiTrustRunResultsWriter);
+			LogInfo.updateRunMethodResults(MethodTracesList, 0, 0, "NA", LogInfo.bwiTrustRunResultsWriter);
+			 LogInfo.updateTableLog(ProgramName, MethodTracesHashmapValues, logInfoHashMap);
+
+		}else if(ProgramName.equals("jhotdraw")) {
+			LogInfo.updateRunResultsHeaders(MethodTracesList, 0, 0, "",LogInfo.bwJHotDrawRunResultsWriter);
+			LogInfo.updateRunMethodResults(MethodTracesList, 0, 0, "NA", LogInfo.bwJHotDrawRunResultsWriter);
+			 LogInfo.updateTableLog(ProgramName, MethodTracesHashmapValues, logInfoHashMap);
+
+		}}
+		public void UpdateTableLogCallersCallees(LinkedHashMap<String, LogInfo> logInfoHashMap) throws CloneNotSupportedException {
+			// TODO Auto-generated method stub
+			for(String mykey: AlgoFinal.methodtraces2HashMap.keySet()) {
+				MethodTrace methodtrace = AlgoFinal.methodtraces2HashMap.get(mykey); 
+				String reqMethod= methodtrace.Requirement.ID+"-"+methodtrace.Method.ID; 
+				methodtrace.UpdateCallersCallees(logInfoHashMap);				
+			}
 		}
 
 

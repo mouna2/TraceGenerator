@@ -13,10 +13,14 @@ import ALGO.AlgoFinal;
 import ALGO.DatabaseInput;
 import ALGO.MethodList;
 import ALGO.OwnerClassList;
+import TraceValidator.Prediction;
 import Chess.LogInfo;
+import Chess.PredictionEvaluation;
 import spoon.pattern.internal.SubstitutionRequestProvider;
 
 public final class MethodTrace {
+	public String ClassLevelGold = "";
+	public  String Input = "";
 	public static boolean modified = false;
 	public Method Method= new Method();
 	public Requirement Requirement=new Requirement();
@@ -26,22 +30,149 @@ public final class MethodTrace {
 	public String likelihood;
 	public String why;
 	boolean SubjectDeveloperEqualityFlag;
-	
+	private String PatternAndType=""; 
+
 
 	public boolean TraceSet; 
 
+	public static HashMap<String, HashMap<String, MethodTrace>> OwnerClassestoMethodsHashMap = new HashMap<String, HashMap<String, MethodTrace>>();
+
+	public String SubjectT; 
+	public String SubjectN; 
+	public PredictionEvaluation PredictionEvaluation= new PredictionEvaluation(); 
+	public ALGO.PredictionValues PredictionValues= new ALGO.PredictionValues();
+	private String PredictionSummary=""; 
+
+	public Prediction Prediction; 
+
 	
+	
+	public Prediction getPredictionType() {
+		return Prediction;
+	}
+
+	public void setPredictionType(Prediction Prediction) {
+		this.Prediction=Prediction;
+	}
+	public String getClassLevelGold() {
+		return ClassLevelGold;
+	}
+
+	public void setClassLevelGold(String classLevelGold) {
+		ClassLevelGold = classLevelGold;
+	}
+
+	public String getSubjectT() {
+		return SubjectT;
+	}
+
+	public void setSubjectT(String subjectT) {
+		SubjectT = subjectT;
+	}
+
+	public String getSubjectN() {
+		return SubjectN;
+	}
+
+	public void setSubjectN(String subjectN) {
+		SubjectN = subjectN;
+	}
 
 
 	
+	public String getPatternAndType() {
+		return PatternAndType;
+	}
 
 
 
+	public void setPatternAndType(String patternAndType) {
+		PatternAndType = patternAndType;
+	}
+
+
+
+	/************************************************************************************************************************************************/
+	/**
+	 * @param type 
+	 * @param iteration 
+	 * @param patternAndType2 
+	 * @throws CloneNotSupportedException **********************************************************************************************************************************************/
+	public void SetPrediction(LinkedHashMap<String, LogInfo> LogInfoHashMap, Prediction Prediction, String type, int iteration, String patternAndType2) throws CloneNotSupportedException
+			
+			
+			{
+		String reqMethod = this.Requirement.ID+"-"+this.Method.ID; 
+
+//		this.setPatternAndType(Prediction.Reason+Prediction.Type+"/"+Prediction.pattern);
+		if(this.Prediction.Likelihood<Prediction.Likelihood) {
+			this.setPatternAndType(patternAndType2);
+			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).getIterationValues().add(this.getPatternAndType());
+			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setPrediction(Prediction.PredictionValue);
+			MethodTrace.modified=true; 		
+			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).PredictionSummary=this.Prediction.PredictionValue+"/"+this.getPatternAndType(); 
+			this.Prediction=Prediction; 
+			this.PredictionSummary=this.Prediction.PredictionValue+"/"+this.getPatternAndType(); 
+			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).PredictionSummary=this.PredictionSummary; 
+			
+		
+		
+		}
+		else if(this.Prediction.PredictionValue.equals("E") && !Prediction.PredictionValue.equals("E")) {
+			this.setPatternAndType(patternAndType2);
+			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).getIterationValues().add(this.getPatternAndType());
+			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setPrediction(Prediction.PredictionValue);
+			MethodTrace.modified=true; 		
+			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).PredictionSummary=this.Prediction.PredictionValue+"/"+this.getPatternAndType(); 
+			this.Prediction=Prediction; 
+			this.PredictionSummary=this.Prediction.PredictionValue+"/"+this.getPatternAndType(); 
+			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).PredictionSummary=this.PredictionSummary; 
+			
+			
+
+		}else if(this.Prediction.PredictionValue.equals("E") && Prediction.PredictionValue.equals("E")) {
+			this.setPatternAndType(patternAndType2);
+			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).getIterationValues().add(this.getPatternAndType());
+			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setPrediction(Prediction.PredictionValue);
+			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).PredictionSummary=this.Prediction.PredictionValue+"/"+this.getPatternAndType(); 
+			this.Prediction=Prediction; 
+			this.PredictionSummary=this.Prediction.PredictionValue+"/"+this.getPatternAndType(); 
+			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).PredictionSummary=this.PredictionSummary; 
+
+		}
+	
 
 	
+		HashMap<String, MethodTrace> methodTraces = DatabaseInput.OwnerClassestoMethodsHashMap.get(this.Requirement.ID+"-"+this.Method.Owner.ID); 
+		methodTraces.put(this.Requirement.ID+"-"+this.Method.ID, this); 	
+
+//		System.out.println("yes");
+		
+		
+
+		}
+	public String getPredictionOrInput() {
+		if(!this.getInput().equals("E")) {
+			return this.getInput(); 
+		}else {
+			return Prediction.PredictionValue; 
+		}
+	}
 	
 	
-	
+	public String getInput() {
+		return Input;
+	}
+
+	public void setInput(String Input) {
+		this.Input = Input;
+	}
+
+	public static MethodTrace getMethodTrace(mypackage.Requirement requirement, mypackage.Method method) {
+		// TODO Auto-generated method stub
+		return 	AlgoFinal.methodtraces2HashMap.get(requirement.ID+"-"+method.ID); 
+
+	}
 
 	public boolean isSubjectDeveloperEqualityFlag() {
 		return SubjectDeveloperEqualityFlag;

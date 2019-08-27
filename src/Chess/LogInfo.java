@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintStream;
@@ -18,6 +19,7 @@ import org.eclipse.jdt.core.search.MethodNameMatch;
 
 import ALGO.AlgoFinal;
 import ALGO.DatabaseInput;
+import TraceValidator.ENTGoldValues;
 import ALGO.MethodList;
 import ALGO.PredictionValues;
 import Tables.methodcalls;
@@ -43,87 +45,93 @@ public class LogInfo {
 	List<String> IterationValues= new ArrayList<String>();
 	boolean SubjectDeveloperEqualityFlag; 
 	String Reason; 
+	public String PredictionSummary=""; 
+	public String MethodGoldSummary=""; 
+	public String ClassGeneralizedPredictionSummary=""; 
+
 	
+	List<String> ExtendedCallersText=new ArrayList<String>();
 	
-	List<String> ExtendedCallersText;
-	
-	List<String> ClassCalleesOwnerClasses;
-	List<String> ClassCallersOwnerClasses;
+	List<String> ClassCalleesOwnerClasses=new ArrayList<String>();
+	List<String> ClassCallersOwnerClasses=new ArrayList<String>();
 	int ClassMethodsSize=0; 
 	
-	List<String> Callers; 
-	List<String> CallersPredictions; 
-	List<String> CallersOwners; 
+	List<String> Callers=new ArrayList<String>(); 
+	List<String> CallersPredictions=new ArrayList<String>(); 
+	List<String> CallersOwners=new ArrayList<String>(); 
 	
-	List<String> Callees; 
-	List<String> CalleesPredictions; 
-	List<String> CalleesOwners; 
+	List<String> Callees=new ArrayList<String>(); 
+	List<String> CalleesPredictions=new ArrayList<String>(); 
+	List<String> CalleesOwners=new ArrayList<String>(); 
 	
-	List<String> InterfaceCallers;
-	List<String> InterfaceCallerPredictions;
-	List<String> InterfaceCallersOwners;
+	List<String> InterfaceCallers=new ArrayList<String>();
+	List<String> InterfaceCallerPredictions=new ArrayList<String>();
+	List<String> InterfaceCallersOwners=new ArrayList<String>();
 	
-	List<String> SuperclassCallers;
-	List<String> SuperclassCallerPredictions;
-	List<String> SuperclassCallersOwners;
+	List<String> SuperclassCallers=new ArrayList<String>();
+	List<String> SuperclassCallerPredictions=new ArrayList<String>();
+	List<String> SuperclassCallersOwners=new ArrayList<String>();
 	
-	List<String> ImplementationCallers;
-	List<String> ImplementationCallerPredictions;
-	List<String> ImplementationCallersOwners;
+	List<String> ImplementationCallers=new ArrayList<String>();
+	List<String> ImplementationCallerPredictions=new ArrayList<String>();
+	List<String> ImplementationCallersOwners=new ArrayList<String>();
 	
-	List<String> ChildrenCallers;
-	List<String> ChildrenCallerPredictions;
-	List<String> ChildrenCallersOwners;
+	List<String> ChildrenCallers=new ArrayList<String>();
+	List<String> ChildrenCallerPredictions=new ArrayList<String>();
+	List<String> ChildrenCallersOwners=new ArrayList<String>();
 
 	
-	List<String> ImplementationCallees;
-	List<String> ImplementationCalleePredictions;
-	List<String> ImplementationCalleesOwners;
+	List<String> ImplementationCallees=new ArrayList<String>();
+	List<String> ImplementationCalleePredictions=new ArrayList<String>();
+	List<String> ImplementationCalleesOwners=new ArrayList<String>();
 
 	
 
-	List<String> ChildrenCallees;
-	List<String> ChildrenCalleePredictions;
-	List<String> ChildrenCalleesOwners;
+	List<String> ChildrenCallees=new ArrayList<String>();
+	List<String> ChildrenCalleePredictions=new ArrayList<String>();
+	List<String> ChildrenCalleesOwners=new ArrayList<String>();
 
-	List<String> SuperclassCallees;
-	List<String> SuperclassCalleePredictions;
-	List<String> SuperclassCalleesOwners;
-
-	
-	public List<String> CalleesCalleesInterfaceInheritance; 
-	public List<String> CalleesCalleesInterfaceInheritancePredictions; 
-	public List<String> CalleesCalleesInterfaceInheritanceOwners; 
+	List<String> SuperclassCallees=new ArrayList<String>();
+	List<String> SuperclassCalleePredictions=new ArrayList<String>();
+	List<String> SuperclassCalleesOwners=new ArrayList<String>();
 
 	
-	
-	public List<String> ExtendedCallersFinal; 
-	public List<String> ExtendedCalleesFinal; 
-	public List<String> ExtendedCallersPredictionsFinal; 
-	public List<String> ExtendedCalleesPredictionsFinal; 
-	public List<String> ExtendedOwnerCalleesFinal; 
-	public List<String> ExtendedOwnerCallersFinal; 
-	
-	
-	public List<String> ExecutedCallers; 
-	public List<String> ExecutedCallersPredictions; 
-	public List<String> ExecutedOwnerCallers; 
-	public List<String> ExecutedCallees; 
-	public List<String> ExecutedCalleesPredictions; 
-	public List<String> ExecutedOwnerCallees; 
+	public List<String> CalleesCalleesInterfaceInheritance=new ArrayList<String>(); 
+	public List<String> CalleesCalleesInterfaceInheritancePredictions=new ArrayList<String>(); 
+	public List<String> CalleesCalleesInterfaceInheritanceOwners=new ArrayList<String>(); 
 
 	
-	public List<String> Parents; 
-	public List<String> ParentsPredictions; 
-	public List<String> Children; 
-	public List<String> ChildrenPredictions; 
-	public List<String> Interfaces; 
-	public List<String> InterfacesPredictions; 
-	public List<String> Implementations; 
-	public List<String> ImplementationsPredictions; 
+	
+	public List<String> ExtendedCallersFinal=new ArrayList<String>(); 
+	public List<String> ExtendedCalleesFinal=new ArrayList<String>(); 
+	public List<String> ExtendedCallersPredictionsFinal=new ArrayList<String>(); 
+	public List<String> ExtendedCalleesPredictionsFinal=new ArrayList<String>(); 
+	public List<String> ExtendedOwnerCalleesFinal=new ArrayList<String>(); 
+	public List<String> ExtendedOwnerCallersFinal=new ArrayList<String>(); 
 	
 	
+	public List<String> ExecutedCallers=new ArrayList<String>(); 
+	public List<String> ExecutedCallersPredictions=new ArrayList<String>(); 
+	public List<String> ExecutedOwnerCallers=new ArrayList<String>(); 
+	public List<String> ExecutedCallees=new ArrayList<String>(); 
+	public List<String> ExecutedCalleesPredictions=new ArrayList<String>(); 
+	public List<String> ExecutedOwnerCallees=new ArrayList<String>(); 
+
 	
+	public List<String> Parents=new ArrayList<String>(); 
+	public List<String> ParentsPredictions=new ArrayList<String>(); 
+	public List<String> Children=new ArrayList<String>(); 
+	public List<String> ChildrenPredictions=new ArrayList<String>(); 
+	public List<String> Interfaces=new ArrayList<String>(); 
+	public List<String> InterfacesPredictions=new ArrayList<String>(); 
+	public List<String> Implementations=new ArrayList<String>(); 
+	public List<String> ImplementationsPredictions=new ArrayList<String>(); 
+	
+	
+	public static BufferedWriter bwchessRunResultsWriter =null; 
+	public static BufferedWriter bwGanttRunResultsWriter =null; 
+	public static BufferedWriter bwJHotDrawRunResultsWriter =null; 
+	public static BufferedWriter bwiTrustRunResultsWriter =null; 
 	public List<String> getExecutedCallers() {
 		return ExecutedCallers;
 	}
@@ -338,46 +346,46 @@ public class LogInfo {
 	public void setSuperclasses(List<String> superclasses) {
 		Superclasses = superclasses;
 	}
-	List<String> ExtendedCallerPredictions;
-	List<String> ExtendedCalleesText;
-	List<String> ExtendedCalleePredictions;
-	List<String> OuterCalleesPredictions;
-	List<String> OuterCallersPredictions;
+	List<String> ExtendedCallerPredictions=new ArrayList<String>();
+	List<String> ExtendedCalleesText=new ArrayList<String>();
+	List<String> ExtendedCalleePredictions=new ArrayList<String>();
+	List<String> OuterCalleesPredictions=new ArrayList<String>();
+	List<String> OuterCallersPredictions=new ArrayList<String>();
 	
 	
-	List<String> OuterOwnerCalleesPredictions;
-	List<String> OuterOwnerCallersPredictions;
+	List<String> OuterOwnerCalleesPredictions=new ArrayList<String>();
+	List<String> OuterOwnerCallersPredictions=new ArrayList<String>();
 	
 	
-	List<String> OuterOwnerCallees;
-	List<String> OuterOwnerCallers;
+	List<String> OuterOwnerCallees=new ArrayList<String>();
+	List<String> OuterOwnerCallers=new ArrayList<String>();
 	
 
 	
-	public List<String> CallersText;
-	public List<String> CallerPredictionsText;
-	public List<String> CalleesText;
-	public List<String> CalleePredictionsText;
+	public List<String> CallersText=new ArrayList<String>();
+	public List<String> CallerPredictionsText=new ArrayList<String>();
+	public List<String> CalleesText=new ArrayList<String>();
+	public List<String> CalleePredictionsText=new ArrayList<String>();
 	
-	List<String> ImplementationOwners;
-	List<String> InterfaceOwners;
-	List<String> SuperclassOwners;
-	List<String> ChildrenOwners;
+	List<String> ImplementationOwners=new ArrayList<String>();
+	List<String> InterfaceOwners=new ArrayList<String>();
+	List<String> SuperclassOwners=new ArrayList<String>();
+	List<String> ChildrenOwners=new ArrayList<String>();
 	
-	List<String> ImplementationOwnersPredictions;
-	List<String> InterfaceOwnersPredictions;
-	List<String> SuperclassOwnersPredictions;
-	List<String> ChildrenOwnersPredictions;
+	List<String> ImplementationOwnersPredictions=new ArrayList<String>();
+	List<String> InterfaceOwnersPredictions=new ArrayList<String>();
+	List<String> SuperclassOwnersPredictions=new ArrayList<String>();
+	List<String> ChildrenOwnersPredictions=new ArrayList<String>();
 	
 	
 //	List<String> Implementations;
 //	List<String> Interfaces;
-	List<String> Superclasses;
+	List<String> Superclasses=new ArrayList<String>();
 //	List<String> Children;
 	
-	List<String> ImplementationPredictions;
-	List<String> InterfacePredictions;
-	List<String> SuperclassPredictions;
+	List<String> ImplementationPredictions=new ArrayList<String>();
+	List<String> InterfacePredictions=new ArrayList<String>();
+	List<String> SuperclassPredictions=new ArrayList<String>();
 //	List<String> ChildrenPredictions;
 	
 	
@@ -1011,7 +1019,7 @@ public class LogInfo {
 		}
 		return LogInfoHashMap;
 	}
-	public  static void CreateLogFiles(String ProgramName) throws FileNotFoundException {
+	public  static void CreateLogFiles(String ProgramName) throws IOException {
 		// TODO Auto-generated method stub
 		
 	
@@ -1050,6 +1058,9 @@ public class LogInfo {
 				FileOutputStream myFileOutputStream3 = new FileOutputStream(myfile3);
 				 bwchessMethodCallsWriter = new BufferedWriter(new OutputStreamWriter(myFileOutputStream3));
 				System.out.println("yes");
+				
+				 bwchessRunResultsWriter = new BufferedWriter(new FileWriter("C:\\Users\\mouna\\ownCloud\\Mouna Hammoudi\\dumps\\LatestLogFiles\\RunResultsChess.txt", true));
+
 		}
 
 		if (ProgramName.equals("gantt")) {
@@ -1080,6 +1091,9 @@ public class LogInfo {
 				File myfile3 = new File("C:\\Users\\mouna\\new_workspace\\TracePredictorFinal\\src\\GanttFiles\\MethodCalls.txt");
 				FileOutputStream myFileOutputStream3 = new FileOutputStream(myfile3);
 				 bwGANTTMethodCallsWriter = new BufferedWriter(new OutputStreamWriter(myFileOutputStream3));
+				 
+				 bwGanttRunResultsWriter = new BufferedWriter(new FileWriter("C:\\Users\\mouna\\ownCloud\\Mouna Hammoudi\\dumps\\LatestLogFiles\\RunResultsGantt.txt", true));
+
 		}
 
 		if (ProgramName.equals("itrust")) {
@@ -1111,6 +1125,9 @@ public class LogInfo {
 			File myfile3 = new File("C:\\Users\\mouna\\new_workspace\\TracePredictorFinal\\src\\iTrustFiles\\MethodCalls.txt");
 			FileOutputStream myFileOutputStream3 = new FileOutputStream(myfile3);
 			 bwiTrustMethodCallsWriter = new BufferedWriter(new OutputStreamWriter(myFileOutputStream3));
+			 
+			 bwiTrustRunResultsWriter = new BufferedWriter(new FileWriter("C:\\Users\\mouna\\ownCloud\\Mouna Hammoudi\\dumps\\LatestLogFiles\\RunResultsiTrust.txt", true));
+
 		}
 
 		if (ProgramName.equals("jhotdraw")) {
@@ -1143,12 +1160,18 @@ public class LogInfo {
 				File myfile3 = new File("C:\\Users\\mouna\\new_workspace\\TracePredictorFinal\\src\\JHotDrawFiles\\MethodCalls.txt");
 				FileOutputStream myFileOutputStream3 = new FileOutputStream(myfile3);
 				 bwJHotDrawMethodCallsWriter = new BufferedWriter(new OutputStreamWriter(myFileOutputStream3));
+				 
+				 bwJHotDrawRunResultsWriter = new BufferedWriter(new FileWriter("C:\\Users\\mouna\\ownCloud\\Mouna Hammoudi\\dumps\\LatestLogFiles\\RunResultsjhotdraw.txt", true));
+
 				
 		}
 		// bwfile2.newLine();
 		
 
 	}
+	
+	
+	
 	
 	/************************************************************************************************************************************************/
 	/************************************************************************************************************************************************/
@@ -1158,6 +1181,8 @@ public class LogInfo {
 	 * @param string2 
 	 * @param string **********************************************************************************************************************************************/
 
+	
+	
 	public static void ComputePrecisionAndRecallNONCUMULATIVE(
 			HashMap<String, MethodTrace> methodTraceHashMap,
 			PredictionEvaluation Pattern, String ProgramName,  PredictionValues ownerClassPredictionValues, LinkedHashMap<String, LogInfo> logInfoHashMap) throws SQLException {
@@ -1775,6 +1800,274 @@ public class LogInfo {
 		}
 		bwchessMethodCallsWriter.close();
 	}
+	
+	
+	private static LinkedHashMap<String, TraceValidator.ENTGoldValues> reinitializeMatrix(
+			LinkedHashMap<String, TraceValidator.ENTGoldValues> matrix) {
+		// TODO Auto-generated method stub
+		return new LinkedHashMap<String, TraceValidator.ENTGoldValues>(){{
+			
+
+			put("IsolatedE/", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("NotApplicableE/", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+
+			put("PureTInner/T-T", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("BoundaryEInner/T-N", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableEInner/T-E", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedTInner/T-ET", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableEInner/T-EN", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedTInner/T-NT", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedTInner/T-ENT",  new TraceValidator.ENTGoldValues(0,0,0)) ; 
+
+			put("BoundaryEInner/N-T", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("PureNInner/N-N", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableEInner/N-E", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableEInner/N-ET", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedNInner/N-EN",new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedNInner/N-NT", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedNInner/N-ENT", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+
+
+			put("UndecidableEInner/E-T", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableEInner/E-N", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableEInner/E-E", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableEInner/E-ET", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableEInner/E-EN", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableEInner/E-NT", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableEInner/E-ENT", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+
+			
+			put("MixedTInner/ET-T", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableEInner/ET-N", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableEInner/ET-E", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedTInner/ET-NT", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedTInner/ET-ET",  new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableEInner/ET-EN", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedTInner/ET-ENT",  new TraceValidator.ENTGoldValues(0,0,0)) ; 
+
+
+			put("UndecidableEInner/EN-T", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedNInner/EN-N", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableEInner/EN-E", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableEInner/EN-NT", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableEInner/EN-ET",new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableEInner/EN-EN", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableEInner/EN-ENT", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+
+			put("MixedTInner/NT-T", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedNInner/NT-N", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableEInner/NT-E", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedTInner/NT-NT", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedTInner/NT-ET",  new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableEInner/NT-EN", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedTInner/NT-ENT",new TraceValidator.ENTGoldValues(0,0,0)) ; 
+
+
+			
+
+
+			put("MixedTInner/ENT-T", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedNInner/ENT-N", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableEInner/ENT-E", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedTInner/ENT-NT",new TraceValidator.ENTGoldValues(0,0,0)) ; 	
+			put("MixedTInner/ENT-ET", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableEInner/ENT-EN", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedTInner/ENT-ENT",new TraceValidator.ENTGoldValues(0,0,0)); 
+			
+			
+			/*******************************/
+
+			put("PureTLeaf/T-T", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("BoundaryELeaf/T-N", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableELeaf/T-E", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedTLeaf/T-ET", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableELeaf/T-EN", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedTLeaf/T-NT", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedTLeaf/T-ENT",  new TraceValidator.ENTGoldValues(0,0,0)) ; 
+
+			put("BoundaryELeaf/N-T", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("PureNLeaf/N-N", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableELeaf/N-E", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableELeaf/N-ET", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedNLeaf/N-EN",new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedNLeaf/N-NT", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedNLeaf/N-ENT", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+
+
+			put("UndecidableELeaf/E-T", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableELeaf/E-N", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableELeaf/E-E", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableELeaf/E-ET", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableELeaf/E-EN", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableELeaf/E-NT", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableELeaf/E-ENT", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+
+			
+			put("MixedTLeaf/ET-T", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableELeaf/ET-N", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableELeaf/ET-E", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedTLeaf/ET-ET",  new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableELeaf/ET-EN", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedTLeaf/ET-NT", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedTLeaf/ET-ENT",  new TraceValidator.ENTGoldValues(0,0,0)) ; 
+
+
+			put("UndecidableELeaf/EN-T", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedNLeaf/EN-N", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableELeaf/EN-E", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableELeaf/EN-ET",new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableELeaf/EN-EN", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableELeaf/EN-NT", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableELeaf/EN-ENT", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+
+			put("MixedTLeaf/NT-T", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedNLeaf/NT-N", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableELeaf/NT-E", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedTLeaf/NT-ET",  new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableELeaf/NT-EN", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedTLeaf/NT-NT", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedTLeaf/NT-ENT",new TraceValidator.ENTGoldValues(0,0,0)) ; 
+
+
+			
+
+
+			put("MixedTLeaf/ENT-T", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedNLeaf/ENT-N", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableELeaf/ENT-E", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedTLeaf/ENT-ET", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableELeaf/ENT-EN", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedTLeaf/ENT-NT",new TraceValidator.ENTGoldValues(0,0,0)) ; 	
+			put("MixedTLeaf/ENT-ENT",new TraceValidator.ENTGoldValues(0,0,0)); 
+			
+			/*******************************/
+			
+			put("PureTRoot/T-T", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("BoundaryERoot/T-N", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableERoot/T-E", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedTRoot/T-ET", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableERoot/T-EN", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedTRoot/T-NT", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedTRoot/T-ENT",  new TraceValidator.ENTGoldValues(0,0,0)) ; 
+
+			put("BoundaryERoot/N-T", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("PureNRoot/N-N", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableERoot/N-E", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableERoot/N-ET", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedNRoot/N-EN",new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedNRoot/N-NT", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedNRoot/N-ENT", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+
+
+			put("UndecidableERoot/E-T", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableERoot/E-N", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableERoot/E-E", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableERoot/E-ET", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableERoot/E-EN", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableERoot/E-NT", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableERoot/E-ENT", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+
+			
+			put("MixedTRoot/ET-T", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableERoot/ET-N", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableERoot/ET-E", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedTRoot/ET-ET",  new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableERoot/ET-EN", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedTRoot/ET-NT", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedTRoot/ET-ENT",  new TraceValidator.ENTGoldValues(0,0,0)) ; 
+
+
+			put("UndecidableERoot/EN-T", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedNRoot/EN-N", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableERoot/EN-E", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableERoot/EN-ET",new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableERoot/EN-EN", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableERoot/EN-NT", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableERoot/EN-ENT", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+
+			put("MixedTRoot/NT-T", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedNRoot/NT-N", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableERoot/NT-E", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedTRoot/NT-ET",  new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableERoot/NT-EN", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedTRoot/NT-NT", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedTRoot/NT-ENT",new TraceValidator.ENTGoldValues(0,0,0)) ; 
+
+
+			
+
+
+			put("MixedTRoot/ENT-T", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedNRoot/ENT-N", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableERoot/ENT-E", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedTRoot/ENT-ET", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("UndecidableERoot/ENT-EN", new TraceValidator.ENTGoldValues(0,0,0)) ; 
+			put("MixedTRoot/ENT-NT",new TraceValidator.ENTGoldValues(0,0,0)) ; 	
+			put("MixedTRoot/ENT-ENT",new TraceValidator.ENTGoldValues(0,0,0)); 
+		}}; 
+	}
+	public static void updateRunMethodResults(List<MethodTrace> methodtraces, int runNumber, int errorSeedingPercentage, String requirementID, BufferedWriter mybufferWriter) throws IOException {
+
+		TraceValidator.Prediction.Matrix= reinitializeMatrix(TraceValidator.Prediction.Matrix); 
+
+		for(MethodTrace methodTrace: methodtraces) {
+			String reqMethod = methodTrace.Requirement.ID+"-"+methodTrace.Method.ID; 
+//			System.out.println(methodTrace +"     "+methodTrace.getPatternAndType()+"   ");
+			TraceValidator.ENTGoldValues GoldValues=TraceValidator.Prediction.Matrix.get(methodTrace.getPatternAndType());  
+			
+				
+			
+			if(methodTrace.getGold().equals("E")) {
+				int E=GoldValues.getE(); 
+				E=E+1; 
+				GoldValues.setE(E);
+				TraceValidator.Prediction.Matrix.put(methodTrace.getPatternAndType(),GoldValues);
+
+			}else if(methodTrace.getGold().equals("N")) {
+				int N=GoldValues.getN(); 
+				N=N+1; 
+				GoldValues.setN(N);
+				TraceValidator.Prediction.Matrix.put(methodTrace.getPatternAndType(),GoldValues);
+
+			}else if(methodTrace.getGold().equals("T")) {
+				int T=GoldValues.getT(); 
+				T=T+1; 
+				GoldValues.setT(T);
+				TraceValidator.Prediction.Matrix.put(methodTrace.getPatternAndType(),GoldValues);
+			}
+		}
+		
+//		String headers="Run#, %Seeding, Requirement, "; 
+		String line= runNumber+","+AlgoFinal.ErrorSeedingPercentages.get(runNumber+"-"+requirementID)+","+requirementID+","; 
+		
+			
+		
+		for(String mykey: TraceValidator.Prediction.Matrix.keySet()) {
+//			headers=headers+mykey+"/GoldE"+","+mykey+"/GoldN"+","+mykey+"/GoldT"+","; 
+			line=line+TraceValidator.Prediction.Matrix.get(mykey).getE()+","+TraceValidator.Prediction.Matrix.get(mykey).getN()+","+TraceValidator.Prediction.Matrix.get(mykey).getT()+","; 
+			
+
+			}
+//		mybufferWriter.write(headers);
+//		mybufferWriter.newLine();
+		mybufferWriter.write(line);
+
+
+		mybufferWriter.newLine();
+
+	
+	
+//	if(AlgoFinal.NoSeeding) {
+		
+			mybufferWriter.close();
+		
+
+//	}
+}
+	
+	
+	
+	
 	public static void CheckCallersCalleesSymmetry() throws CloneNotSupportedException {
 		// TODO Auto-generated method stub
 		HashMap<Method, List<Method>>	CallerHashMap= new HashMap<Method, List<Method>>(); 
@@ -1797,6 +2090,33 @@ public class LogInfo {
 				
 			}
 		}
+	}
+	public static void updateRunResultsHeaders(List<MethodTrace> methodtraces, int runNumber, int errorSeedingPercentage, String requirementID, BufferedWriter mybufferWriter) throws IOException {
+
+		TraceValidator.Prediction.Matrix= reinitializeMatrix(TraceValidator.Prediction.Matrix); 
+		String headers="Run#, %Seeding, Requirement, "; 
+
+		
+			
+				
+			
+			
+		
+		
+			
+		
+		for(String mykey: TraceValidator.Prediction.Matrix.keySet()) {
+			headers=headers+mykey+"/GoldE"+","+mykey+"/GoldN"+","+mykey+"/GoldT"+","; 
+			
+
+			}
+		mybufferWriter.write(headers);
+		mybufferWriter.newLine();
+	
+
+	
+	
+	
 	}
 
 

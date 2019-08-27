@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 import ALGO.AlgoFinal;
 import ALGO.DatabaseInput;
@@ -573,19 +574,9 @@ return OuterCallees;
 					}
 				}
 
-				if (AlgoFinal.RecursiveDescent==true) {
-					
-					for(Method callee: TempCallees) {
-						if(!callee.Owner.ID.equals(this.Owner.ID)) {
-							ExtendedCallees.add(callee); 
-						}else {
-							ExtendedCallees.addAll(callee.getExtendedCallees()); 
-						}
-					}
-					
-				}else {
+			
 					ExtendedCallees=TempCallees; 
-				}
+				
 						
 		}
 				
@@ -674,17 +665,9 @@ return OuterCallees;
 					TempCallers.addAll(mysuperclass.Callers); 
 				}
 			}
-			if(AlgoFinal.RecursiveDescent==true) {
-				for(Method caller: TempCallers) {
-					if(!caller.Owner.ID.equals(this.Owner.ID)) {
-						ExtendedCallers.add(caller); 
-					}else {
-						ExtendedCallers.addAll(caller.getExtendedCallers()); 
-					}
-				}
-			}else {
+			
 				ExtendedCallers=TempCallers; 
-			}
+			
 		}
 	
 		 
@@ -779,6 +762,7 @@ private MethodList getInheritanceCallers(MethodList SuperclassCallers) {
 			 Callers =this.Callers; 
 		}
 //		this.FirstTimeCallers=true; 
+
 		return Callers; 
 	
 	}
@@ -786,7 +770,7 @@ private MethodList getInheritanceCallers(MethodList SuperclassCallers) {
 /////////////////////////////////////////////////////////////////////////////////
 	public MethodList getCalleesCalleesShell() throws CloneNotSupportedException {
 		if(AlgoFinal.XCalls && !AlgoFinal.BasicCalls) {
-			return this.getXCallersCallers(); 
+			return this.getXCalleesCallees(); 
 		}else if(AlgoFinal.BasicCalls && !AlgoFinal.XCalls) {
 			return this.getBasicCalleesCallees(); 
 
@@ -845,7 +829,7 @@ return ExtendedCalleesCallees;
 
 	public MethodList getCallersCallersShell() throws CloneNotSupportedException {
 		if(AlgoFinal.XCalls && !AlgoFinal.BasicCalls) {
-			return this.getXCalleesCallees(); 
+			return this.getXCallersCallers(); 
 		}else if(AlgoFinal.BasicCalls && !AlgoFinal.XCalls) {
 			return this.getBasicCallersCallers(); 
 
