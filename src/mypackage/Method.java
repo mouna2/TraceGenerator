@@ -63,7 +63,8 @@ public class Method {
 	//	public List<RequirementGold> requirementsGold= new ArrayList<RequirementGold>(); 
 	//	public List<Requirement2> requirements= new ArrayList<Requirement2>(); 
 	//	public	HashMap<Requirement2, String> FinalMethodHashMap= new HashMap<Requirement2, String>(); 
-
+	public  MethodList ExtendedCallersCallers=null; 
+	public  MethodList ExtendedCalleesCallees=null; 
 
 	public Clazz getOwner() {
 		return Owner;
@@ -748,6 +749,8 @@ private MethodList getInheritanceCallers(MethodList SuperclassCallers) {
 		// TODO Auto-generated method stub
 		return this.Callees; 
 	}
+	/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
 	public MethodList getCalleesShell() throws CloneNotSupportedException {
 		// TODO Auto-generated method stub
 
@@ -762,6 +765,8 @@ private MethodList getInheritanceCallers(MethodList SuperclassCallers) {
 		return Callees; 
 	
 	}
+	/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
 	public MethodList getCallersShell() {
 		// TODO Auto-generated method stub
 
@@ -777,9 +782,104 @@ private MethodList getInheritanceCallers(MethodList SuperclassCallers) {
 		return Callers; 
 	
 	}
+	/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+	public MethodList getCalleesCalleesShell() throws CloneNotSupportedException {
+		if(AlgoFinal.XCalls && !AlgoFinal.BasicCalls) {
+			return this.getXCallersCallers(); 
+		}else if(AlgoFinal.BasicCalls && !AlgoFinal.XCalls) {
+			return this.getBasicCalleesCallees(); 
 
+		}
+		return null; 
+	}
+	/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+	public MethodList getXCallersCallers() {
 
+		MethodList Callers =getExtendedCallersCallers(); 
+		return Callers; 
+	
+	}
+	/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////	
+	public MethodList getXCalleesCallees() throws CloneNotSupportedException {
 
+		
+		MethodList CalleesCallees =getExtendedCalleesCallees(); 
+		return CalleesCallees; 
+	
+	}
+	
+	
+	/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+public MethodList getExtendedCallersCallers() {
+if(ExtendedCallersCallers!=null) {
+return ExtendedCallersCallers;
+
+}else {
+ExtendedCallersCallers= new MethodList(); 
+for(Method CallerCaller:this.getExtendedCallers()) {
+ExtendedCallersCallers.addAll(CallerCaller.getExtendedCallers()); 
+}
+return ExtendedCallersCallers; 
+}
+}
+
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+public MethodList getExtendedCalleesCallees() throws CloneNotSupportedException {
+if(ExtendedCalleesCallees!=null) {
+return ExtendedCalleesCallees;
+
+}else {
+ExtendedCalleesCallees= new MethodList(); 
+for(Method CalleeCallee:this.getExtendedCallees()) {
+ExtendedCalleesCallees.addAll(CalleeCallee.getExtendedCallees()); 
+}
+return ExtendedCalleesCallees; 
+}
+}
+/////////////////////////////////////////////////////////////////////////
+
+	public MethodList getCallersCallersShell() throws CloneNotSupportedException {
+		if(AlgoFinal.XCalls && !AlgoFinal.BasicCalls) {
+			return this.getXCalleesCallees(); 
+		}else if(AlgoFinal.BasicCalls && !AlgoFinal.XCalls) {
+			return this.getBasicCallersCallers(); 
+
+		}
+		return null; 
+	}
+	
+	
+	public MethodList getBasicCallersCallers() {
+		if(CallersofCallers!=null) {
+			return CallersofCallers;
+
+		}else {
+			CallersofCallers= new MethodList(); 
+			for(Method Caller:this.Callers) {
+				CallersofCallers.addAll(Caller.Callers); 
+			}
+			return CallersofCallers; 
+		}
+	}
+
+	public MethodList getBasicCalleesCallees() {
+
+		if(CalleesofCallees!=null) {
+			return CalleesofCallees;
+
+		}else {
+			CalleesofCallees= new MethodList(); 
+			for(Method Callee:this.Callees) {
+				CalleesofCallees.addAll(Callee.Callees); 
+			}
+			return CalleesofCallees; 
+		}
+	}
 
 
 }

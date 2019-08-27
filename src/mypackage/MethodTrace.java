@@ -146,9 +146,7 @@ public final class MethodTrace {
 
 			modified=true; 
 			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).getIterationValues().add(reason);
-//			System.out.println(this.Requirement.ID+"-"+this.Method.ID);
-//			System.out.println(reason);
-//			System.out.println("done");
+
 		}
 
 

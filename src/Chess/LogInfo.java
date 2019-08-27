@@ -1164,7 +1164,7 @@ public class LogInfo {
 		// TODO Auto-generated method stub
 	Pattern.ResetCounters(Pattern);
 
-		for (String mykey : methodTraceHashMap.keySet()) {
+		for (String mykey : AlgoFinal.methodtraces2HashMap.keySet()) {
 			MethodTrace methodTrace = methodTraceHashMap.get(mykey);
 			
 			if(ProgramName.equals("gantt")|| ProgramName.equals("jhotdraw")){
@@ -1231,7 +1231,7 @@ public class LogInfo {
 		// TODO Auto-generated method stub
 	Pattern.ResetCounters(Pattern);
 
-		for (String mykey : methodTraceHashMap.keySet()) {
+		for (String mykey : AlgoFinal.methodtraces2HashMap.keySet()) {
 			MethodTrace methodTrace = methodTraceHashMap.get(mykey);
 			
 			if(ProgramName.equals("gantt")|| ProgramName.equals("jhotdraw")){
