@@ -38,7 +38,7 @@ public class LogInfo {
 	String TraceValue;
 	String TraceClassOldValue; 
 	String TraceClassNewValue; 
-	String Prediction; 
+	public String Prediction; 
 	public String PrecisionRecall; 
 	String GoldFinal; 
 	String SubjectGold; 
@@ -877,8 +877,8 @@ public class LogInfo {
 				+","+ExtendedCalleesList+","+ExtendedCalleesPredictionsList+","+ExtendedOwnerCalleesList+","+ExtendedCallersList+","+ExtendedCallersPredictionsList+","+ExtendedOwnerCallersList
 				+","+ExecutedCalleesList+","+ExecutedCalleesPredictionsList+","+ExecutedOwnerCalleesList+","+ExecutedCallersList+","+ExecutedCallersPredictionsList+","+ExecutedOwnerCallersList
 
-				+","+Prediction	
-				+","+PrecisionRecall	
+				+","+this.Prediction
+				+","+this.PrecisionRecall	
 		+","+	toString2(IterationValues); 
 //		return MethodID+","+MethodName+","+RequirementID+","+RequirementName+","+ClassID+","+ClassName+","+TraceValue+","+TraceClassOldValue+","+TraceClassNewValue+","+
 //				PrecisionRecall	+","+toString2(IterationValues)+","+TraceValue+"-"+Reason+"-" +PrecisionRecall;

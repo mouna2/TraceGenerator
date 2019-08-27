@@ -274,31 +274,7 @@ public class TraceValidator {
 
 					}
 					
-					//INNER METHOD PURE 
-					else if(!methodtrace.Method.getCallersShell().isEmpty() && !methodtrace.Method.getCalleesShell().isEmpty())
-					{
-
-						TraceValidator.Predict(methodtrace, methodtrace.Method.getCallersShell(), methodtrace.Method.getCalleesShell(), TraceValidator.InnerMatrix, LogInfoHashMap, "Inner", iteration);
-
-					}
-
-
-					//LEAF METHOD PURE 
-
-					else if(!methodtrace.Method.getCallersShell().isEmpty() && methodtrace.Method.getCalleesShell().isEmpty() && !methodtrace.Method.getCallersCallersShell().isEmpty())
-					{
-
-						TraceValidator.Predict(methodtrace, methodtrace.Method.getCallersShell(), methodtrace.Method.getCallersCallersShell(), TraceValidator.LeafMatrix, LogInfoHashMap, "Leaf", iteration);
-
-
-
-					}		//ROOT METHOD PURE 
-					else if(methodtrace.Method.getCallersShell().isEmpty() && !methodtrace.Method.getCalleesShell().isEmpty()&& !methodtrace.Method.getCalleesCalleesShell().isEmpty())
-					{
-
-						TraceValidator.Predict(methodtrace, methodtrace.Method.getCalleesShell(), methodtrace.Method.getCalleesCalleesShell(), TraceValidator.RootMatrix, LogInfoHashMap, "Root", iteration);
-
-					}
+					
 					//E ISOLATED 
 					else if(methodtrace.Method.getCallersShell().isEmpty() && methodtrace.Method.getCalleesShell().isEmpty())
 					{
@@ -383,7 +359,7 @@ public class TraceValidator {
 
 		af.InitializeInputHashMapNoSeeding(MethodTracesList, logInfoHashMap); 
 		TraceValidator.MakePredictions(MethodTracesList, logInfoHashMap); 
-		LogInfo.ComputePrecisionAndRecallNONCUMULATIVE(AlgoFinal.methodtraces2HashMap,totalPattern, ProgramName, countPredictionValues, logInfoHashMap);
+//		LogInfo.ComputePrecisionAndRecallNONCUMULATIVE(AlgoFinal.methodtraces2HashMap,totalPattern, ProgramName, countPredictionValues, logInfoHashMap);
 		LogInfo.CreateLogFiles(ProgramName);
 		
 		

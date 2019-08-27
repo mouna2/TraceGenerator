@@ -836,7 +836,19 @@ ChildrenPredictions.add(AlgoFinal.methodtraces2HashMap.get(this.Requirement.ID+"
 
 }
 
+				LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setPrediction(this.Prediction.PredictionValue);
+				LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).Prediction=this.Prediction.PredictionValue;
 
+					if(this.getGold().equals("T") && this.Prediction.PredictionValue.equals("T")) {
+						LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setPrecisionRecall("TP");
+					}else if(this.getGold().equals("N") && this.Prediction.PredictionValue.equals("N")) {
+						LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setPrecisionRecall("TN");
+					}else if(this.getGold().equals("T") && this.Prediction.PredictionValue.equals("N")) {
+						LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setPrecisionRecall("FN");
+					}else if(this.getGold().equals("N") && this.Prediction.PredictionValue.equals("T")) {
+						LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setPrecisionRecall("FP");
+					}
+				
 				LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setInterfaces(Interfaces);
 				LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setInterfacesPredictions(InterfacesPredictions);
 				
@@ -850,7 +862,6 @@ ChildrenPredictions.add(AlgoFinal.methodtraces2HashMap.get(this.Requirement.ID+"
 				LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setParentsPredictions(ParentPredictions);
 				
 				
-			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setPrediction(AlgoFinal.methodtraces2HashMap.get(this.Requirement.ID+"-"+this.Method.ID).prediction);
 
 			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setExtendedCallersFinal(ExtendedCallers);
 			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setExtendedCallersPredictionsFinal(ExtendedCallersPredictions);
@@ -918,6 +929,7 @@ ChildrenPredictions.add(AlgoFinal.methodtraces2HashMap.get(this.Requirement.ID+"
 		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setCalleesCalleesInterfaceInheritance(CalleesCalleesInterfaceInheritance);
 		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setCalleesCalleesInterfaceInheritancePredictions(CalleesCalleesInterfaceInheritancePredictions);
 		LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setCalleesCalleesInterfaceInheritanceOwners(CalleesCalleesInterfaceInheritanceOwners);
+		
 		
 	}
 	private void SetPredictionsSetOwners(mypackage.Method caller, MethodTrace methodTrace, List<String> CallersPredictions, List<String> CallersOwners) {
