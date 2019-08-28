@@ -43,7 +43,7 @@ public final class MethodTrace {
 	public ALGO.PredictionValues PredictionValues= new ALGO.PredictionValues();
 	private String PredictionSummary=""; 
 
-	public Prediction Prediction; 
+	public Prediction Prediction= new Prediction(); 
 
 	
 	
@@ -274,6 +274,7 @@ public final class MethodTrace {
 			
 		
 			this.prediction=Pred; 
+			this.Prediction.PredictionValue= Pred; 
 
 			modified=true; 
 			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).getIterationValues().add(reason);

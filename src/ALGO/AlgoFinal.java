@@ -1239,25 +1239,25 @@ public class AlgoFinal extends JFrame {
 	public static void main(String[] args) throws Exception {
 		
 		
-//		String ProgramName = "chess";
-//		AlgoFinal frame = new AlgoFinal(
-//				ProgramName);
+		String ProgramName = "chess";
+		AlgoFinal frame = new AlgoFinal(
+				ProgramName);
 //
-//		String ProgramName2 = "gantt";
-//		AlgoFinal frame = new AlgoFinal(ProgramName2);
-//////		
-////////		String ProgramName2 = "dummy";
-////////		AlgoFinal	 frame = new AlgoFinal(ProgramName2);
-//////
-//		String ProgramName3 = "itrust";
-//		AlgoFinal	 frame = new AlgoFinal(ProgramName3);
-//
-//			 //ooo
-//		
-//		
-//		
+		String ProgramName2 = "gantt";
+		 frame = new AlgoFinal(ProgramName2);
+////		
+//////		String ProgramName2 = "dummy";
+//////		AlgoFinal	 frame = new AlgoFinal(ProgramName2);
+////
+		String ProgramName3 = "itrust";
+			 frame = new AlgoFinal(ProgramName3);
+
+			 //ooo
+		
+		
+		
 		String ProgramName4 = "jhotdraw";
-		AlgoFinal	frame = new AlgoFinal(ProgramName4);
+			frame = new AlgoFinal(ProgramName4);
 		
 		
 		

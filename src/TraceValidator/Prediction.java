@@ -25,6 +25,9 @@ public class Prediction {
 		Likelihood=likelihood; 
 		
 	} 
+	public Prediction() {
+		// TODO Auto-generated constructor stub
+	}
 	public static Prediction EIsolatedPrediction = new Prediction("E", "IsolatedE", "", 0); 
 	public static Prediction EInitializedPrediction = new Prediction("E", "InitializedE", "", 0);  
 	public static Prediction ENotApplicablePrediction = new Prediction("E", "NotApplicableE", "", 0); 
